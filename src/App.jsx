@@ -1,14 +1,26 @@
-import { useState } from 'react'
-import Footer from './components/Footer'
+import {  Routes , Route } from 'react-router-dom'
+
+import { Provider } from 'react-redux';
+import { store } from './Redux/store';
+
+
+import NavbarFooterBody from './Utils/NavbarFooterBody'
+import Home from './pages/Home'
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-    <h1>hello h1</h1>
-      <Footer/>
-    </>
+
+    <Provider store={store}>
+      <NavbarFooterBody>
+
+          <Routes>
+            <Route path="/" element={<Home/>} />
+          </Routes>
+
+      </NavbarFooterBody>
+    </Provider>
   )
 }
 
