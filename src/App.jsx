@@ -6,7 +6,7 @@ import { store } from './Redux/store';
 
 // page imports
 import NavbarFooterBody from './Utils/NavbarFooterBody'
-import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage} from './pages';
+import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout} from './pages';
 
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/forgotpassword" element={<ForgotPassword />}/>
             <Route path="/SignupPage" element={<SignupPage />}/>
+            <Route path="/Checkout" element={<Checkout />}/>
           </Routes>
 
       </NavbarFooterBody>
