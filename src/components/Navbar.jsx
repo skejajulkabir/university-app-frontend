@@ -9,6 +9,7 @@ import {
 } from "react-icons/ai";
 
 import { MdAccountCircle } from "react-icons/md";
+import { BsShop } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import {
   RemoveOneQtyFromCart,
@@ -86,16 +87,16 @@ const Navbar = () => {
       <div className="w-full py-3 bg-indigo-100 z-20 shadow-xl fixed flex flex-row ">
         <Link to="/" className="my-auto">
           <div className="logo my-auto">
-            <img src="#" className="w-2/3 ml-2 my-auto" alt="logo" />
+            <img src="util-assets/logo.jpg" className="w-2/3 ml-2 my-auto" alt="logo" />
           </div>
         </Link>
 
         <div className="flex flex-row">
           <div className="nav hidden md:block">
             <ul className="flex items-center justify-center px-10">
-              <Link to="/tshirts">
-                <li className="px-4 font-bold hover:bg-indigo-300 rounded-lg py-3">
-                  T-shirts
+              <Link to="/productshowcase">
+                <li className="px-4 font-bold hover:bg-indigo-300 rounded-lg py-3 flex flex-row">
+                  SHOP -  <BsShop className="text-2xl mx-2"/>
                 </li>
               </Link>
 

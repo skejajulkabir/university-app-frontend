@@ -1,11 +1,12 @@
+// Library imports
 import {  Routes , Route } from 'react-router-dom'
-
 import { Provider } from 'react-redux';
 import { store } from './Redux/store';
 
 
+// page imports
 import NavbarFooterBody from './Utils/NavbarFooterBody'
-import Home from './pages/Home'
+import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage} from './pages';
 
 
 function App() {
@@ -17,6 +18,10 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Home/>} />
+            <Route path="/productshowcase" element={<ProductShowcasePage/>} />
+            <Route path="/login" element={<LoginPage/>}/>
+            <Route path="/forgotpassword" element={<ForgotPassword />}/>
+            <Route path="/SignupPage" element={<SignupPage />}/>
           </Routes>
 
       </NavbarFooterBody>
