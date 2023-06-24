@@ -87,7 +87,7 @@ const Navbar = () => {
       <div className="w-full py-3 bg-indigo-100 z-20 shadow-xl fixed flex flex-row ">
         <Link to="/" className="my-auto">
           <div className="logo my-auto">
-            <img src="util-assets/logo.jpg" className="w-2/3 ml-2 my-auto" alt="logo" />
+            <img src="/logo.jpg" className="w-2/3 ml-2 my-auto" alt="logo" />
           </div>
         </Link>
 

@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from "react";
-// import TshirtCard from "../components/TshirtCard";
-import { Link } from "react-router-dom";
 import { TshirtCard } from "../components";
-// import axios from "axios";
+import axios from "axios";
 
 const ProductShowcasePage = () => {
-  // const [tshirtsData, setTshirtsData] = useState([]);
+  const [tshirtsData, setTshirtsData] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchTshirtData = async () => {
-  //     // console.log("hello this is tshirts.js files useeffect");
-  //     // await fetch(`${process.env.NEXT_PUBLIC_WEBSITEURL}/api/getproducts`)
-  //     await axios
-  //       .get(`${process.env.NEXT_PUBLIC_WEBSITEURL}/api/getproducts`)
-  //       .then((res) => {
-  //         setTshirtsData(res.data.products);
-  //       })
-  //       .catch((err) => {
-  //         console.log("there was an error fetching the data.");
-  //       });
-  //   };
-  //   fetchTshirtData();
-  //   console.log(tshirtsData);
-  // }, []);
+  useEffect(() => {
+    const fetchTshirtData = async () => {
+      await axios
+        .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getproducts`)
+        .then((res) => {
+          setTshirtsData(res.data.products);
+        })
+        .catch((err) => {
+          console.log("there was an error fetching the data.");
+        });
+    };
+    fetchTshirtData();
+  }, []);
 
   return (
     <div>
@@ -30,25 +25,19 @@ const ProductShowcasePage = () => {
         <div className="container px-5 pt-5 md:pt-24 mx-auto">
           <div className="flex flex-wrap -m-4">
 
-            {/* {tshirtsData.map((item) => {
+            {tshirtsData.map((item) => {
               return <TshirtCard key={item._id} item={item} />;
-            })} */}
+            })}
 
 
+            {/* <TshirtCard/>
             <TshirtCard/>
             <TshirtCard/>
             <TshirtCard/>
             <TshirtCard/>
             <TshirtCard/>
             <TshirtCard/>
-            <TshirtCard/>
-            <TshirtCard/>
-
-
-
-
-
-
+            <TshirtCard/> */}
 
 
             {/* <Link href={"/product/:id"} className="p-1 w-1/3 sm:p-4  md:w-1/4 lg:w-1/4">
@@ -72,15 +61,6 @@ const ProductShowcasePage = () => {
                 </div>
               </div>
             </Link> */}
-
-
-
-
-
-
-
-
-
 
           </div>
         </div>
