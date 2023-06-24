@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../Redux/features/cartslice";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { VarientCard } from "../components";
+// import VarientCard from "../components";
 
 const SingleProductPage = () => {
   const params = useParams();
@@ -34,16 +36,19 @@ const SingleProductPage = () => {
 
   console.log(productData.product);
   const product = productData.product;
-  return (
-    <>
+
+
+  if (Object.keys(productData).length > 0) {
+    return (
+      <>
       <div>
-        {Object.keys(productData).length > 0 ? (
+        
           <section className="text-gray-600 body-font overflow-hidden bg-slate-100 border-b-slate-900">
           <div className="container px-5 py-24 mx-auto">
             <div className="lg:w-4/5 mx-auto flex flex-wrap">
               <img
                 alt="ecommerce"
-                className="lg:w-1/2 w-full lg:h-auto  object-contain object-center rounded "
+                className="lg:w-1/2 w-full lg:h-auto  object-contain object-center rounded    lg:hover:scale-125 transition-transform duration-1000 ease-in-out"
                 src={product.img}
               />
               <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -201,9 +206,9 @@ const SingleProductPage = () => {
                     className="flex ml-12 text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded "
                     onClick={() => {
                       handleAddToCart({
-                        name: title,
+                        name: product.title,
                         qty: 1,
-                        id: _id,
+                        id: product._id,
                       });
                     }}
                   >
@@ -234,18 +239,60 @@ const SingleProductPage = () => {
 
 
 
+        {/* <section className="">
+        <h1 className="text-2xl m-3">Varients:</h1>
+        <div className=" flex flex-col md:flex-row overflow-x-auto">
+
+          {product.variants.length>0 ? product.variants.map((vrnt)=>{ return <VarientCard vrnt={vrnt} key={vrnt._id}/>})}  
+          
+          
+        </div>
+
+        </section> */}
+
+                
+        {/* {console.log(product.variants)} */}
+        <section className="">
+
+          <h1 className="text-2xl m-3">Varients:</h1>
+          <div className=" flex flex-col md:flex-row overflow-x-auto">
+            {
+
+              product.variants.map(( vrnt )=>{
+                return (
+                  <VarientCard key={vrnt._id} vrnt={vrnt} product={product}/>
+                )
+              })
+              
+            }
+          </div>
+
+        </section>
+
+
+
+
+
+
+
+
 
         
 
 
 
 
-        ) : (
-          <p>Loading...</p> // Placeholder for the loading state
-        )}
+        
       </div>
     </>
-  );
+    )
+  }else{
+    return (
+      <>
+        <div>Loading...</div>
+      </>
+    )
+  }
 };
 
 export default SingleProductPage;

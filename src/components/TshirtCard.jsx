@@ -7,7 +7,7 @@ const TshirtCard = ({ item }) => {
       
       <Link
         to={`/product/${item._id}`}
-        className="p-1 w-1/3 sm:p-4  md:w-1/4 lg:w-1/4 hover:scale-110 transition-transform duration-300 ease-in-out"
+        className="p-1 w-1/2 sm:p-4  md:w-1/3 xl:w-1/4 hover:scale-110 transition-transform duration-300 ease-in-out"
       >
         <div className="shadow-lg">
           <div className="block relative  rounded-md overflow-hidden">

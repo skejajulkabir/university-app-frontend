@@ -82,7 +82,7 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className="">
       {/* // <div className='w-full absolute sticky top-0 shadow-md flex flex-col justify-center md:flex-row md:justify-start justify-center items-center py-2 bg-white z-20 '> */}
       <div className="w-full py-3 bg-indigo-100 z-20 shadow-xl fixed flex flex-row ">
         <Link to="/" className="my-auto">
@@ -94,7 +94,7 @@ const Navbar = () => {
         <div className="flex flex-row">
           <div className="nav hidden md:block">
             <ul className="flex items-center justify-center px-10">
-              <Link to="/productshowcase">
+              <Link to="/shop">
                 <li className="px-4 font-bold hover:bg-indigo-300 rounded-lg py-3 flex flex-row">
                   SHOP -  <BsShop className="text-2xl mx-2"/>
                 </li>
@@ -133,9 +133,15 @@ const Navbar = () => {
           </div>
         </div>
 
+
+
+
+
+
+
         <div
           ref={ref}
-          className="w-full  min-h-screen overflow-y-scroll  sideCart absolute top-0 right-0 bg-pink-200 p-10 transition-transform translate-x-full transform overflow-x-hidden overflow-scroll flex items-center flex-col rounded-lg xl:w-1/3"
+          className="w-full  min-h-screen overflow-y-scroll  sideCart absolute top-0 right-0 bg-pink-200 p-10 transition-transform translate-x-full transform overflow-x-hidden overflow-scroll flex items-center flex-col rounded-lg xl:w-1/3 z-50"
         >
           <div
             className="absolute top-8 right-8 text-2xl text-cyan-50 cursor-pointer "

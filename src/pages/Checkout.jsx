@@ -40,7 +40,7 @@ const Checkout = () => {
       <h2 className="text-gray-900 text-lg font-medium title-font mb-5">Enter your personal info.</h2>
 
       <div className="relative mb-4">
-        <label for="full-name" className="leading-7 text-sm text-gray-600">Full Name</label>
+        <label htmlFor="full-name" className="leading-7 text-sm text-gray-600">Full Name</label>
         <input type="text" id="full-name" name="full-name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
 
@@ -64,27 +64,27 @@ const Checkout = () => {
       </div>
 
       <div className="relative mb-4">
-        <label for="department" className="leading-7 text-sm text-gray-600">Department</label>
+        <label htmlFor="department" className="leading-7 text-sm text-gray-600">Department</label>
         <input type="text" id="department" name="department" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
 
       <div className="relative mb-4">
-        <label for="email" className="leading-7 text-sm text-gray-600">Email</label>
+        <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
         <input type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
       
       <div className="relative mb-4">
-        <label for="address" className="leading-7 text-sm text-gray-600">Address(room number)</label>
+        <label htmlFor="address" className="leading-7 text-sm text-gray-600">Address(room number)</label>
         <input type="text" id="address" name="address" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
       
       <div className="relative mb-4">
-        <label for="phone" className="leading-7 text-sm text-gray-600">Phone</label>
+        <label htmlFor="phone" className="leading-7 text-sm text-gray-600">Phone</label>
         <input type="number" id="phone" name="phone" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
       
       <div className="relative mb-4">
-        <label for="voucher" className="leading-7 text-sm text-gray-600">Enter voucher code if applicable.</label>
+        <label htmlFor="voucher" className="leading-7 text-sm text-gray-600">Enter voucher code if applicable.</label>
         <input type="text" id="voucher" name="voucher" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
 
