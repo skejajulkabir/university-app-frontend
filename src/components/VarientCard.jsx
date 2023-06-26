@@ -4,11 +4,11 @@ const VarientCard = ({ vrnt , product }) => {
   return (
     <div
       key={vrnt._id}
-      className="w-full max-w-sm my-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-3"
+      className="w-full max-w-sm my-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-3    "
     >
       <a href="#">
         <img
-          className="p-8 rounded-t-lg "
+          className="p-8 rounded-t-lg hover:scale-110 transition-transform duration-300 ease-in-out"
           src={vrnt.image}
           alt="product image"
         />

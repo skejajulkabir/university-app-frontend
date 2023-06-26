@@ -1,8 +1,24 @@
 import React from 'react'
+import {  Feed, LeftSidebar, RightSidebar } from '../components'
 
 const Home = () => {
   return (
-    <div className='pt-56 bg-slate-300 min-h-screen'>This is Home component.</div>
+    <>
+
+      <div className="flex flow-row w-full bg-slate-600 justify-between">
+
+      <LeftSidebar />
+
+      <Feed/>
+
+      <RightSidebar />
+
+      </div>
+
+
+      {/* <div className="min-h-screen bg-slate-500">home</div> */}
+
+    </>
   )
 }
 
