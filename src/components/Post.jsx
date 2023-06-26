@@ -21,7 +21,7 @@ const Post = () => {
 
                     <div className="ml-2 flex flex-col">
 
-                        <div className="text-lg ">
+                        <div className="text-sm sm:text-lg ">
                             MD. Rayhan Rahman Rabbi
                         </div>
 

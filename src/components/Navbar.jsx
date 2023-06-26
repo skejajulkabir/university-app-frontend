@@ -90,7 +90,7 @@ const Navbar = () => {
       <div className="w-full py-3 bg-indigo-100 z-20 shadow-xl fixed flex flex-row ">
         <Link to="/" className="my-auto">
           <div className="logo my-auto">
-            <img src="/univ-app-logo(long).psd.png" className="w-56 ml-2 my-auto" alt="logo" />
+            <img src="/univ-app-logo(long).psd.png" className="w-56 ml-6 ml-2 my-auto hover:scale-125 transition-transform duration-300 ease-in-out" alt="logo" />
           </div>
         </Link>
 
@@ -98,7 +98,7 @@ const Navbar = () => {
           <div className="nav hidden lg:block">
             <ul className="flex items-center justify-center px-10">
               <Link to="/shop">
-                <li className="px-4 font-bold hover:bg-indigo-300 rounded-lg py-3 flex flex-row">
+                <li className="px-4 font-bold  rounded-lg py-3 flex flex-row hover:scale-125 transition-transform duration-300 ease-in-out">
                   SHOP -  <BsShop className="text-2xl mx-2"/>
                 </li>
               </Link>
@@ -107,19 +107,22 @@ const Navbar = () => {
 
           {/* <div className='flex justify-end flex-row absolute right-0 top-3'> */}
           <div className="flex justify-center flex-row h-full absolute top-1 right-2">
-            <Link className="h-full  " to={"/search"}>
-              <div className="h-full flex items-center justify-center my-auto cursor-pointer">
-                <BiSearch className="text-4xl lg:text-5xl mx-2 my-auto" />
-              </div>
-            </Link>
 
-            <Link className="h-full  " to={"/login"}>
+            <label htmlFor="searchbar">
+              <div className="h-full  hover:scale-125 transition-transform duration-300 ease-in-out" >
+                <div className="h-full flex items-center justify-center my-auto cursor-pointer">
+                  <BiSearch className="text-4xl lg:text-5xl mx-2 my-auto" />
+                </div>
+              </div>
+            </label>
+
+            <Link className="h-full  hover:scale-125 transition-transform duration-300 ease-in-out" to={"/login"}>
               <div className="h-full flex items-center justify-center my-auto cursor-pointer">
                 <MdAccountCircle className="text-4xl lg:text-5xl mx-1 my-auto" />
               </div>
             </Link>
             <div
-              className="cart mx-2 lg:mx-8 font-bold flex justify-center items-center  text-sm my-3 bg-indigo-300 rounded-full p-1 lg:p-3 cursor-pointer "
+              className="cart mx-2 lg:mx-8 font-bold flex justify-center items-center  text-sm my-3 bg-indigo-300 rounded-full p-1 lg:p-3 cursor-pointer hover:scale-125 transition-transform duration-300 ease-in-out"
               ref={ref}
               onClick={toggleCart}
             >
@@ -138,18 +141,18 @@ const Navbar = () => {
 
         <div
           ref={ref}
-          className="w-full  min-h-screen overflow-y-scroll  sideCart absolute top-0 right-0 bg-pink-200 p-10 transition-transform translate-x-full transform overflow-x-hidden overflow-scroll flex items-center flex-col rounded-lg xl:w-1/3 z-50"
+          className="w-full  min-h-screen overflow-y-scroll  sideCart absolute top-0 right-0 bg-indigo-200 p-10 transition-transform translate-x-full transform overflow-x-hidden overflow-scroll flex items-center flex-col rounded-lg xl:w-1/3 z-50"
         >
           <div
             className="absolute top-8 right-8 text-2xl text-cyan-50 cursor-pointer "
             onClick={toggleCart}
           >
-            <AiFillCloseCircle className="text-pink-500 text-3xl" />
+            <AiFillCloseCircle className="text-indigo-500 text-3xl" />
           </div>
           <h1 className="font-bold text-3xl text-center">CART</h1>
           <ol className="list-decimal w-full">
             {globalCart.length === 0 && (
-              <div className="w-full py-80 p-11 bg-pink-300 text-blue-950 flex justify-center align-middle">
+              <div className="w-full py-80 p-11 bg-indigo-300 text-blue-950 flex justify-center align-middle">
                 <span className="text-4xl font-bold">
                   No items in the cart.
                 </span>
@@ -159,21 +162,21 @@ const Navbar = () => {
             {globalCart.map((item) => {
               if (Object.keys(item).length > 0) {
                 return (
-                  <li className="py-3 bg-pink-300 my-1" key={item.id}>
+                  <li className="py-3 bg-indigo-300 my-1" key={item.id}>
                     <div className="item flex  ">
                       <div className="w-2/3 flex justify-center items-center p-2 overflow-hidden ml-4">
                         {item.name}
                       </div>
-                      <div className="w-1/3 flex justify-center items-center text-xl bg-pink-200 mx-3 ">
+                      <div className="w-1/3 flex justify-center items-center text-xl bg-indigo-200 mx-3 ">
                         <span
                           onClick={() => handleRemoveOneQtyFromCart(item.id)}
                         >
-                          <AiFillMinusCircle className="px-1 text-4xl cursor-pointer text-pink-600" />
+                          <AiFillMinusCircle className="px-1 text-4xl cursor-pointer text-indigo-600" />
                         </span>
                         <span className="px-1">{item.qty}</span>
                         <AiFillPlusCircle
                           onClick={() => handleAddOneQtyFromCart(item.id)}
-                          className="px-1 text-4xl cursor-pointer text-pink-600"
+                          className="px-1 text-4xl cursor-pointer text-indigo-600"
                         />
                       </div>
                     </div>
@@ -186,13 +189,13 @@ const Navbar = () => {
           {globalCart.length > 0 && (
             <div>
               <Link to="/checkout" onClick={toggleCart}>
-                <button className="p-2 bg-pink-500 rounded-md m-4 text-pink-50 hover:bg-pink-600">
+                <button className="p-2 bg-indigo-500 rounded-md m-4 text-indigo-50 hover:bg-indigo-600">
                   CHECKOUT
                 </button>
               </Link>
               <button
                 onClick={cartClear}
-                className="p-2 bg-pink-500 rounded-md m-4 text-pink-50 hover:bg-pink-600"
+                className="p-2 bg-indigo-500 rounded-md m-4 text-indigo-50 hover:bg-indigo-600"
               >
                 CLEAR CART
               </button>
