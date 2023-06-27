@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import ProfileButton from './Leftsidebar componets/profileButton'
 import SearchBar from './Leftsidebar componets/SearchBar'
 import GoToSettings from './Leftsidebar componets/GoToSettings'
@@ -14,17 +15,30 @@ const LeftSidebar = () => {
     
       <SearchBar/>
 
-      <ProfileButton />
+      <Link to='profile/1'>
+        <ProfileButton />
+      </Link>
+      
 
-      <NoticeBar/>
-
-      <BloodDonation/>
-
-
-      <GoToSettings/>
+      <Link to='/underdevelopment'>
+        <NoticeBar/>
+      </Link>
 
 
-      <PlatformDonors/>
+      <Link to='/underdevelopment'>
+        <BloodDonation/>
+      </Link>
+
+
+      <Link to='/underdevelopment'>
+        <GoToSettings/>
+      </Link>
+
+
+      <Link to='/underdevelopment'>
+        <PlatformDonors/>
+      </Link>
+
 
     </div>
         

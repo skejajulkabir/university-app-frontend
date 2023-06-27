@@ -21,7 +21,7 @@ const Post = () => {
 
                     <div className="ml-2 flex flex-col">
 
-                        <div className="text-sm sm:text-lg ">
+                        <div className="text-sm sm:text-lg truncate">
                             MD. Rayhan Rahman Rabbi
                         </div>
 

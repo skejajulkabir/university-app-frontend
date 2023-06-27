@@ -6,3 +6,5 @@ export {default as SignupPage} from './SignupPage';
 export {default as Checkout} from './Checkout';
 export {default as SingleProductPage} from './SingleProductPage';
 export {default as CreatePostPage} from './CreatePostPage';
+export {default as ProfilePage} from './ProfilePage';
+export {default as UnderDevelopmentPage} from './UnderDevelopmentPage';

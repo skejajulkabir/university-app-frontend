@@ -6,7 +6,10 @@ import { store } from './Redux/store';
 
 // page imports
 import NavbarFooterBody from './Utils/NavbarFooterBody'
-import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage} from './pages';
+import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage} from './pages';
+
+//admin page imports
+import { AdminLoginPage } from './pages/AdminSide';
 
 
 function App() {
@@ -25,6 +28,9 @@ function App() {
             <Route path="/Checkout" element={<Checkout />}/>
             <Route path="/product/:id" element={<SingleProductPage />}/>
             <Route path="/createpost" element={<CreatePostPage />}/>
+            <Route path="/admin/login" element={<AdminLoginPage />}/>
+            <Route path="/profile/:id" element={<ProfilePage />}/>
+            <Route path="/underdevelopment" element={<UnderDevelopmentPage />}/>
           </Routes>
 
       </NavbarFooterBody>

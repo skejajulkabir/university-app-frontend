@@ -11,3 +11,29 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
+
+.featured-product-item{
+}
+
+/* .featured-product-showcase::-webkit-scrollbar-thumb{
+    width: 10px;
+} */
+
+/* width */
+.featured-product-showcase::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .featured-product-showcase::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  .featured-product-showcase::-webkit-scrollbar-thumb {
+    background: rgba(63, 61, 61, 0.269);
+    border-radius: 10px;
+    widows: 10px;
+  }
