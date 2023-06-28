@@ -5,7 +5,7 @@ const ProfileHeader = () => {
     <div>
         <div className="w-full mx-auto overflow-hidden h-96 object-center border-2 border-slate-500 p-3 ">
                     <div className="h-full w-full object-center">
-                        <img src="https://scontent.fjsr8-1.fna.fbcdn.net/v/t39.30808-6/356371576_3674174506137622_5142504487296516411_n.jpg?stp=cp6_dst-jpg&_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=Kd_t5KNEQ-IAX-U6JYo&_nc_ht=scontent.fjsr8-1.fna&oh=00_AfDT_i4DhDIGMl-jJdXgevGS9sl5Wi83LRgZuSeKwHh_lQ&oe=649E8F06" alt="" />
+                        <img src="/default-cover.jpg" alt="" />
                     </div>
                 </div>
 

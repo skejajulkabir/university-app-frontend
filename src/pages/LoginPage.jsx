@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom'
 
 const LoginPage = () => {
   return (
-    <div className='h-screen '>
+    <div className='h-screen pt-24'>
+
+
+
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img className="mx-auto h-10 w-auto" src="/univ-app-logo(long).psd.png" alt="Your Company"/>
@@ -42,6 +45,16 @@ const LoginPage = () => {
         </p>
       </div>
     </div>
+
+
+
+      <Link to='/admin/login'>\
+        <div className="w-full bg-red-300 mx-2">
+          <div className="text-2xl font-bold w-fit mx-auto rounded-md ">
+            Login as admin.
+          </div>
+        </div>
+      </Link>
     </div>
   )
 }

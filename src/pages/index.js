@@ -8,3 +8,4 @@ export {default as SingleProductPage} from './SingleProductPage';
 export {default as CreatePostPage} from './CreatePostPage';
 export {default as ProfilePage} from './ProfilePage';
 export {default as UnderDevelopmentPage} from './UnderDevelopmentPage';
+export {default as PostProductPage} from './PostProductPage';

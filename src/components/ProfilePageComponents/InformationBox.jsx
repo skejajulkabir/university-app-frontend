@@ -28,6 +28,10 @@ const InformationBox = () => {
                         <div className=" border-l-2 border-slate-600 pl-3 mr-3 ">Current Location :</div>
                         <div className="">Palbari.</div>
                     </div>
+                    <div className="flex  flex-row text-2xl font-bold my-2 text-slate-700   ">
+                        <div className=" border-l-2 border-slate-600 pl-3 mr-3 ">From :</div>
+                        <div className="">Khulna.</div>
+                    </div>
                 </div>
             </div>
 
