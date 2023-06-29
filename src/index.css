@@ -37,3 +37,7 @@
     border-radius: 10px;
     widows: 10px;
   }
+
+  body{
+    overflow-x: visible;
+  }
