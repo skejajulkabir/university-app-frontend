@@ -17,7 +17,7 @@ const VarientCard = ({ vrnt , product }) => {
         <a href="#">
           <p className="text-white">{product.title}</p>
           <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            {vrnt.name}
+            {vrnt.color}
           </h5>
         </a>
         <div className="flex items-center mt-2.5 mb-5">

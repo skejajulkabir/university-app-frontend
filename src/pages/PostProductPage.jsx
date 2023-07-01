@@ -6,8 +6,8 @@ const PostProductPage = () => {
 
   const [formData, setFormData] = useState({
     title: "",
-    authorName: "",
-    authorUserName: "",
+    authorName: "SK EJAJUL KABIR",
+    authorUserName: "admin@skejajulkabir",
     brand: "Dissolver",
     slug: "",
     description: "",
@@ -117,7 +117,7 @@ const PostProductPage = () => {
             <div className="w-full">
               <div className="w-full">
                 <label className="flex flex-row w-full justify-between rounded-md my-3">
-                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2">
+                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2 pl-3 flex items-center">
                     Title :
                   </div>
                   <textarea
@@ -134,14 +134,15 @@ const PostProductPage = () => {
             <div className="w-full">
               <div className="w-full">
                 <label className="flex flex-row w-full justify-between rounded-md my-3">
-                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2">
+                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2 pl-3 flex items-center">
                     Author's Name :
                   </div>
                   <textarea
                     className="bg-slate-200 w-4/6 p-2 mx-2 "
                     type="text"
+                    disabled
                     name="authorName"
-                    value={formData.name}
+                    value={formData.authorName}
                     onChange={handleChange}
                   />
                 </label>
@@ -151,14 +152,15 @@ const PostProductPage = () => {
             <div className="w-full">
               <div className="w-full">
                 <label className="flex flex-row w-full justify-between rounded-md my-3">
-                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2">
+                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2 pl-3 flex items-center">
                     Authors Username :
                   </div>
                   <textarea
                     className="bg-slate-200 w-4/6 p-2 mx-2 "
                     type="text"
+                    disabled
                     name="authorUserName"
-                    value={formData.name}
+                    value={formData.authorUserName}
                     onChange={handleChange}
                   />
                 </label>
@@ -168,14 +170,14 @@ const PostProductPage = () => {
             <div className="w-full">
               <div className="w-full">
                 <label className="flex flex-row w-full justify-between rounded-md my-3">
-                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2">
+                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2 pl-3 flex items-center">
                     Brand :
                   </div>
                   <textarea
                     className="bg-slate-200 w-4/6 p-2 mx-2 "
                     type="text"
                     name="brand"
-                    value="Dissolver"
+                    value={formData.brand}
                     disabled
                     onChange={handleChange}
                   />
@@ -186,7 +188,7 @@ const PostProductPage = () => {
             <div className="w-full">
               <div className="w-full">
                 <label className="flex flex-row w-full justify-between rounded-md my-3">
-                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2">
+                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2 pl-3 flex items-center">
                     Slug(Unique) :
                   </div>
                   <textarea
@@ -203,7 +205,7 @@ const PostProductPage = () => {
             <div className="w-full">
               <div className="w-full">
                 <label className="flex flex-row w-full justify-between rounded-md my-3">
-                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2">
+                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2 pl-3 flex items-center">
                     Description :
                   </div>
                   <textarea
@@ -220,7 +222,7 @@ const PostProductPage = () => {
             <div className="w-full">
               <div className="w-full">
                 <label className="flex flex-row w-full justify-between rounded-md my-3">
-                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2">
+                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2 pl-3 flex items-center">
                     Image(Link) :
                   </div>
                   <textarea
@@ -237,7 +239,7 @@ const PostProductPage = () => {
             <div className="w-full">
               <div className="w-full">
                 <label className="flex flex-row w-full justify-between rounded-md my-3">
-                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2">
+                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2 pl-3 flex items-center">
                     Category :
                   </div>
                   <textarea
@@ -254,7 +256,7 @@ const PostProductPage = () => {
             <div className="w-full">
               <div className="w-full">
                 <label className="flex flex-row w-full justify-between rounded-md my-3">
-                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2">
+                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2 pl-3 flex items-center">
                     Price :
                   </div>
                   <input
@@ -302,7 +304,7 @@ const PostProductPage = () => {
             <div className="w-full">
               <div className="w-full">
                 <label className="flex flex-row w-full justify-between rounded-md my-3">
-                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2">
+                  <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2 pl-3 flex items-center">
                     Done?(Y/N) : (Edit this at the end!)
                   </div>
                   <textarea

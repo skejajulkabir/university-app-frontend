@@ -24,9 +24,10 @@ const TshirtCard = ({ item }) => {
             </h3>
             <p className="mt-1 bg-slate-50">
               SIZE<span className="text-xs">(available)</span>:{" "}
-              {item.size.map((s) => {
+              {/* {item.size.map((s) => {
                 return s.name + " ";
-              })}
+              })} */}
+              // TODO: has to be developed
             </p>
             <h2 className="text-gray-900 title-font text-lg font-medium truncate">
               {item.title}

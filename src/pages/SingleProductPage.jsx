@@ -166,11 +166,12 @@ const SingleProductPage = () => {
                 <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                   <div className="flex">
                     <span className="mr-4 text-xl font-bold">Color:</span>
-                    {product.color.map((c, index) => (
+                    {product.variants.map((c, index) => (
                       <span key={index} className="mr-1 text-xl font-bold bg-slate-500 p-1 rounded-md text-white">
-                        {c}
+                        {c.color}
                       </span>
                     ))}
+                    {/* // TODO: colors has to be developed... */}
                   </div>
                   <div className="flex ml-6 items-center">
                     <span className="mr-3">Size</span>
