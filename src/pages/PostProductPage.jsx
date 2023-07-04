@@ -40,21 +40,6 @@ const PostProductPage = () => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/admin/addproducts` , 
         [
-          // {
-          //   title: formData.title,
-          //   author: {
-          //     name: formData.authorName,
-          //     userName: formData.authorUserName,
-          //   },
-          //   brand: formData.brand,
-          //   slug: formData.slug,
-          //   description: formData.description,
-          //   img: formData.img,
-          //   category: formData.category,
-          //   price: formData.price,
-          //   reviews: formData.reviews,
-          //   variants: formData.variants,
-          // }
           {
             "title": formData.title,
             "author": {

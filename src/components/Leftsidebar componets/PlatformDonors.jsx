@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const PlatformDonors = () => {
   return (
     <>
-        <Link to="/underdevelopment">
+        <Link to="/platformdonors">
           <div className="flex flex-row rounded-md w-11/12 h-fit m-4 bg-slate-300 overflow-y-hidden overflow-x-hidden ">
 
 
@@ -11,7 +11,7 @@ const PlatformDonors = () => {
 
 
               <div className="w-full ">
-                <img src="https://scontent.fjsr8-1.fna.fbcdn.net/v/t39.30808-6/343331330_1371814486942572_732636332432882534_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=174925&_nc_ohc=o6SBLbSIXSYAX8-SdcB&_nc_ht=scontent.fjsr8-1.fna&oh=00_AfB94tkGp02LsEVLK-oCGQIjYmNfHOUD2mOwaTXMcUb3Xg&oe=649E4620" alt="donor pic" />
+                <img src="/profile-photos/donor pic.jpg" alt="donor pic" />
               </div>
 
 

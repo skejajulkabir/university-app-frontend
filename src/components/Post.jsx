@@ -15,7 +15,7 @@ const Post = () => {
                 <div className="flex flex-row">
 
                     <div className="border-slate-400 border-2 rounded-full p-1">
-                        <img src="https://scontent.fjsr8-1.fna.fbcdn.net/v/t39.30808-1/347620645_780008180510762_9150278967896735735_n.jpg?stp=cp6_dst-jpg_p240x240&_nc_cat=108&ccb=1-7&_nc_sid=f67be1&_nc_ohc=ArEislmFMNAAX93D_dn&_nc_ht=scontent.fjsr8-1.fna&oh=00_AfD7nbtf4iQBzJoIOYQi4nfHV5c1nYRbmSCISmxWDlZEtA&oe=649E1364" alt="DP" className='w-11 rounded-full border-slate-600 '/>
+                        <img src="/profile-photos/dp.jpg" alt="DP" className='w-11 rounded-full border-slate-600 '/>
                     </div>
 
 
@@ -50,7 +50,7 @@ const Post = () => {
             {/* photo  */}
 
             <div className="m-2">
-                <img src="https://scontent.fjsr8-1.fna.fbcdn.net/v/t39.30808-6/356371576_3674174506137622_5142504487296516411_n.jpg?stp=cp6_dst-jpg&_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=Kd_t5KNEQ-IAX-U6JYo&_nc_ht=scontent.fjsr8-1.fna&oh=00_AfDT_i4DhDIGMl-jJdXgevGS9sl5Wi83LRgZuSeKwHh_lQ&oe=649E8F06" alt="post image" className='w-full hover:scale-105 transition-transform duration-300 ease-in-out' />
+                <img src="/post-pictures/postpic.jpg" alt="post image" className='w-full hover:scale-105 transition-transform duration-300 ease-in-out' />
             </div>
 
 

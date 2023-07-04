@@ -5,14 +5,14 @@ const ProfileHeader = () => {
     <div>
         <div className="w-full mx-auto overflow-hidden h-96 object-center border-2 border-slate-500 p-3 ">
                     <div className="h-full w-full object-center">
-                        <img src="/default-cover.jpg" alt="" />
+                        <img src="/utils/default-cover.jpg" alt="" />
                     </div>
                 </div>
 
 
                 <div className="flex flex-row items-center border-b-2 pb-24">
                     <div className="ml-4">
-                        <img className="rounded-full border border-4 border-slate-700 p-1 m-3 -my-32 " src="https://scontent.fjsr8-1.fna.fbcdn.net/v/t39.30808-1/337565198_611760390381817_9011426361755166686_n.jpg?stp=dst-jpg_p240x240&_nc_cat=111&ccb=1-7&_nc_sid=7206a8&_nc_ohc=oxJLbCvi-eYAX9jP_hA&_nc_ht=scontent.fjsr8-1.fna&oh=00_AfD1XzoCV4WMRFEE0_MhSGT1AiPiGr9zYOu0pY4-Gl5igw&oe=649D40FE" alt="" />
+                        <img className="rounded-full border border-4 border-slate-700 p-1 m-3 -my-32 max-w-xs" src="/profile-photos/dp.jpg" alt="" />
                     </div>
 
                     <div className="">

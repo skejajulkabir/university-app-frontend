@@ -13,7 +13,7 @@ const ProfilePage = () => {
                 <ProfileHeader/>
 
 
-                <ButtonBar/>
+                <ButtonBar />
 
                 <div className="flex flex-row w-full justify-evenly pt-4">
 

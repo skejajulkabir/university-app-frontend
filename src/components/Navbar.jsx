@@ -6,12 +6,14 @@ import {
   AiFillMinusCircle,
   AiFillPlusCircle,
   AiOutlineShoppingCart,
-  AiOutlineHome
+  AiOutlineHome,
+  AiOutlineSetting
 } from "react-icons/ai";
 
 import { MdAccountCircle } from "react-icons/md";
 import { HiUserGroup } from "react-icons/hi";
 import { BsShop } from "react-icons/bs";
+import { CgNotes } from 'react-icons/cg'
 import { BiSearch } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -204,17 +206,17 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className=" block pt-16 lg:hidden pb-2">
+      <div className=" block pt-20 lg:hidden pb-2">
         <ul className="flex items-center justify-evenly ">
           
           <Link to="/">
-            <li className="px-4 font-bold hover:bg-indigo-300 rounded-lg py-1">
+            <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
               <AiOutlineHome className="text-3xl mx-2"/>
             </li>
           </Link>
 
           <Link to="/shop">
-            <li className="px-4 font-bold hover:bg-indigo-300 rounded-lg py-1">
+            <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
               <BsShop className="text-2xl mx-2 font-bold"/>
             </li>
           </Link>
@@ -222,11 +224,24 @@ const Navbar = () => {
 
 
 
+
           {/* // ? community  */}
 
           <Link to="/shop">
-            <li className="px-4 font-bold hover:bg-indigo-300 rounded-lg py-1">
+            <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
               <HiUserGroup className="text-2xl mx-2 font-bold"/>
+            </li>
+          </Link>
+
+          <Link to="/underdevelopment">
+            <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
+              <CgNotes className="text-2xl mx-2 font-bold"/>
+            </li>
+          </Link>
+
+          <Link to="/underdevelopment">
+            <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
+              <AiOutlineSetting className="text-2xl mx-2 font-bold"/>
             </li>
           </Link>
           
