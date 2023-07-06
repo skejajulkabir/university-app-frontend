@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AdminLoginPage = () => {
+const AdminLoginPageProxy = () => {
   return (
     <>
       <div className="h-screen ">
@@ -97,4 +97,4 @@ const AdminLoginPage = () => {
   );
 };
 
-export default AdminLoginPage;
+export default AdminLoginPageProxy;

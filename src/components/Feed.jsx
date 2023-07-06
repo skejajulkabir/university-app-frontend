@@ -8,6 +8,8 @@ const Feed = () => {
     <>
     <div className="w-full bg-slate-500 px-4 ">
 
+      <div className="w-full py-16 lg:hidden "></div>
+
       <CreatePost />
 
 

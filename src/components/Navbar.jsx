@@ -11,6 +11,7 @@ import {
 } from "react-icons/ai";
 
 import { MdAccountCircle } from "react-icons/md";
+import { FaMoneyBillAlt } from "react-icons/fa";
 import { HiUserGroup } from "react-icons/hi";
 import { BsShop } from "react-icons/bs";
 import { CgNotes } from 'react-icons/cg'
@@ -92,7 +93,7 @@ const Navbar = () => {
       <div className="w-full py-3 bg-indigo-100 z-20 shadow-xl fixed flex flex-row ">
         <Link to="/" className="my-auto">
           <div className="logo my-auto">
-            <img src="/univ-app-logo(long).psd.png" className="w-56 ml-6 ml-2 my-auto hover:scale-125 transition-transform duration-300 ease-in-out" alt="logo" />
+            <img src="/univ-app-logo(long).psd.png" className=" w-40 md:w-56 ml-6 ml-2 my-auto hover:scale-125 transition-transform duration-300 ease-in-out" alt="logo" />
           </div>
         </Link>
 
@@ -104,6 +105,13 @@ const Navbar = () => {
                   SHOP -  <BsShop className="text-2xl mx-2"/>
                 </li>
               </Link>
+
+              <Link to="/underdevelopment">
+                <li className="px-4 font-bold  rounded-lg py-3 flex flex-row hover:scale-125 transition-transform duration-300 ease-in-out bg-black text-white">
+                  DONATE -  <FaMoneyBillAlt className="text-2xl mx-2 text-white"/>
+                </li>
+              </Link>
+
             </ul>
           </div>
 
@@ -112,7 +120,7 @@ const Navbar = () => {
 
             <label htmlFor="searchbar">
               <div className="h-full  hover:scale-125 transition-transform duration-300 ease-in-out" >
-                <div className="h-full flex items-center justify-center my-auto cursor-pointer">
+                <div className="md:hidden h-full flex items-center justify-center my-auto cursor-pointer">
                   <BiSearch className="text-4xl lg:text-5xl mx-2 my-auto" />
                 </div>
               </div>
@@ -206,7 +214,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className=" block pt-20 lg:hidden pb-2">
+      <div className=" block pt-16 md:pt-20 lg:hidden pb-2 fixed w-full top-0 bg-white z-10">
         <ul className="flex items-center justify-evenly ">
           
           <Link to="/">

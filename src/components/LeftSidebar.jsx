@@ -6,6 +6,7 @@ import GoToSettings from './Leftsidebar componets/GoToSettings'
 import NoticeBar from './Leftsidebar componets/NoticeBar'
 import BloodDonation from './Leftsidebar componets/BloodDonation'
 import PlatformDonors from './Leftsidebar componets/PlatformDonors'
+import GroupTab from './Leftsidebar componets/GroupTab'
 
 const LeftSidebar = () => {
   return (
@@ -32,6 +33,10 @@ const LeftSidebar = () => {
 
       <Link to='/underdevelopment'>
         <GoToSettings/>
+      </Link>
+
+      <Link to='/underdevelopment' >
+        <GroupTab/>
       </Link>
 
 

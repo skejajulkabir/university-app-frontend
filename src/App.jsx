@@ -9,7 +9,7 @@ import NavbarFooterBody from './Utils/NavbarFooterBody'
 import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage} from './pages';
 
 //admin page imports
-import { AdminLoginPage } from './pages/AdminSide';
+import { ActualAdminLoginPage, AdminLoginPageProxy } from './pages/AdminSide/pages';
 
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
       <NavbarFooterBody>
 
           <Routes>
+            {/* CLIENT side routes */}
             <Route path="/" element={<Home/>} />
             <Route path="/shop" element={<ProductShowcasePage/>} />
             <Route path="/login" element={<LoginPage/>}/>
@@ -28,11 +29,16 @@ function App() {
             <Route path="/Checkout" element={<Checkout />}/>
             <Route path="/product/:id" element={<SingleProductPage />}/>
             <Route path="/createpost" element={<CreatePostPage />}/>
-            <Route path="/admin/login" element={<AdminLoginPage />}/>
             <Route path="/profile/:id" element={<ProfilePage />}/>
             <Route path="/underdevelopment" element={<UnderDevelopmentPage />}/>
-            <Route path="/ecommerce/postproducts" element={<PostProductPage />}/>
             <Route path="/platformdonors" element={<DonorDisplayPage />}/>
+
+
+
+            {/* ADMIN side routes */}
+            <Route path="/admin/login" element={<AdminLoginPageProxy />}/>
+            <Route path="/mainadmin/login" element={<ActualAdminLoginPage />}/>
+            <Route path="/admin/postproducts" element={<PostProductPage />}/>
           </Routes>
 
       </NavbarFooterBody>
