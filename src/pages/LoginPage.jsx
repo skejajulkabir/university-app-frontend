@@ -1,10 +1,12 @@
 import axios from "axios";
 import React , {useState} from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     regularEmail: "",
     password: "",
@@ -18,12 +20,21 @@ const LoginPage = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
+    // console.log(formData)
     axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/user/login` ,
       formData
-    ).then(res=> toast.success(res.data.message));
+    ).then((res)=>{
+      toast.success(res.data.message);
+      console.log(res);
+      localStorage.setItem("TOKEN" , res.data.token);
+      navigate("/")
+    })
+    .catch((err)=> {
+      toast.error(err.response.data.message);
+    })
 
     // console.log(res)
+    
   };
 
   return (

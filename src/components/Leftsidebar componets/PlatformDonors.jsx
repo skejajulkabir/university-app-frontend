@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const PlatformDonors = () => {
   return (
     <>
-        <Link to="/platformdonors">
+        {/* <Link to="/platformdonors"> */}
           <div className="flex flex-row rounded-md w-11/12 h-fit m-4 bg-slate-300 overflow-y-hidden overflow-x-hidden ">
 
 
@@ -36,7 +36,7 @@ const PlatformDonors = () => {
 
             
           </div>
-        </Link>
+        {/* </Link> */}
 
         
     </>

@@ -1,6 +1,7 @@
 import { useState  } from "react";
 import VariantInput from "../components/VariantInput";
 import axios from "axios";
+import LeftSideBar from "./AdminSide/components/LeftSideBar";
 
 const PostProductPage = () => {
 
@@ -36,6 +37,8 @@ const PostProductPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFormData((prevFormData) => ({ ...prevFormData, done: "done" }));
+
 
     try {
       const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/admin/addproducts` , 
@@ -90,8 +93,12 @@ const PostProductPage = () => {
 
   return (
     <>
+    <div className="pt-20"></div>
+      <div className="flex flex-row ">
+
+        <LeftSideBar/>
       <div className="min-h-screen w-screen">
-        <div className="pt-24">
+        <div className="">
           <div className="text-5xl font-bold w-fit mx-auto">
             Post a new product.
           </div>
@@ -337,6 +344,9 @@ const PostProductPage = () => {
         </form>
 
 
+
+      </div>
+      
 
       </div>
     </>

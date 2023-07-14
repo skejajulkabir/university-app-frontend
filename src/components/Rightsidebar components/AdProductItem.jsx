@@ -4,19 +4,19 @@ const AdProductItem = () => {
   return (
     <>
       <div  className=" mr-2 h-fit bg-slate-700 rounded-md featured-product-item w-full">
-        <a href="#">
+        <div >
           <img
             className="p-8  rounded-t-lg hover:scale-110 transition-transform duration-300 ease-in-out"
             src="https://static-01.daraz.com.bd/p/afba96aad1be21192d288d698783ac88.jpg"
             alt="product image"
           />
-        </a>
+        </div>
         <div className="px-5 pb-5">
-          <a href="#">
+          <div>
             <p className="text-white text-xs">
               MINECRAFT | Dissolver Mens Premium T-shirt | RUSSIAN BLACK | WHITE
             </p>
-          </a>
+          </div>
           <div className="flex items-center mt-2.5 mb-5">
             <svg
               fill="currentColor"

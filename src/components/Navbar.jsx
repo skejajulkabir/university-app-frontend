@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 import {
@@ -38,6 +40,7 @@ import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const globalCart = useSelector((state) => state.globalCart.cart);
 
@@ -60,6 +63,34 @@ const Navbar = () => {
       localStorage.clear();
     }
   }, []);
+
+
+  // authorization ueeffect
+
+  useEffect(()=>{
+    const fetchTshirtData = async () => {
+      await axios
+        .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/verify/initialvarify`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('TOKEN') //the token is a variable which holds the token
+            }
+          }
+        )
+        .then((res) => {
+          if (res.data.error.message === "jwt expired") {
+            localStorage.removeItem('TOKEN');
+            window.location.reload();
+            // navigate("/");
+          }
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log("there was an error fetching the data." + err);
+        });
+    };
+    fetchTshirtData();
+  },[])
 
   const cartClear = () => {
     dispatch(clearCart());

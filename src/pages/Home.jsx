@@ -1,25 +1,44 @@
 import React from 'react'
 import {  Feed, LeftSidebar, RightSidebar } from '../components'
+import ProductShowcasePage from './ProductShowcasePage'
 
 const Home = () => {
-  return (
-    <>
 
-      <div className="flex flow-row w-full bg-slate-600 justify-between">
+  if (localStorage.getItem("TOKEN")) {
+    return (
+      <>
+  
+        <div className="flex flow-row w-full bg-slate-600 justify-between">
+  
+        <LeftSidebar />
+  
+        <Feed/>
+  
+        <RightSidebar />
+  
+        </div>
+  
+  
+        {/* <div className="min-h-screen bg-slate-500">home</div> */}
+  
+      </>
+    )
+  } else {
+    return (
+      <>
+        <div className="pt-24">
+          <div className="min-h-screen flex flex-col items-center justify-center px-6">
+            <div className="text-3xl font-serif bg-slate-300 p-6 py-10 rounded-md">
+              To access the home page of the site you have to login and varify yourself first as a <span className='text-4xl text-red-500 px-4 bg-slate-200 rounded-md'>JUSTIAN</span>...
+            </div>
+          </div>
+        </div>
+        <ProductShowcasePage/>
+      </>
+    )
+  }
 
-      <LeftSidebar />
 
-      <Feed/>
-
-      <RightSidebar />
-
-      </div>
-
-
-      {/* <div className="min-h-screen bg-slate-500">home</div> */}
-
-    </>
-  )
 }
 
 export default Home
