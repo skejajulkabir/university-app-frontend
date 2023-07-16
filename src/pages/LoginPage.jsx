@@ -27,7 +27,11 @@ const LoginPage = () => {
       toast.success(res.data.message);
       console.log(res);
       localStorage.setItem("TOKEN" , res.data.token);
-      navigate("/")
+      
+      setTimeout(() => {
+        navigate("/")
+        window.location.reload();
+      }, 4000);
     })
     .catch((err)=> {
       toast.error(err.response.data.message);

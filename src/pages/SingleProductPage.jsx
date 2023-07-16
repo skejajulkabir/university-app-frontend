@@ -9,6 +9,10 @@ import { VarientCard } from "../components";
 const SingleProductPage = () => {
   const params = useParams();
   const [productData, setProductData] = useState({});
+  const [selectedVariantData, setSelectedVariantData] = useState({});
+  const [productImage, setProductImage] = useState("")
+
+  // console.log(Object.keys(selectedVariantData).length);
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -23,8 +27,9 @@ const SingleProductPage = () => {
     };
 
     fetchProductData();
-  }, [params.id]);
 
+  }, [params.id]);
+  
   const globalCart = useSelector((state) => state.globalCart.cart);
   const dispatch = useDispatch();
 
@@ -34,8 +39,17 @@ const SingleProductPage = () => {
     const storageCart = localStorage.getItem("Cart");
   };
 
-  console.log(productData.product);
+  // console.log(productData.product);
   const product = productData.product;
+
+
+
+  useEffect(()=>{
+    setProductImage(product?.img);
+  },[product])
+
+
+  // console.log(selectedVariantData)
 
 
   if (Object.keys(productData).length > 0) {
@@ -49,7 +63,7 @@ const SingleProductPage = () => {
               <img
                 alt="ecommerce"
                 className="lg:w-1/2 w-full lg:h-auto  object-contain object-center rounded    lg:hover:scale-125 transition-transform duration-1000 ease-in-out"
-                src={product.img}
+                src={productImage}
               />
               <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                 <h2 className="text-sm title-font font-bold text-gray-500 tracking-widest">
@@ -171,7 +185,6 @@ const SingleProductPage = () => {
                         {c.color}
                       </span>
                     ))}
-                    {/* // TODO: colors has to be developed... */}
                   </div>
                   <div className="flex ml-6 items-center">
                     <span className="mr-3">Size</span>
@@ -199,39 +212,69 @@ const SingleProductPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex">
-                  <span className="title-font font-medium text-2xl text-gray-900">
-                    Price: {product.price} ৳
-                  </span>
+                <div className="flex flex-col">
 
-                  <button
-                    className="flex ml-12 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded "
-                    onClick={() => {
-                      handleAddToCart({
-                        name: product.title,
-                        qty: 1,
-                        id: product._id,
-                      });
-                    }}
-                  >
-                    Add to cart
-                  </button>
-                  <button className="flex ml-12 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                    Buy now
-                  </button>
+                  
 
-                  <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                    <svg
-                      fill="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="w-5 h-5"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                    </svg>
-                  </button>
+
+
+
+                  {
+                    Object.keys(selectedVariantData).length >= 1 &&
+                      (
+
+                        <div className="bg-slate-400 rounded-md p-4">
+
+                          <span className="title-font font-medium text-2xl text-gray-900 m-4">
+                            Price: {selectedVariantData?.vrntPrice} <span className="text-2xl ">৳</span>
+                          </span>
+
+                          <div className="px-4 py-3">
+                            <div className="text-xl">
+                              selected Variant : <span>{selectedVariantData.selectedVrntName}</span>
+                            </div>
+                          </div>
+
+
+                          <button
+                            className="flex ml-12 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded "
+                            onClick={() => {
+                              handleAddToCart({
+                                name: product?.title,
+                                qty: 1,
+                                id: product?._id,
+                                color: selectedVariantData.selectedVrntName,
+                                price: selectedVariantData.vrntPrice,
+                                image: productImage
+                              });
+                              console.log(selectedVariantData)
+                            }}
+                          >
+                            Add to cart
+                          </button>
+                          
+                        </div>
+                      ) 
+                  }
+
+
+                  {
+                    Object.keys(selectedVariantData).length < 1 &&
+                      (
+                        <div className="m-4">
+                          <div className="text-2xl font-semibold text-black">
+                            You have to select a variant first to order.
+                          </div>
+                        </div>
+                      )
+
+                  }
+
+
+
+
+
+
                 </div>
               </div>
             </div>
@@ -239,21 +282,6 @@ const SingleProductPage = () => {
         </section>  
 
 
-
-
-        {/* <section className="">
-        <h1 className="text-2xl m-3">Varients:</h1>
-        <div className=" flex flex-col md:flex-row overflow-x-auto">
-
-          {product.variants.length>0 ? product.variants.map((vrnt)=>{ return <VarientCard vrnt={vrnt} key={vrnt._id}/>})}  
-          
-          
-        </div>
-
-        </section> */}
-
-                
-        {/* {console.log(product.variants)} */}
         <section className="">
 
           <h1 className="text-2xl m-3">Varients:</h1>
@@ -262,7 +290,7 @@ const SingleProductPage = () => {
 
               product.variants.map(( vrnt )=>{
                 return (
-                  <VarientCard key={vrnt._id} vrnt={vrnt} product={product}/>
+                  <VarientCard key={vrnt._id} vrnt={vrnt} setProductImage={setProductImage} setSelectedVariantData={setSelectedVariantData} product={product}/>
                 )
               })
               

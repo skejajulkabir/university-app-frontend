@@ -1,9 +1,8 @@
 import React from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
-import { BiCommentDetail, BiSolidLike } from 'react-icons/bi'
+import { BiSolidLike , BiCommentDetail  } from 'react-icons/bi'
 
-const Post = ({post}) => {
-    console.log(post)
+const OnlyTextPost = ({post}) => {
   return (
     <>
         <div className="flex flex-col rounded-lg bg-slate-200 shadow-2xl py-2 p-3 md:max-w-3xl mx-auto mb-2 w-full m-2">
@@ -49,16 +48,6 @@ const Post = ({post}) => {
                 {post.caption}
             </div>
             <span className='text-blue-600 cursor-pointer'>see more...</span>
-
-
-
-            {/* photo  */}
-
-            <div className="m-2">
-                <img src={post.imgURL} alt="post image" className='w-full hover:scale-105 transition-transform duration-300 ease-in-out' />
-            </div>
-
-
 
 
             {/* Reaction share and comment  */}
@@ -109,4 +98,4 @@ const Post = ({post}) => {
   )
 }
 
-export default Post
+export default OnlyTextPost

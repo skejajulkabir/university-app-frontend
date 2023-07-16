@@ -25,6 +25,7 @@ import {
   clearCart,
   settinglocalCartFromPreviouseBrowseToReux,
 } from "../Redux/features/cartslice.js";
+import { setGlobalUser } from "../Redux/features/userSlice.js";
 
 import { Link } from "react-router-dom";
 
@@ -43,6 +44,9 @@ const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const globalCart = useSelector((state) => state.globalCart.cart);
+  const globalUser = useSelector((state) => state.globalUser.user);
+  // console.log(globalUser);
+
 
   useEffect(() => {
     try {
@@ -68,28 +72,36 @@ const Navbar = () => {
   // authorization ueeffect
 
   useEffect(()=>{
-    const fetchTshirtData = async () => {
-      await axios
-        .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/verify/initialvarify`,
-          {
-            headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('TOKEN') //the token is a variable which holds the token
+    if(localStorage.getItem('TOKEN')){
+      const initialvarify = async () => {
+        await axios
+          .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/verify/initialvarify`,
+            {
+              headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('TOKEN') //the token is a variable which holds the token
+              }
             }
-          }
-        )
-        .then((res) => {
-          if (res.data.error.message === "jwt expired") {
-            localStorage.removeItem('TOKEN');
-            window.location.reload();
-            // navigate("/");
-          }
-          console.log(res)
-        })
-        .catch((err) => {
-          console.log("there was an error fetching the data." + err);
-        });
-    };
-    fetchTshirtData();
+          )
+          .then(async (res) => {
+            if (res.data.error) {
+              localStorage.removeItem('TOKEN');
+              navigate("/");
+              window.location.reload();
+            }
+            // console.log(res)
+                await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getuserbyid/${res.data.tokenResponse.uid}`)
+                .then((r)=>{
+                  // console.log(r);
+                  dispatch(setGlobalUser(r.data.user));
+                })
+          })
+          .catch((err) => {
+            console.log("there was an error fetching the data." + err);
+          });
+      };
+      initialvarify();
+    }
+    
   },[])
 
   const cartClear = () => {
@@ -182,7 +194,7 @@ const Navbar = () => {
 
         <div
           ref={ref}
-          className="w-full  min-h-screen overflow-y-scroll  sideCart absolute top-0 right-0 bg-indigo-200 p-10 transition-transform translate-x-full transform overflow-x-hidden overflow-scroll flex items-center flex-col rounded-lg xl:w-1/3 z-50"
+          className="w-full  h-screen overflow-y-scroll  sideCart absolute top-0 right-0 bg-indigo-200 p-10 transition-transform translate-x-full transform overflow-x-hidden overflow-scroll flex items-center flex-col rounded-lg xl:w-1/3 z-50"
         >
           <div
             className="absolute top-8 right-8 text-2xl text-cyan-50 cursor-pointer "
@@ -201,22 +213,40 @@ const Navbar = () => {
             )}
 
             {globalCart.map((item) => {
+              console.log(item)
               if (Object.keys(item).length > 0) {
                 return (
-                  <li className="py-3 bg-indigo-300 my-1" key={item.id}>
+                  <li className="py-3 bg-indigo-300 my-1 rounded-md" key={Math.floor(Math.random()*10000)}>
+
                     <div className="item flex  ">
-                      <div className="w-2/3 flex justify-center items-center p-2 overflow-hidden ml-4">
-                        {item.name}
+                      <div className="w-2/3 flex text-sm justify-center items-center p-2 overflow-hidden ml-4">
+                        <div className="flex flex-col">
+                          <div className="">
+                            <span className="pr-1 -ml-2">NAME: </span> <span>{item.name}</span>
+                          </div>
+                          <div className="font-bold">
+                            <span className="pr-1 -ml-2">Variant: </span> <span>{item.color}</span>
+                          </div>
+                          <div className="font-semibold">
+                            <span className="pr-1 -ml-2">Price: </span> <span>{item.price * item.qty} TAKA</span>
+                          </div>
+                          <div className="">
+                              <img className="w-12 border-2 border-indigo-600  p-1" src={item.image} alt="prf img" />
+                          </div>
+                        </div>
                       </div>
-                      <div className="w-1/3 flex justify-center items-center text-xl bg-indigo-200 mx-3 ">
+                      
+                      <div className="w-1/3 h-fit my-auto flex justify-center items-center text-xl bg-indigo-200 mx-3 rounded-md ">
                         <span
-                          onClick={() => handleRemoveOneQtyFromCart(item.id)}
+                          onClick={() => handleRemoveOneQtyFromCart(item.varUID)}
                         >
                           <AiFillMinusCircle className="px-1 text-4xl cursor-pointer text-indigo-600" />
                         </span>
-                        <span className="px-1">{item.qty}</span>
+                        <span className="px-1">
+                          {item.qty}
+                        </span>
                         <AiFillPlusCircle
-                          onClick={() => handleAddOneQtyFromCart(item.id)}
+                          onClick={() => handleAddOneQtyFromCart(item.varUID)}
                           className="px-1 text-4xl cursor-pointer text-indigo-600"
                         />
                       </div>

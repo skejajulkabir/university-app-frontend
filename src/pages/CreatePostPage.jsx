@@ -1,30 +1,54 @@
 import React, { useState } from "react";
-import MediaUploadingModes from "../components/MediaUploadingModes";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const CreatePostPage = () => {
-  const [caption, setCaption] = useState("");
+
+  //importing global user
+  const globalUser = useSelector((state) => state.globalUser.user);
+  console.log(globalUser);
+
+
   const [willingToUploadMedia, setWillingToUploadMedia] =
     useState("notselected");
-  const [mediaUploadingModes, setMediaUploadingModes] = useState("onlyText");
+  const [typeOfThePostState, setTypeOfThePostState] = useState("onlyText");
+  const [formData, setFormData] = useState({
+    author: {
+      name: globalUser.name,
+      image: globalUser.avatar,
+      userName: globalUser.userName ,
+      role: globalUser.role ,
+    },
+    caption: "",
+    typeOfThePost: typeOfThePostState,
+    imgURL: "",
+    videoURL: "",
+    Likes: 0,
+    comments: [],
+  });
 
-  const handleCaptionChange = (event) => {
-    setCaption(event.target.value);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/createpost` ,
+        formData
+      )
+      .then((response)=>{
+        console.log(response);
+      })
+    } catch (err) {
+      console.log(err)
+    }
+
+    console.log(formData);
   };
 
-  const handleFileChange = (event) => {
-    const fileList = Array.from(event.target.files);
-    setFiles(fileList);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Perform your post creation logic here, using the 'caption' and 'files' state values
-    // ...
-
-    // Reset the form
-    setCaption("");
-    setFiles([]);
+  const handleChange = (e) => {
+    setFormData((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+    console.log(formData);
   };
 
   return (
@@ -38,13 +62,16 @@ const CreatePostPage = () => {
           <textarea
             id="caption"
             className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-            value={caption}
-            onChange={handleCaptionChange}
+            value={formData.caption}
+            name="caption"
+            onChange={(e) => {
+              handleChange(e);
+            }}
             required
           />
         </div>
 
-        {/* <MediaUploadingModes/> */}
+        {/* <typeOfThePostState/> */}
 
         <div className="bg-slate-100 my-4">
           <div className="text-2xl  my-4 p-4 w-fit mx-auto">
@@ -64,7 +91,10 @@ const CreatePostPage = () => {
               className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out  hover:scale-110 transition-transform duration-300 ease-in-out"
               onClick={() => {
                 setWillingToUploadMedia("No");
-                setMediaUploadingModes("onlyText")
+                // setTypeOfThePostState("onlyText");
+                setFormData((prev) => {
+                  return { ...prev, typeOfThePost: "OnlyText" };
+                });
               }}
             >
               No
@@ -81,69 +111,77 @@ const CreatePostPage = () => {
             <div className="flex flex-row justify-evenly">
               <button
                 className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out  hover:scale-110 transition-transform duration-300 ease-in-out"
-                onClick={() => setMediaUploadingModes("Photo")}
+                onClick={() => {
+                  setTypeOfThePostState("Photo");
+                  setFormData((prev) => {
+                    return { ...prev, typeOfThePost: "Photo" , videoURL :"" };
+                  });
+                }}
               >
                 <div className="w-fit mx-auto">Photo</div>
               </button>
 
               <button
                 className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out  hover:scale-110 transition-transform duration-300 ease-in-out"
-                onClick={() => setMediaUploadingModes("Video")}
+                onClick={() => {
+                  setTypeOfThePostState("Video");
+                  setFormData((prev) => {
+                    return { ...prev, typeOfThePost: "Video" , imgURL :"" };
+                  });
+                }}
               >
                 <div className="w-fit mx-auto">Video</div>
               </button>
             </div>
           </div>
-        ):null}
+        ) : null}
 
-
-
-
-
-
-
-
-{
-  mediaUploadingModes === "Photo" && willingToUploadMedia === "Yes" ? (
-        <div className=" my-4 bg-blue-300 rounded items-center">
+        {typeOfThePostState === "Photo" && willingToUploadMedia === "Yes" ? (
+          <div className=" my-4 bg-blue-300 rounded items-center">
             <div className="text-2xl  my-4 p-4 w-fit mx-auto font-bold text-3xl">
-                Enter photo URL.(Any public URL will WORK!) 
+              Enter photo URL.(Any public URL will WORK!)
             </div>
 
             <div className=" w-3/4 mx-auto p-3">
-            <input type="text" id="full-name" name="full-name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out "/>
+              <input
+                type="text"
+                id="imgURL"
+                name="imgURL"
+                onChange={handleChange}
+                value={formData.imgURL}
+                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out "
+              />
             </div>
-        </div>
-  ) : mediaUploadingModes === "Video" && willingToUploadMedia === "Yes" ? (
-    <div className=" my-4 bg-red-300 rounded items-center">
+          </div>
+        ) : typeOfThePostState === "Video" && willingToUploadMedia === "Yes" ? (
+          <div className=" my-4 bg-red-300 rounded items-center">
             <div className="text-2xl  my-4 p-4  w-fit mx-auto font-bold text-3xl">
-                Enter Video URL.(Only Youtube URLs are allowed) 
+              Enter Video URL.(Only Youtube URLs are allowed)
             </div>
 
             <div className=" w-3/4 mx-auto p-3">
-            <input type="text" id="full-name" name="full-name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out "/>
+              <input
+                type="text"
+                id="videoURL"
+                name="videoURL"
+                onChange={handleChange}
+                value={formData.videoURL}
+                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out "
+              />
             </div>
-        </div>
-        
-  ) : null
-}
+          </div>
+        ) : null}
 
-
-
-
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded w-full  hover:scale-110 transition-transform duration-300 ease-in-out"
-        >
+          <button
+            type="submit"
+            className={"bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded w-full hover:scale-110 transition-transform duration-300 ease-in-out disabled:bg-slate-400"}
+            disabled={willingToUploadMedia === "Yes" && (formData.imgURL === "" && formData.videoURL === "") ? true : false}
+          >
             Post
-        </button>
+          </button>
       </form>
     </div>
   );
 };
 
 export default CreatePostPage;
-
-
-
-

@@ -2,7 +2,21 @@ import React from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { BiCommentDetail, BiSolidLike } from 'react-icons/bi'
 
-const VideoPost = () => {
+const VideoPost = ({post}) => {
+    let vdoURL
+    if(post.videoURL.includes("www.youtube.com/watch?v")){
+
+        const URLextension =post.videoURL.split("=")[1];
+
+        // setExtractedURL(URLextension);
+        vdoURL = URLextension;
+        // console.log(extractedURL)
+    }
+
+
+
+
+
   return (
     <>
         <div className="flex flex-col rounded-lg bg-slate-200 shadow-2xl py-2 p-3 md:max-w-3xl mx-auto mb-2 ">
@@ -15,19 +29,23 @@ const VideoPost = () => {
                 <div className="flex flex-row">
 
                     <div className="border-slate-400 border-2 rounded-full p-1 ">
-                        <img src="/profile-photos/dp.jpg" alt="DP" className='w-11 rounded-full border-slate-600 '/>
+                        <img src={post.author.image} alt="DP" className='w-11 rounded-full border-slate-600 '/>
                     </div>
 
 
                     <div className="ml-2 flex flex-col">
 
                         <div className="text-sm sm:text-lg ">
-                            MD. Rayhan Rahman Rabbi
+                            {post.author.name}
                         </div>
 
-                        <div className="bg-slate-400 w-fit p-1 text-xs rounded px-2">
-                            role
-                        </div>
+                        {
+                            post.author.role.map((rol)=>{
+                            return    (<div key={Math.random()} className="bg-slate-400 w-fit p-1 text-xs rounded px-2">
+                                    {rol}
+                                </div>)
+                            })
+                        }
 
                     </div>
 
@@ -41,7 +59,9 @@ const VideoPost = () => {
 
             {/*  Caption  */}
             <div className="truncate">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit et perferendis suscipit alias laudantium rerum obcaecati earum consequatur ratione ab pariatur amet velit, explicabo tenetur sit, incidunt numquam nam soluta labore quae! Provident, temporibus.
+                {
+                    post.caption
+                }
             </div>
             <span className='text-blue-600 cursor-pointer'>see more...</span>
 
@@ -50,7 +70,7 @@ const VideoPost = () => {
             {/* photo  */}
 
             <div className="m-2 ">
-                <iframe width="560" height="500" src="https://www.youtube.com/embed/a7V9bUwc4cU"  frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen={true} className='w-full '></iframe>
+                <iframe width="560" height="500" src={`https://www.youtube.com/embed/${vdoURL}`}  frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen={true} className='w-full '></iframe>
             </div>
 
 

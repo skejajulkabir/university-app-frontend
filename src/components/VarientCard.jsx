@@ -1,25 +1,37 @@
 import React from "react";
 
-const VarientCard = ({ vrnt , product }) => {
+
+const VarientCard = ({ vrnt , product , setProductImage , setSelectedVariantData }) => {
   return (
     <div
+
+      onClick={()=>{
+        setProductImage(vrnt.image);
+        setSelectedVariantData(()=>{
+          return {
+            selectedVrntName : vrnt.color,
+            vrntPrice : vrnt.price,
+          }
+        })
+      }}
+
       key={vrnt._id}
-      className="w-full max-w-sm my-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-3 "
+      className="cursor-pointer w-full max-w-sm my-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-3 "
     >
-      <a href="#">
+      <div >
         <img
           className="p-8 rounded-t-lg hover:scale-110 transition-transform duration-300 ease-in-out"
           src={vrnt.image}
           alt="product image"
         />
-      </a>
+      </div>
       <div className="px-5 pb-5">
-        <a href="#">
+        <div>
           <p className="text-white">{product.title}</p>
           <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
             {vrnt.color}
           </h5>
-        </a>
+        </div>
         <div className="flex items-center mt-2.5 mb-5">
           <svg
             fill="currentColor"
@@ -84,12 +96,11 @@ const VarientCard = ({ vrnt , product }) => {
           <span className="text-3xl font-bold text-gray-900 dark:text-white">
             {product.price} ৳
           </span>
-          <a
-            href="#"
+          <div
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Add to cart
-          </a>
+          </div>
         </div>
       </div>
     </div>

@@ -21,6 +21,7 @@ function App() {
 
           <Routes>
             {/* CLIENT side routes */}
+            <Route path="*" element={<Home/>} />
             <Route path="/" element={<Home/>} />
             <Route path="/shop" element={<ProductShowcasePage/>} />
             <Route path="/login" element={<LoginPage/>}/>

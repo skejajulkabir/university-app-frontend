@@ -3,7 +3,7 @@ import React from "react";
 const AdProductItem = () => {
   return (
     <>
-      <div  className=" mr-2 h-fit bg-slate-700 rounded-md featured-product-item w-full">
+      <div  className=" mr-2 h-fit bg-slate-700 rounded-md featured-product-item ">
         <div >
           <img
             className="p-8  rounded-t-lg hover:scale-110 transition-transform duration-300 ease-in-out"

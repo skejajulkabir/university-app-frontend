@@ -15,15 +15,23 @@ export const cartSlice = createSlice({
             state.cart = action.payload;
         },
         addToCart: (state, action) => {
-            if (state.cart.find((elm)=>elm.id === action.payload.id)) {
-                Object.assign(
-                state.cart.find((elm)=> elm.id === action.payload.id),
-                {"qty" :  state.cart.find((elm)=> elm.id == action.payload.id).qty + 1 }
-                );
-                }else{
-                    state.cart= [...state.cart, action.payload];
+        if (state.cart.find((item) => item.id === action.payload.id && item.color === action.payload.color)) {
+            state.cart = state.cart.map((item) => {
+            if (item.id === action.payload.id && item.color === action.payload.color) {
+                return {
+                ...item,
+                qty: item.qty + 1,
                 };
-                localStorage.setItem("Cart", JSON.stringify(state.cart))
+            }
+            return item;
+            });
+        } else {
+            state.cart = [...state.cart, { ...action.payload, varUID: Math.floor(Math.random() * 10000) }];
+        }
+        
+        localStorage.setItem("Cart", JSON.stringify(state.cart));
+        
+        console.log(state.cart);
         },
         clearCart: (state)=>{
             state.cart = [];
@@ -31,10 +39,10 @@ export const cartSlice = createSlice({
         },
         RemoveOneQtyFromCart : (state, action) => {
             Object.assign(
-            state.cart.find((elm)=> elm.id == action.payload),
-            {"qty" :  state.cart.find((elm)=> elm.id == action.payload).qty - 1 }
+            state.cart.find((elm)=> elm.varUID == action.payload),
+            {"qty" :  state.cart.find((elm)=> elm.varUID == action.payload).qty - 1 }
             );
-            if(state.cart.find((elm)=> elm.id == action.payload).qty <= 0){
+            if(state.cart.find((elm)=> elm.varUID == action.payload).qty <= 0){
                 state.cart.map((elm)=>{
                     state.cart = state.cart.filter((elm)=> elm.qty > 0)
                 })
@@ -43,8 +51,8 @@ export const cartSlice = createSlice({
         },
         addOneQtyFromCart : (state, action) => {
             Object.assign(
-            state.cart.find((elm)=> elm.id == action.payload),
-            {"qty" :  state.cart.find((elm)=> elm.id == action.payload).qty + 1 }
+            state.cart.find((elm)=> elm.varUID == action.payload),
+            {"qty" :  state.cart.find((elm)=> elm.varUID == action.payload).qty + 1 }
             );
             localStorage.setItem("Cart", JSON.stringify(state.cart))
         },

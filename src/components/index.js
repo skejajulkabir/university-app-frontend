@@ -5,6 +5,6 @@ export {default as VarientCard} from './VarientCard';
 export {default as CreatePost} from './CreatePost';
 export {default as Feed} from './Feed';
 export {default as VideoPost} from './VideoPost';
-export {default as MediaUploadingModes} from './MediaUploadingModes';
 export {default as LeftSidebar} from './LeftSidebar';
 export {default as RightSidebar} from './RightSidebar';
+export {default as OnlyTextPost} from './OnlyTextPost';

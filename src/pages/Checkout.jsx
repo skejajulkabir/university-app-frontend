@@ -111,9 +111,9 @@ const Checkout = () => {
                               {item.name}
                             </div>
                             <div className="w-1/3 flex justify-center items-center text-xl bg-indigo-200 mx-3 ">
-                              <span onClick={()=>handleRemoveOneQtyFromCart(item.id)}><AiFillMinusCircle  className='px-1 text-4xl cursor-pointer text-indigo-600'/></span>
+                              <span onClick={()=>handleRemoveOneQtyFromCart(item.varUID)}><AiFillMinusCircle  className='px-1 text-4xl cursor-pointer text-indigo-600'/></span>
                               <span className='px-1' >{item.qty}</span>
-                              <AiFillPlusCircle onClick={()=>handleAddOneQtyFromCart(item.id)} className='px-1 text-4xl cursor-pointer text-indigo-600'/>
+                              <AiFillPlusCircle onClick={()=>handleAddOneQtyFromCart(item.varUID)} className='px-1 text-4xl cursor-pointer text-indigo-600'/>
                             </div>
                           </div>
                         </li>

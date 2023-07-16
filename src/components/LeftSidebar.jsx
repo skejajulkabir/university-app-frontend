@@ -16,9 +16,7 @@ const LeftSidebar = () => {
     
       <SearchBar/>
 
-      <Link to='profile/1'>
         <ProfileButton />
-      </Link>
       
 
       <Link to='/underdevelopment'>

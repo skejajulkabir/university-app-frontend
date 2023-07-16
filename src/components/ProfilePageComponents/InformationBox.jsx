@@ -1,6 +1,12 @@
 import React from 'react'
 
-const InformationBox = () => {
+const InformationBox = ({user}) => {
+    
+    const info = user?.info;
+    console.log(user)
+
+
+
   return (
     <>
         <div className="w-2/5 mx-2 h-full sticky top-24">
@@ -14,83 +20,96 @@ const InformationBox = () => {
                     <h1 className="text-2xl border-b-2 border-slate-400">Info :</h1>
                     <div className="flex  flex-row text-2xl font-bold my-2 text-slate-700   ">
                         <div className=" border-l-2 border-slate-600 pl-3 mr-3 ">Department :</div>
-                        <div className="">Physics</div>
+                        <div className="">{info?.department}</div>
                     </div>
                     <div className="flex  flex-row text-2xl font-bold my-2 text-slate-700   ">
                         <div className=" border-l-2 border-slate-600 pl-3 mr-3 ">Roll No :</div>
-                        <div className="">211338</div>
+                        <div className="">{info?.roll}</div>
                     </div>
                     <div className="flex  flex-row text-2xl font-bold my-2 text-slate-700   ">
                         <div className=" border-l-2 border-slate-600 pl-3 mr-3 ">Admission session :</div>
-                        <div className="">2021-2022</div>
+                        <div className="">{info?.admissionSession}</div>
                     </div>
                     <div className="flex  flex-row text-2xl font-bold my-2 text-slate-700   ">
                         <div className=" border-l-2 border-slate-600 pl-3 mr-3 ">Current Location :</div>
-                        <div className="">Palbari.</div>
+                        <div className="">{info?.currentLocation}</div>
                     </div>
                     <div className="flex  flex-row text-2xl font-bold my-2 text-slate-700   ">
                         <div className=" border-l-2 border-slate-600 pl-3 mr-3 ">From :</div>
-                        <div className="">Khulna.</div>
+                        <div className="">{info?.from}</div>
                     </div>
                 </div>
             </div>
 
 
-            <div className="w-full h-fit bg-slate-200 p-3 rounded-md mt-3">
-                <div className="w-full h-full">
-                    <div className="text-2xl border-b-2 border-slate-400">
-                        Roles :
+            {
+                user.role &&
+                    <div className="w-full h-fit bg-slate-200 p-3 rounded-md mt-3">
+                    <div className="w-full h-full">
+                        <div className="text-2xl border-b-2 border-slate-400">
+                            Roles :
+                        </div>
                     </div>
-                </div>
 
-                <div className="">
-                    <div className="flex flex-row flex-wrap">
-                        <div className=" p-2 bg-slate-50 w-fit m-2 rounded-md ">
-                            Coder
-                        </div>
-                        <div className=" p-2 bg-slate-50 w-fit m-2 rounded-md ">
-                            Artist
-                        </div>
-                        <div className=" p-2 bg-slate-50 w-fit m-2 rounded-md ">
-                            Guitarist
-                        </div>
-                        <div className=" p-2 bg-slate-50 w-fit m-2 rounded-md ">
-                            Biker
-                        </div>
-                        <div className=" p-2 bg-slate-50 w-fit m-2 rounded-md ">
-                            smoker
-                        </div>
-                        <div className=" p-2 bg-slate-50 w-fit m-2 rounded-md ">
-                            Active
-                        </div>
-                        <div className=" p-2 bg-slate-50 w-fit m-2 rounded-md ">
-                            Blood donor
-                        </div>
-                        <div className=" p-2 bg-slate-50 w-fit m-2 rounded-md ">
-                            Physisist
+                    <div className="">
+                        <div className="flex flex-row flex-wrap">
+
+                            {
+                            user.role &&  
+                                user.role.map((rol)=>{
+                                    return <div className=" p-2 bg-slate-50 w-fit m-2 rounded-md ">
+                                    {rol}
+                                </div>
+                                })
+                            }
+
                         </div>
                     </div>
-                </div>
 
             </div>
+            }
 
 
-            <div className="w-full h-fit bg-slate-200 p-3 rounded-md mt-3">
-                <div className="w-full h-full">
-                    <div className="text-2xl border-b-2 border-slate-400">
-                        Awards :
+
+                {
+                user?.awards?.length > 0 ? (
+                    <div className="w-full h-fit bg-slate-200 p-3 rounded-md mt-3">
+                                        <div className="w-full h-full">
+                                            <div className="text-2xl border-b-2 border-slate-400">
+                                                Awards :
+                                            </div>
+                                        </div>
+
+                                        <div className="">
+                                            <div className="flex flex-row flex-wrap">
+                                                {
+                                                    user.awards &&  
+                                                        user.awards.map((awrd)=>{
+                                                            return <div className=" p-2 bg-slate-50 w-fit m-2 rounded-md ">
+                                                            {awrd}
+                                                        </div>
+                                                        })
+                                                }
+                                            </div>
+                                        </div>
+
+                                    </div>
+                ) : (
+                    <div className="w-full h-fit bg-slate-200 p-3 rounded-md mt-3">
+                    <div className="w-full h-full">
+                        <div className="text-2xl border-b-2 border-slate-400">Awards :</div>
                     </div>
-                </div>
-
-                <div className="">
-                    <div className="flex flex-row flex-wrap">
-                        <div className=" p-2 bg-yellow-300 w-fit m-2 rounded-md ">
-                            Cricket Champion
+                    <div className="">
+                        <div className="flex flex-row flex-wrap">
+                        <div className="p-2 bg-slate-50 w-fit m-2 rounded-md">This user has no awards...</div>
                         </div>
                     </div>
-                </div>
+                    </div>
+                )
+                }
 
-            </div>
+
+            
 
 
         </div>
