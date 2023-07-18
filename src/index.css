@@ -56,3 +56,13 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+
+::-webkit-resizer {
+  border: 2px solid rgb(116, 116, 116);
+  background: rgb(91, 91, 91)(161, 161, 161);
+  /* box-shadow: 0 0 5px 5px rgb(98, 98, 98); */
+  outline: 2px solid rgb(105, 105, 105);
+  margin-right: 3px;
+  display: block;
+}

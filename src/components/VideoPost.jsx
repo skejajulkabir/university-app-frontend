@@ -1,8 +1,12 @@
-import React from 'react'
+import React , {useState} from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { BiCommentDetail, BiSolidLike } from 'react-icons/bi'
 
 const VideoPost = ({post}) => {
+    const [isTruncate, setIsTruncate] = useState(true)
+
+
+
     let vdoURL
     if(post.videoURL.includes("www.youtube.com/watch?v")){
 
@@ -58,14 +62,33 @@ const VideoPost = ({post}) => {
             </div>
 
             {/*  Caption  */}
-            <div className="truncate">
-                {
-                    post.caption
-                }
+            <div className="w-full  ">
+                <textarea
+                    className="bg-slate-200 p-2 mx-2 w-full scrollbar-hide"
+                    rows={isTruncate ? 2 :12}
+                    type="text"
+                    name="caption"
+                    disabled
+                    value={post.caption}
+                />
             </div>
-            <span className='text-blue-600 cursor-pointer'>see more...</span>
+            {isTruncate &&
+                <span 
+                className='text-blue-600 cursor-pointer'
+                onClick={()=>setIsTruncate(false)}
+                >
+                    Expand.
+                </span>
+            }
 
-
+            {!isTruncate &&
+                <span 
+                className='text-blue-600 cursor-pointer'
+                onClick={()=>setIsTruncate(true)}
+                >
+                    Minimise.
+                </span>
+            }
 
             {/* photo  */}
 

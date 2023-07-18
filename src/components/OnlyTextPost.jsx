@@ -1,8 +1,9 @@
-import React from 'react'
+import React , {useState} from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { BiSolidLike , BiCommentDetail  } from 'react-icons/bi'
 
 const OnlyTextPost = ({post}) => {
+    const [isTruncate, setIsTruncate] = useState(true)
   return (
     <>
         <div className="flex flex-col rounded-lg bg-slate-200 shadow-2xl py-2 p-3 md:max-w-3xl mx-auto mb-2 w-full m-2">
@@ -44,10 +45,34 @@ const OnlyTextPost = ({post}) => {
             </div>
 
             {/*  Caption  */}
-            <div className="truncate">
-                {post.caption}
+            <div className="w-full  ">
+                <textarea
+                    className="bg-slate-200 p-2 mx-2 w-full scrollbar-hide"
+                    rows={isTruncate ? 2 :12}
+                    type="text"
+                    name="caption"
+                    disabled
+                    value={post.caption}
+                />
             </div>
-            <span className='text-blue-600 cursor-pointer'>see more...</span>
+            {isTruncate &&
+                <span 
+                className='text-blue-600 cursor-pointer'
+                onClick={()=>setIsTruncate(false)}
+                >
+                    Expand.
+                </span>
+            }
+
+            {!isTruncate &&
+                <span 
+                className='text-blue-600 cursor-pointer'
+                onClick={()=>setIsTruncate(true)}
+                >
+                    Minimise.
+                </span>
+            }
+
 
 
             {/* Reaction share and comment  */}
