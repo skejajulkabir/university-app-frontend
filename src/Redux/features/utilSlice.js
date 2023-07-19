@@ -11,12 +11,12 @@ export const utilSlice = createSlice({
     name : 'utils',
     initialState,
     reducers:{
-        setLoading : (state,action)=>{
-            state.Loading = action.payload;
+        isVarified : (state,action)=>{
+            state.isVarified = action.payload;
         },
     }
 })
 
 
-export const {setLoading} = userSlice.actions;
+export const {isVarified} = utilSlice.actions;
 export default utilSlice.reducer;

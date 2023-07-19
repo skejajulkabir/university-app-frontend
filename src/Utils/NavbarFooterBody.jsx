@@ -11,7 +11,7 @@ const NavbarFooterBody = ({children}) => {
 
             {children}
 
-        <Footer />
+        {/* <Footer /> */}
 
     </>
   );

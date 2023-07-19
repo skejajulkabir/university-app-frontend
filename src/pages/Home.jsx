@@ -1,10 +1,16 @@
 import React from 'react'
 import {  Feed, LeftSidebar, RightSidebar } from '../components'
 import ProductShowcasePage from './ProductShowcasePage'
+import { useSelector } from 'react-redux/es/hooks/useSelector'
 
 const Home = () => {
 
-  if (localStorage.getItem("TOKEN")) {
+  const isUserVarified = useSelector((state)=> state.utils.isVarified);
+  const globalUser = useSelector((state)=> state.globalUser);
+  // console.log(globalUser);
+
+
+  if (localStorage.getItem("TOKEN") && isUserVarified && globalUser) {
     return (
       <>
   

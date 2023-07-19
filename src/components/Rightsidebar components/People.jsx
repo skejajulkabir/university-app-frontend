@@ -20,7 +20,7 @@ const People = () => {
     fetchPosts();
   }, []);
 
-  console.log(userData)
+  // console.log(userData)
 
 
   return (

@@ -4,7 +4,7 @@ import { BiCommentDetail, BiSolidLike } from 'react-icons/bi'
 
 const Post = ({post}) => {
     const [isTruncate, setIsTruncate] = useState(true)
-    console.log(post)
+    // console.log(post)
   return (
     <>
         <div className="flex flex-col rounded-lg bg-slate-200 shadow-2xl py-2 p-3 md:max-w-3xl mx-auto mb-2 w-full m-2">

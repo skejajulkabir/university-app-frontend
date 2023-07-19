@@ -26,6 +26,7 @@ import {
   settinglocalCartFromPreviouseBrowseToReux,
 } from "../Redux/features/cartslice.js";
 import { setGlobalUser } from "../Redux/features/userSlice.js";
+import { isVarified } from "../Redux/features/utilSlice.js";
 
 import { Link } from "react-router-dom";
 
@@ -87,12 +88,16 @@ const Navbar = () => {
               localStorage.removeItem('TOKEN');
               navigate("/");
               window.location.reload();
+              dispatch(isVarified(false))
             }
             // console.log(res)
                 await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getuserbyid/${res.data.tokenResponse.uid}`)
                 .then((r)=>{
                   // console.log(r);
                   dispatch(setGlobalUser(r.data.user));
+                  if(r.data.user){
+                    dispatch(isVarified(true));
+                  }
                 })
           })
           .catch((err) => {
@@ -213,7 +218,7 @@ const Navbar = () => {
             )}
 
             {globalCart.map((item) => {
-              console.log(item)
+              // console.log(item)
               if (Object.keys(item).length > 0) {
                 return (
                   <li className="py-3 bg-indigo-300 my-1 rounded-md" key={Math.floor(Math.random()*10000)}>
