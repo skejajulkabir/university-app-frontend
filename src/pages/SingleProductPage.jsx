@@ -11,6 +11,8 @@ const SingleProductPage = () => {
   const [productData, setProductData] = useState({});
   const [selectedVariantData, setSelectedVariantData] = useState({});
   const [productImage, setProductImage] = useState("")
+  const [sizeData, setSizeData ] = useState([])
+  const [selectedSize, setSelectedSize] = useState("")
 
   // console.log(Object.keys(selectedVariantData).length);
 
@@ -28,15 +30,55 @@ const SingleProductPage = () => {
 
     fetchProductData();
 
+
+    // const fetchSizeData = async () => {
+    //   try {
+    //     await axios.get(
+    //       `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getavailablesizes`
+    //     ).then((res)=>{
+    //       setSizeData(res.data.sizes);
+    //       console.log(res)
+    //     })
+    //   } catch (error) {
+    //     console.log("There was an error fetching the size data: " + error);
+    //   }
+    // };
+
+    // fetchSizeData();
+
+  }, [params.id]);
+
+
+  useEffect(() => {
+    const fetchSizeData = async () => {
+      try {
+        await axios.get(
+          `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getavailablesizes`
+        ).then((res)=>{
+          setSizeData(res.data.sizes);
+          console.log(res)
+        })
+      } catch (error) {
+        console.log("There was an error fetching the size data: " + error);
+      }
+    };
+
+    fetchSizeData();
+
   }, [params.id]);
   
   const globalCart = useSelector((state) => state.globalCart.cart);
   const dispatch = useDispatch();
 
   const handleAddToCart = (cartObject) => {
-    dispatch(addToCart(cartObject));
+    if(selectedSize !== ""){
+      dispatch(addToCart(cartObject));
     const newCart = [...globalCart, cartObject];
     const storageCart = localStorage.getItem("Cart");
+    }else{
+      alert("Please select a size!")
+    }
+    
   };
 
   // console.log(productData.product);
@@ -50,6 +92,14 @@ const SingleProductPage = () => {
 
 
   // console.log(selectedVariantData)
+
+
+
+
+
+  const handleSelectSize = (e)=>{
+    setSelectedSize(e.target.value);
+  }
 
 
   if (Object.keys(productData).length > 0) {
@@ -186,31 +236,61 @@ const SingleProductPage = () => {
                       </span>
                     ))}
                   </div>
-                  <div className="flex ml-6 items-center">
-                    <span className="mr-3">Size</span>
-                    <div className="relative">
-                      <select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
-                        <option value={"select"}>select a size</option>
-                        <option value={"SM"}>SM</option>
-                        <option value={"M"}>M</option>
-                        <option value={"L"}>L</option>
-                        <option value={"XL"}>XL</option>
-                      </select>
-                      <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
-                        <svg
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          className="w-4 h-4"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M6 9l6 6 6-6"></path>
-                        </svg>
-                      </span>
-                    </div>
-                  </div>
+
+
+                  {
+                    Object.keys(selectedVariantData).length >= 1 &&
+                      (
+                        <div className="flex ml-6 items-center">
+                          <span className="mr-3">Size</span>
+                          <div className="relative">
+                            <select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10" defaultValue={""} onClick={(e)=>handleSelectSize(e)}>
+                              <option value={""}>select a size</option>
+                              {
+                                // sizeData.data.map((sz , index)=>{
+                                //   if (sizeData.name == selectedVariantData.selectedVrntName) {
+                                //     return <option key={index} value={sz.size}>{sz.size}</option>
+                                //   }
+                                // })
+                                sizeData?.map((elm)=>{
+                                  if(elm.name == selectedVariantData.selectedVrntName){
+                                    return elm.data.map((sz , index)=>{
+                                      if (sz.quantity > 2) {
+                                        return <option key={index} value={sz.size}>{sz.size}</option>
+                                      }else{
+                                        return
+                                      }
+                                    })
+                                  }else{
+                                    return
+                                  }
+                                })
+                                // console.log(sizeData)
+                              }
+                            </select>
+                            <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
+                              <svg
+                                fill="none"
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                className="w-4 h-4"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M6 9l6 6 6-6"></path>
+                              </svg>
+                            </span>
+                          </div>
+                        </div>
+                      )
+
+                  }
+
+
+
+
+
                 </div>
                 <div className="flex flex-col">
 
@@ -245,7 +325,8 @@ const SingleProductPage = () => {
                                 id: product?._id,
                                 color: selectedVariantData.selectedVrntName,
                                 price: selectedVariantData.vrntPrice,
-                                image: productImage
+                                image: productImage,
+                                size: selectedSize
                               });
                               console.log(selectedVariantData)
                             }}
@@ -263,7 +344,7 @@ const SingleProductPage = () => {
                       (
                         <div className="m-4">
                           <div className="text-2xl font-semibold text-black">
-                            You have to select a variant first to order.
+                            You have to select a variant first to place an order.
                           </div>
                         </div>
                       )
@@ -290,7 +371,7 @@ const SingleProductPage = () => {
 
               product.variants.map(( vrnt )=>{
                 return (
-                  <VarientCard key={vrnt._id} vrnt={vrnt} setProductImage={setProductImage} setSelectedVariantData={setSelectedVariantData} product={product}/>
+                  <VarientCard key={vrnt._id} setSelectedSize={setSelectedSize} vrnt={vrnt} setProductImage={setProductImage} setSelectedVariantData={setSelectedVariantData} product={product}/>
                 )
               })
               

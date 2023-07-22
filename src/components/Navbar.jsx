@@ -51,7 +51,7 @@ const Navbar = () => {
 
   useEffect(() => {
     try {
-      if (JSON.parse(localStorage.getItem("Cart")).length > 0) {
+      if (JSON.parse(localStorage.getItem("Cart"))) {
         const localCartFromPreviouseBrowse = localStorage.getItem("Cart");
         dispatch(
           settinglocalCartFromPreviouseBrowseToReux(
@@ -61,9 +61,9 @@ const Navbar = () => {
       } else {
         localStorage.setItem("Cart", JSON.stringify([]));
       }
-    } catch {
+    } catch(err) {
       console.error(
-        "there was an error setting the cart from the local storage"
+        "there was an error setting the cart from the local storage" + err
       );
       localStorage.clear();
     }
@@ -136,7 +136,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="">
+    <div className="" >
       {/* // <div className='w-full absolute sticky top-0 shadow-md flex flex-col justify-center lg:flex-row lg:justify-start justify-center items-center py-2 bg-white z-20 '> */}
       <div className="w-full py-3 bg-indigo-100 z-20 shadow-xl fixed flex flex-row ">
         <Link to="/" className="my-auto">
@@ -231,6 +231,9 @@ const Navbar = () => {
                           </div>
                           <div className="font-bold">
                             <span className="pr-1 -ml-2">Variant: </span> <span>{item.color}</span>
+                          </div>
+                          <div className="font-bold">
+                            <span className="pr-1 -ml-2">size: </span> <span>{item.size}</span>
                           </div>
                           <div className="font-semibold">
                             <span className="pr-1 -ml-2">Price: </span> <span>{item.price * item.qty} TAKA</span>

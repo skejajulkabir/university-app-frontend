@@ -16,7 +16,7 @@ const OnlyTextPost = ({post}) => {
                 <div className="flex flex-row">
 
                     <div className="border-slate-400 border-2 rounded-full p-1">
-                        <img src="/profile-photos/dp.jpg" alt="DP" className='w-11 rounded-full border-slate-600 '/>
+                        <img src={post.author.image} alt="DP" className='w-11 rounded-full border-slate-600 '/>
                     </div>
 
 

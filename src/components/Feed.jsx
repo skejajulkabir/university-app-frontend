@@ -12,7 +12,6 @@ const Feed = () => {
 
 
   const handleInfiniteScroll = ()=>{
-
     try {
       if((window.innerHeight + document.documentElement.scrollTop + 700)  + 1 >= document.documentElement.scrollHeight){
         setPage(prev=>prev + 1)
@@ -20,16 +19,27 @@ const Feed = () => {
     } catch (error) {
       console.log(error);
     }
-
-
-
   }
 
 
 
-  useEffect(()=>{
-    window.addEventListener('scroll', handleInfiniteScroll)
-  },[])
+  // useEffect(()=>{
+  //   window.addEventListener('scroll', handleInfiniteScroll)
+  // },[])
+
+
+
+
+
+  useEffect(() => {
+    // Add the event listener for scroll on mount
+    window.addEventListener('scroll', handleInfiniteScroll);
+
+    // Remove the event listener on unmount
+    return () => {
+      window.removeEventListener('scroll', handleInfiniteScroll);
+    };
+  }, []);
 
 
 
@@ -39,7 +49,7 @@ const Feed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       await axios
-        .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getposts?page=${page}&limit=2`)
+        .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getposts?page=${page}&limit=6`)
         .then((res) => {
           setPostsData((prev)=> [...prev , ...res.data.paginatedPosts]);
           // console.log("fetched")
@@ -55,9 +65,6 @@ const Feed = () => {
   console.log(postsData);
 
 
-
-
-
   return (
     <>
     <div className="w-full bg-slate-500 px-4 ">
@@ -68,13 +75,15 @@ const Feed = () => {
 
 
       {
-        postsData?.map((post)=>{
+        postsData?.map((post , index)=>{
           if (post.typeOfThePost === "Video") {
-            return <VideoPost  key={post._id} post={post} />
+            return <VideoPost  key={index} post={post} />
           } else if(post.typeOfThePost === "Photo") {
-            return <Post key={post._id} post={post} />
+            return <Post key={index} post={post} />
           } else if(post.typeOfThePost === "onlyText") {
-            return <OnlyTextPost key={post._id} post={post} />
+            return <OnlyTextPost key={index} post={post} />
+          }else{
+            return
           }
         })
       }

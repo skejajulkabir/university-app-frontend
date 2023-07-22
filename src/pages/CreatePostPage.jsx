@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useState  } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 const CreatePostPage = () => {
 
+
+  
+  const navigate = useNavigate();
+
   //importing global user
   const globalUser = useSelector((state) => state.globalUser.user);
-  console.log(globalUser);
+  // console.log(globalUser);
 
 
   const [willingToUploadMedia, setWillingToUploadMedia] =
@@ -27,6 +34,40 @@ const CreatePostPage = () => {
     comments: [],
   });
 
+
+
+  const handleYesClick = (e) => {
+    e.preventDefault();
+    setWillingToUploadMedia("Yes");
+  };
+
+
+  const handleNoClick = (e) => {
+    e.preventDefault();
+    setWillingToUploadMedia("No");
+    setFormData((prev) => {
+      return { ...prev, typeOfThePost: "onlyText" };
+    });
+  };
+
+
+  const handleVideoClick = (e) => {
+    e.preventDefault();
+    setTypeOfThePostState("Video");
+    setFormData((prev) => {
+      return { ...prev, typeOfThePost: "Video" , imgURL :"" };
+    });
+  }
+
+
+  const handlePhotoClick = (e) => {
+    e.preventDefault();
+    setTypeOfThePostState("Photo");
+    setFormData((prev) => {
+      return { ...prev, typeOfThePost: "Photo" , videoURL :"" };
+    });
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -36,9 +77,17 @@ const CreatePostPage = () => {
       )
       .then((response)=>{
         console.log(response);
-      })
+        toast.success("Your post has been posted to the feed successfully...");
+        setTimeout(() => {
+          navigate("/")
+        }, 3000);
+      });
     } catch (err) {
       console.log(err)
+      toast.error("Could not add the post to the feed. Please try again.");
+      setTimeout(() => {
+        navigate("/")
+      }, 3000)
     }
 
     console.log(formData);
@@ -53,10 +102,22 @@ const CreatePostPage = () => {
 
   return (
     <div className="container mx-auto md:p-24">
+      <ToastContainer
+        position="top-center"
+        autoClose={8000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <h2 className="text-2xl font-bold mb-4">Create a post as a JUSTIAN!</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="caption" className="text-lg font-medium">
+      <form onSubmit={()=>{e.preventDefault()}}>
+        <div className="mb-4 pt-24 lg:pt-0">
+          <label htmlFor="caption" className="mt-24 text-lg font-medium">
             Caption:
           </label>
           <textarea
@@ -81,21 +142,13 @@ const CreatePostPage = () => {
           <div className="flex flex-row justify-evenly">
             <button
               className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out  hover:scale-110 transition-transform duration-300 ease-in-out"
-              onClick={() => {
-                setWillingToUploadMedia("Yes");
-              }}
+              onClick={handleYesClick}
             >
               Yes
             </button>
             <button
               className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out  hover:scale-110 transition-transform duration-300 ease-in-out"
-              onClick={() => {
-                setWillingToUploadMedia("No");
-                // setTypeOfThePostState("onlyText");
-                setFormData((prev) => {
-                  return { ...prev, typeOfThePost: "OnlyText" };
-                });
-              }}
+              onClick={handleNoClick}
             >
               No
             </button>
@@ -111,24 +164,14 @@ const CreatePostPage = () => {
             <div className="flex flex-row justify-evenly">
               <button
                 className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out  hover:scale-110 transition-transform duration-300 ease-in-out"
-                onClick={() => {
-                  setTypeOfThePostState("Photo");
-                  setFormData((prev) => {
-                    return { ...prev, typeOfThePost: "Photo" , videoURL :"" };
-                  });
-                }}
+                onClick={handlePhotoClick}
               >
                 <div className="w-fit mx-auto">Photo</div>
               </button>
 
               <button
                 className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out  hover:scale-110 transition-transform duration-300 ease-in-out"
-                onClick={() => {
-                  setTypeOfThePostState("Video");
-                  setFormData((prev) => {
-                    return { ...prev, typeOfThePost: "Video" , imgURL :"" };
-                  });
-                }}
+                onClick={handleVideoClick}
               >
                 <div className="w-fit mx-auto">Video</div>
               </button>
@@ -155,7 +198,7 @@ const CreatePostPage = () => {
           </div>
         ) : typeOfThePostState === "Video" && willingToUploadMedia === "Yes" ? (
           <div className=" my-4 bg-red-300 rounded items-center">
-            <div className="text-2xl  my-4 p-4  w-fit mx-auto font-bold text-3xl">
+            <div className="text-2xl  my-4 p-4  w-fit mx-auto font-bold ">
               Enter Video URL.(Only Youtube URLs are allowed)
             </div>
 
@@ -173,9 +216,10 @@ const CreatePostPage = () => {
         ) : null}
 
           <button
+            onClick={handleSubmit}
             type="submit"
             className={"bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded w-full hover:scale-110 transition-transform duration-300 ease-in-out disabled:bg-slate-400"}
-            disabled={willingToUploadMedia === "Yes" && (formData.imgURL === "" && formData.videoURL === "") ? true : false}
+            // disabled={willingToUploadMedia === "Yes" && (formData.imgURL === "" && formData.videoURL === "") ? true : false}
           >
             Post
           </button>
