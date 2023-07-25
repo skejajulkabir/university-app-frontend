@@ -4,7 +4,8 @@ import { addToCart } from "../Redux/features/cartslice";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { VarientCard } from "../components";
-// import VarientCard from "../components";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const SingleProductPage = () => {
   const params = useParams();
@@ -76,7 +77,7 @@ const SingleProductPage = () => {
     const newCart = [...globalCart, cartObject];
     const storageCart = localStorage.getItem("Cart");
     }else{
-      alert("Please select a size!")
+      toast.error("Please select a size!");
     }
     
   };
@@ -106,6 +107,18 @@ const SingleProductPage = () => {
     return (
       <>
       <div>
+      <ToastContainer
+        position="top-center"
+        autoClose={8000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
         
           <section className="text-gray-600 body-font overflow-hidden bg-slate-100 border-b-slate-900">
           <div className="container px-5 py-24 mx-auto">

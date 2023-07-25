@@ -49,7 +49,7 @@ const Feed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       await axios
-        .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getposts?page=${page}&limit=6`)
+        .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getposts?page=${page}&limit=4`)
         .then((res) => {
           setPostsData((prev)=> [...prev , ...res.data.paginatedPosts]);
           // console.log("fetched")

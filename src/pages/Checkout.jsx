@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {
   AiFillCloseCircle,
   AiFillMinusCircle,
@@ -10,21 +10,69 @@ import {
   addOneQtyFromCart,
   clearCart,
 } from "../Redux/features/cartslice";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Checkout = () => {
   
   const globalUser = useSelector((state) => state.globalUser.user);
   const globalCart = useSelector((state) => state.globalCart.cart);
+
+  const navigate = useNavigate();
+
+
+  if(globalCart.length === 0){
+    navigate("/")
+  }
   
 
 
+  const [autofillInputDisabled, setAutofillInputDisabled] = useState(false);
 
   const [formData, setFormData] = useState({
-    author: globalUser,
-    order: globalCart
+    customer : {
+      fullName : "",
+      admSession :"",
+      department :"",
+      email :"",
+      address :"",
+      phone :"",
+      voucher :"",
+    },
+    cart : globalCart
   })
 
   console.log(formData)
+
+
+  useEffect(() => {
+    if (globalUser.userName) {
+      setFormData((prev) => ({
+        ...prev,
+        customer: {
+          ...prev.customer,
+          fullName: globalUser.name,
+          admSession : globalUser.info.admissionSession,
+          department :globalUser.info.department,
+          email : globalUser.regularEmail,
+          phone : globalUser.contact.phoneNumber.Number
+        },
+      }));
+      setAutofillInputDisabled(true)
+    }
+  }, [globalUser]);
+
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      cart : globalCart
+    }));
+  }, [globalCart])
+  
+  
 
 
 
@@ -36,7 +84,22 @@ const Checkout = () => {
   };
 
   const handlePlaceOrder = () => {
-    alert("Please");
+    if ( formData.customer.fullName === "" ||  formData.customer.admSession === "" || formData.customer.department === "" || formData.customer.email === "" || formData.customer.address === "" || formData.customer.phone === "") {
+
+      toast.error("Every Field has to be filled.");
+
+      return
+
+    }
+
+
+    axios.post("http://localhost:5000/client1/addorder",
+      formData
+    ).then((res)=>{
+      console.log(res);
+    }).catch((err) => {
+      console.log(err)
+    })
   };
 
   const handleRemoveOneQtyFromCart = (id) => {
@@ -50,8 +113,32 @@ const Checkout = () => {
     // console.log('this is a log from addOneQtyFromCart')
   };
 
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      customer: {
+        ...prev.customer,
+        [e.target.name]: e.target.value,
+      },
+    }));
+  };
+  // console.log(formData)
+
   return (
     <>
+      <ToastContainer
+          position="top-center"
+          autoClose={8000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+      />
       <div className="mb-28 w-full">
         <div className="flex justify-center font-bold text-3xl pt-32 ">
           Welcome to the Checkout Page.
@@ -71,6 +158,9 @@ const Checkout = () => {
               Full Name
             </label>
             <input
+              onChange={handleChange}
+              value={formData.customer.fullName}
+              disabled={autofillInputDisabled}
               type="text"
               id="full-name"
               name="fullName"
@@ -78,7 +168,7 @@ const Checkout = () => {
             />
           </div>
 
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <span className="mr-3">Year</span>
             <div className="relative w-full">
               <select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 w-full pr-10">
@@ -102,7 +192,31 @@ const Checkout = () => {
                 </svg>
               </span>
             </div>
+          </div> */}
+
+
+
+
+          <div className="relative mb-4">
+            <label
+              htmlFor="department"
+              className="leading-7 text-sm text-gray-600"
+            >
+              Admission Session
+            </label>
+            <input
+              onChange={handleChange}
+              value={formData.customer.admSession}
+              disabled={autofillInputDisabled}
+              type="text"
+              id="admSession"
+              name="admSession"
+              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              placeholder="Example : 2021-2022"
+            />
           </div>
+
+
 
           <div className="relative mb-4">
             <label
@@ -112,10 +226,14 @@ const Checkout = () => {
               Department
             </label>
             <input
+              onChange={handleChange}
+              value={formData.customer.department}
+              disabled={autofillInputDisabled}
               type="text"
               id="department"
               name="department"
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              placeholder="Example : PHYSICS"
             />
           </div>
 
@@ -124,6 +242,9 @@ const Checkout = () => {
               Email
             </label>
             <input
+              onChange={handleChange}
+              value={formData.customer.email}
+              disabled={autofillInputDisabled}
               type="email"
               id="email"
               name="email"
@@ -136,9 +257,11 @@ const Checkout = () => {
               htmlFor="address"
               className="leading-7 text-sm text-gray-600"
             >
-              Address(room number)
+              Address(Room number of hall or location...)
             </label>
             <input
+              onChange={handleChange}
+              value={formData.customer.address}
               type="text"
               id="address"
               name="address"
@@ -151,6 +274,9 @@ const Checkout = () => {
               Phone
             </label>
             <input
+              onChange={handleChange}
+              value={formData.customer.phone}
+              disabled={autofillInputDisabled}
               type="number"
               id="phone"
               name="phone"
@@ -166,6 +292,8 @@ const Checkout = () => {
               Enter voucher code if applicable.
             </label>
             <input
+              onChange={handleChange}
+              value={formData.customer.voucher}
               type="text"
               id="voucher"
               name="voucher"
@@ -191,7 +319,7 @@ const Checkout = () => {
             {globalCart.map((item) => {
               if (Object.keys(item).length > 0) {
                 return (
-                  <li className="py-3 bg-indigo-300 my-1 rounded-md" key={item}>
+                  <li className="py-3 bg-indigo-300 my-1 rounded-md" key={item.varUID}>
                     <div className="item flex  ">
                       <div className="w-2/3 flex justify-center items-center p-2 overflow-hidden ml-4">
                         {item.name}
