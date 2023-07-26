@@ -1,9 +1,27 @@
 import React , {useState} from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { BiSolidLike , BiCommentDetail  } from 'react-icons/bi'
+import axios from 'axios'
 
-const OnlyTextPost = ({post}) => {
+const OnlyTextPost = ({pst}) => {
     const [isTruncate, setIsTruncate] = useState(true)
+    const [post, setPost] = useState(pst)
+
+
+    const handleLikeClick = ()=>{
+        console.log(post);
+        axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/like`,
+            {
+                postId : post._id,
+                name : post.author.name,
+                userName : post.author.userName
+            }
+        ).then((res) => {
+            // console.log(res)
+            setPost(res.data.response)
+        });
+    }
+
   return (
     <>
         <div className="flex flex-col rounded-lg bg-slate-200 shadow-2xl py-2 p-3 md:max-w-3xl mx-auto mb-2 w-full m-2">
@@ -80,7 +98,7 @@ const OnlyTextPost = ({post}) => {
 
             {/* counts  */}
             <div className="flex flex-row justify-between">
-                <span className='pl-3 my-2'>43 people liked this post</span>
+                <span className='pl-3 my-2'>{post.likes.length} people liked this post</span>
                 <span className='pr-3 my-2'>3comments</span>
             </div>
 
@@ -91,7 +109,9 @@ const OnlyTextPost = ({post}) => {
 
             <div className="flex flex-row justify-evenly">
                 {/* like  */}
-                <div className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg">
+                <div className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg"
+                    onClick={handleLikeClick}
+                >
                     <div >
                         <BiSolidLike/> 
                     </div>

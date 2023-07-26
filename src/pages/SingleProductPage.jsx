@@ -135,7 +135,10 @@ const SingleProductPage = () => {
                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                   {product.title}
                 </h1>
-                <div className="flex mb-4">
+
+
+
+                {/* <div className="flex mb-4">
                   <span className="flex items-center">
                     <svg
                       fill="currentColor"
@@ -232,7 +235,7 @@ const SingleProductPage = () => {
                       </svg>
                     </a>
                   </span>
-                </div>
+                </div> */}
 
                 <span className="text-xl font-bold"> Category: {product.category}</span>
                 <br />

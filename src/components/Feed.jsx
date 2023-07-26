@@ -77,11 +77,11 @@ const Feed = () => {
       {
         postsData?.map((post , index)=>{
           if (post.typeOfThePost === "Video") {
-            return <VideoPost  key={index} post={post} />
+            return <VideoPost  key={index} pst={post} />
           } else if(post.typeOfThePost === "Photo") {
-            return <Post key={index} post={post} />
+            return <Post key={index} pst={post} />
           } else if(post.typeOfThePost === "onlyText") {
-            return <OnlyTextPost key={index} post={post} />
+            return <OnlyTextPost key={index} pst={post} />
           }else{
             return
           }

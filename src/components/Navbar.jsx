@@ -136,8 +136,9 @@ const Navbar = () => {
   };
 
   return (
+
+
     <div className="" >
-      {/* // <div className='w-full absolute sticky top-0 shadow-md flex flex-col justify-center lg:flex-row lg:justify-start justify-center items-center py-2 bg-white z-20 '> */}
       <div className="w-full py-3 bg-indigo-100 z-20 shadow-xl fixed flex flex-row ">
         <Link to="/" className="my-auto">
           <div className="logo my-auto">
@@ -281,6 +282,9 @@ const Navbar = () => {
             </div>
           )}
         </div>
+
+
+        
       </div>
 
       <div className=" block pt-16 md:pt-20 lg:hidden pb-2 fixed w-full top-0 bg-white z-10">
@@ -304,7 +308,7 @@ const Navbar = () => {
 
           {/* // ? community  */}
 
-          <Link to="/shop">
+          <Link to="/community">
             <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
               <HiUserGroup className="text-2xl mx-2 font-bold"/>
             </li>

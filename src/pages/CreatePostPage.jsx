@@ -1,4 +1,4 @@
-import React, { useState  } from "react";
+import React, { useEffect, useState  } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import 'react-toastify/dist/ReactToastify.css';
@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
 const CreatePostPage = () => {
+  
 
 
   
@@ -13,7 +14,19 @@ const CreatePostPage = () => {
 
   //importing global user
   const globalUser = useSelector((state) => state.globalUser.user);
+  useEffect(()=>{
+    if (!globalUser.userName || !globalUser.info || !globalUser.contact) {
+      navigate('/');
+    }
+  },[globalUser , navigate])
   // console.log(globalUser);
+
+
+
+
+
+
+  
 
 
   const [willingToUploadMedia, setWillingToUploadMedia] =

@@ -22,12 +22,9 @@ const TshirtCard = ({ item }) => {
             <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
               {item.category}
             </h3>
-            <p className="mt-1 bg-slate-50">
+            <p className="mt-1 bg-slate-50 hidden md:block ">
               SIZE<span className="text-xs">(available)</span>:{" "}
-              {/* {item.size.map((s) => {
-                return s.name + " ";
-              })} */}
-              // TODO: has to be developed
+              M,L,XL,XXL
             </p>
             <h2 className="text-gray-900 title-font text-lg font-medium truncate">
               {item.title}

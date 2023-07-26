@@ -97,8 +97,11 @@ const Checkout = () => {
       formData
     ).then((res)=>{
       console.log(res);
+      if(res.status === 200){
+        toast.success("Your order has been placed successfully!")
+      }
     }).catch((err) => {
-      console.log(err)
+      toast.error("Some error occured.")
     })
   };
 

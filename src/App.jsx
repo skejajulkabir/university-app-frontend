@@ -6,7 +6,7 @@ import { store } from './Redux/store';
 
 // page imports
 import NavbarFooterBody from './Utils/NavbarFooterBody'
-import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage} from './pages';
+import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage} from './pages';
 
 //admin page imports
 import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage} from './pages/AdminSide/pages';
@@ -32,6 +32,7 @@ function App() {
             <Route path="/createpost" element={<CreatePostPage />}/>
             <Route path="/profile/:id" element={<ProfilePage />}/>
             <Route path="/underdevelopment" element={<UnderDevelopmentPage />}/>
+            <Route path="/community" element={<CommunityPage />}/>
             <Route path="/platformdonors" element={<DonorDisplayPage />}/>
 
 

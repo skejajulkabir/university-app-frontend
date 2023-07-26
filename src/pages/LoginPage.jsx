@@ -24,14 +24,15 @@ const LoginPage = () => {
     axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/user/login` ,
       formData
     ).then((res)=>{
-      toast.success(res.data.message);
+      alert(res.data.message);
       console.log(res);
       localStorage.setItem("TOKEN" , res.data.token);
       
-      setTimeout(() => {
-        navigate("/")
+      navigate('/')
         window.location.reload();
-      }, 4000);
+      // setTimeout(() => {
+      //   navigate("/")
+      // }, 4000);
     })
     .catch((err)=> {
       toast.error(err.response.data.message);

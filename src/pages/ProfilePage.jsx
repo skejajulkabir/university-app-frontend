@@ -3,10 +3,22 @@ import ButtonBar from "../components/ProfilePageComponents/ButtonBar";
 import ProfileHeader from "../components/ProfilePageComponents/ProfileHeader";
 import InformationBox from "../components/ProfilePageComponents/InformationBox";
 import Post from "../components/Post";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const ProfilePage = () => {
+
+
+    const navigate = useNavigate();
+
+
+    const globalUser = useSelector((state) => state.globalUser.user);
+    useEffect(()=>{
+        if (!globalUser.userName || !globalUser.info || !globalUser.contact) {
+        navigate('/');
+        }
+    },[globalUser , navigate])
 
     const params = useParams();
     const [userData, setUserData] = useState({})

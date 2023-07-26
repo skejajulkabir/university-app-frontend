@@ -1,9 +1,11 @@
 import React , {useState} from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { BiCommentDetail, BiSolidLike } from 'react-icons/bi'
+import axios from 'axios'
 
-const VideoPost = ({post}) => {
+const VideoPost = ({pst}) => {
     const [isTruncate, setIsTruncate] = useState(true)
+    const [post, setPost] = useState(pst)
 
 
 
@@ -15,6 +17,21 @@ const VideoPost = ({post}) => {
         // setExtractedURL(URLextension);
         vdoURL = URLextension;
         // console.log(extractedURL)
+    }
+
+
+    const handleLikeClick = ()=>{
+        console.log(post);
+        axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/like`,
+            {
+                postId : post._id,
+                name : post.author.name,
+                userName : post.author.userName
+            }
+        ).then((res) => {
+            // console.log(res)
+            setPost(res.data.response)
+        });
     }
 
 
@@ -102,7 +119,7 @@ const VideoPost = ({post}) => {
 
             {/* counts  */}
             <div className="flex flex-row justify-between">
-                <span className='pl-3 my-2'>43 people liked this post</span>
+                <span className='pl-3 my-2'>{post.likes.length} people liked this post</span>
                 <span className='pr-3 my-2'>3comments</span>
             </div>
 
@@ -113,7 +130,9 @@ const VideoPost = ({post}) => {
 
             <div className="flex flex-row justify-evenly">
                 {/* like  */}
-                <div className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg">
+                <div className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg"
+                    onClick={handleLikeClick}
+                >
                     <div >
                         <BiSolidLike/> 
                     </div>
