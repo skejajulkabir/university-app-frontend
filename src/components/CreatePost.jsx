@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 const CreatePost = () => {
+    
+    
+  const globalUser = useSelector((state) => state.globalUser.user);
+
+
   return (
     <>
     <Link to={"/createpost"}>
@@ -15,7 +22,7 @@ const CreatePost = () => {
 
 
                 <div className="">
-                    <img src="/profile-photos/dp.jpg" alt="profile pic" className='w-10 mr-3 rounded-full justify-center border-gray-400 border-2 p-1' />
+                    <img src={globalUser.avatar} alt="profile pic" className='w-10 mr-3 rounded-full justify-center border-gray-400 border-2 p-1' />
                 </div>  
 
 

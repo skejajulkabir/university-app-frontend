@@ -1,11 +1,20 @@
 import React , {useState} from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
+import { FaLocationArrow  } from 'react-icons/fa'
 import { BiCommentDetail, BiSolidLike } from 'react-icons/bi'
 import axios from 'axios'
+import { useSelector } from "react-redux";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const VideoPost = ({pst}) => {
     const [isTruncate, setIsTruncate] = useState(true)
+    const [newComment, setNewComment] = useState('');
+    const [showComment, setShowComment] = useState(false);
     const [post, setPost] = useState(pst)
+
+
+    const globalUser = useSelector((state) => state.globalUser.user);
 
 
 
@@ -16,12 +25,10 @@ const VideoPost = ({pst}) => {
 
         // setExtractedURL(URLextension);
         vdoURL = URLextension;
-        // console.log(extractedURL)
     }
 
 
     const handleLikeClick = ()=>{
-        console.log(post);
         axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/like`,
             {
                 postId : post._id,
@@ -29,7 +36,6 @@ const VideoPost = ({pst}) => {
                 userName : post.author.userName
             }
         ).then((res) => {
-            // console.log(res)
             setPost(res.data.response)
         });
     }
@@ -37,9 +43,47 @@ const VideoPost = ({pst}) => {
 
 
 
+    const handleAddComment = () => {
+        if (newComment === '') {
+            toast.error("Comments cannot be empty.")
+            return
+        }
+        axios
+        .post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/comment`, {
+        postId: post._id,
+        userId: globalUser._id,
+        img : globalUser.avatar,
+        name: globalUser.name, 
+        userName: globalUser.userName,
+        comment: newComment,
+        })
+        .then((res) => {
+        setPost(res.data.updatedPost);
+        setNewComment(''); 
+        })
+        .catch((error) => {
+        console.error(error);
+        });
+    };
+
+
+
+
 
   return (
     <>
+        <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
         <div className="flex flex-col rounded-lg bg-slate-200 shadow-2xl py-2 p-3 md:max-w-3xl mx-auto mb-2 ">
             
             
@@ -120,7 +164,7 @@ const VideoPost = ({pst}) => {
             {/* counts  */}
             <div className="flex flex-row justify-between">
                 <span className='pl-3 my-2'>{post.likes.length} people liked this post</span>
-                <span className='pr-3 my-2'>3comments</span>
+                <span className="pr-3 my-2">{post.comments.length} comments</span>
             </div>
 
 
@@ -139,7 +183,13 @@ const VideoPost = ({pst}) => {
                     <span className='px-2'>Like</span>
                 </div>
                 {/* comment  */}
-                <div className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg">
+                <div className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg"
+                    onClick={() =>
+                        setShowComment((prev) => {
+                          return !prev;
+                        })
+                      }
+                >
                     <div>
 
                     <BiCommentDetail/>
@@ -154,6 +204,75 @@ const VideoPost = ({pst}) => {
 
             {/* hr  */}
             <div className="w-full h-1 bg-slate-300"></div>
+
+
+
+
+            {
+          showComment && 
+            // post.comments.length > 0 &&
+
+            <div className="w-full h-fit max-h-screen overflow-hidden overflow-x-hidden overflow-y-scroll ">
+              <div className="w-full">
+                <div className="mx-2 py-2 pt-5 flex flex-row ">
+                  <div className="w-11/12">
+                    <textarea
+                      rows={1}
+                      className="w-full p-2 pl-5 rounded-md border-slate-100 border-2 focus:outline-slate-400"
+                      placeholder="Add a comment..."
+                      type="text"
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                    />
+                  </div>
+                  <div className="w-1/12  bg-slate-300 hover:bg-slate-400 flex justify-center items-center rounded-full ml-2"
+                    onClick={handleAddComment}
+                  >
+                    <div className="flex justify-center items-center text-xl text-slate-800">
+                      <FaLocationArrow />
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+                {
+                    post.comments.map((com , index)=>{
+                        return(
+                            <div key={index} className="comment flex flex-row mb-3">
+                                <div className="border-slate-400 w-fit h-fit border-2 rounded-full p-1">
+                                    <img
+                                    src={com.img}
+                                    alt="DP"
+                                    className="w-10 rounded-full border-slate-600 "
+                                    />
+                                </div>
+
+                                <div className="bg-slate-300 w-full p-3 pt-1 rounded-lg mx-2 ">
+                                    <div className="font-bold text-lg text-slate-800">
+                                        {com.name}
+                                    </div>
+                                    <div className="font-bold text-xs text-slate-800">
+                                        {com.userName}
+                                    </div>
+                                    <div className="">
+                                        {com.comment}
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+
+
+
+              </div>
+            </div>
+
+        }
 
 
 

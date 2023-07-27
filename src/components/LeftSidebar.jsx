@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ProfileButton from './Leftsidebar componets/profileButton'
+import ProfileButton from './Leftsidebar componets/ProfileButton'
 import SearchBar from './Leftsidebar componets/SearchBar'
 import GoToSettings from './Leftsidebar componets/GoToSettings'
 import NoticeBar from './Leftsidebar componets/NoticeBar'
@@ -29,7 +29,7 @@ const LeftSidebar = () => {
       </Link>
 
 
-      <Link to='/underdevelopment'>
+      <Link to='/settings'>
         <GoToSettings/>
       </Link>
 

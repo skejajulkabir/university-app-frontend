@@ -9,7 +9,7 @@ import {
   AiFillPlusCircle,
   AiOutlineShoppingCart,
   AiOutlineHome,
-  AiOutlineSetting
+  AiOutlineMenu
 } from "react-icons/ai";
 
 import { MdAccountCircle } from "react-icons/md";
@@ -27,7 +27,6 @@ import {
 } from "../Redux/features/cartslice.js";
 import { setGlobalUser } from "../Redux/features/userSlice.js";
 import { isVarified } from "../Redux/features/utilSlice.js";
-
 import { Link } from "react-router-dom";
 
 
@@ -320,9 +319,9 @@ const Navbar = () => {
             </li>
           </Link>
 
-          <Link to="/underdevelopment">
+          <Link to="/menupage">
             <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
-              <AiOutlineSetting className="text-2xl mx-2 font-bold"/>
+              <AiOutlineMenu className="text-2xl mx-2 font-bold"/>
             </li>
           </Link>
           

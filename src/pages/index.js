@@ -11,3 +11,6 @@ export {default as UnderDevelopmentPage} from './UnderDevelopmentPage';
 export {default as PostProductPage} from './PostProductPage';
 export {default as DonorDisplayPage} from './DonorDisplayPage';
 export {default as CommunityPage} from './CommunityPage';
+export {default as MenuPage} from './MenuPage';
+export {default as SettingsPage} from './SettingsPage';
+export {default as UpdateProfilePage} from './UpdateProfilePage';
