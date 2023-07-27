@@ -14,9 +14,12 @@ export const userSlice = createSlice({
         setGlobalUser : (state,action)=>{
             state.user = action.payload;
         },
+        setGlobalAvatar : (state,action)=>{
+            state.user.avatar = action.payload;
+        },
     }
 })
 
 
-export const {setGlobalUser} = userSlice.actions;
+export const {setGlobalUser , setGlobalAvatar} = userSlice.actions;
 export default userSlice.reducer;

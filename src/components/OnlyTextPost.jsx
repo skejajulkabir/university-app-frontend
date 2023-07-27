@@ -4,10 +4,8 @@ import { FaLocationArrow } from "react-icons/fa";
 import { BiSolidLike, BiCommentDetail } from "react-icons/bi";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
-
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const OnlyTextPost = ({ pst }) => {
   const [isTruncate, setIsTruncate] = useState(true);
@@ -35,9 +33,9 @@ const OnlyTextPost = ({ pst }) => {
   };
 
   const handleAddComment = () => {
-    if (newComment === '') {
-        toast.error("Comments cannot be empty.")
-        return
+    if (newComment === "") {
+      toast.error("Comments cannot be empty.");
+      return;
     }
 
     axios
@@ -63,33 +61,33 @@ const OnlyTextPost = ({ pst }) => {
 
   return (
     <>
-        <ToastContainer
-            position="top-center"
-            autoClose={4000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-        />
+      <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="flex flex-col rounded-lg bg-slate-200 shadow-2xl py-2 p-3 md:max-w-3xl mx-auto mb-2 w-full m-2">
         {/* Header of the post  */}
 
         <div className="flex flex-row justify-between mb-1">
           <div className="flex flex-row">
-            <div className="border-slate-400 border-2 rounded-full p-1">
+            <div className="w-14 h-14 m-1    border-slate-400 border-2 rounded-full p-1">
               <img
                 src={post.author.image}
                 alt="DP"
-                className="w-11 rounded-full border-slate-600 "
+                className="w-full h-full object-cover rounded-full border-slate-600 "
               />
             </div>
 
             <div className="ml-2 flex flex-col">
-              <div className="text-sm sm:text-lg truncate">
+              <div className="text-sm sm:text-lg truncate font-bold">
                 {post.author.name}
               </div>
 
@@ -110,6 +108,8 @@ const OnlyTextPost = ({ pst }) => {
             <AiOutlineMenu className="text-xl" />
           </div>
         </div>
+
+        <div className="w-full h-1 bg-slate-300"></div>
 
         {/*  Caption  */}
         <div className="w-full  ">
@@ -213,7 +213,7 @@ const OnlyTextPost = ({ pst }) => {
                 </div>
               </div>
 
-              {post.comments.map((com ,  index) => {
+              {post.comments.map((com, index) => {
                 return (
                   <div key={index} className="comment flex flex-row mb-3">
                     <div className="border-slate-400 w-fit h-fit border-2 rounded-full p-1">
@@ -231,9 +231,7 @@ const OnlyTextPost = ({ pst }) => {
                       <div className="font-bold text-xs text-slate-800">
                         {com.userName}
                       </div>
-                      <div className="">
-                        {com.comment}
-                      </div>
+                      <div className="">{com.comment}</div>
                     </div>
                   </div>
                 );

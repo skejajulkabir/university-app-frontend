@@ -75,16 +75,16 @@ const Post = ({ pst }) => {
 
         <div className="flex flex-row justify-between mb-1">
           <div className="flex flex-row">
-            <div className="border-slate-400 border-2 rounded-full p-1">
+            <div className="w-14 h-14 m-1    border-slate-400 border-2 rounded-full p-1">
               <img
                 src={post.author.image}
                 alt="DP"
-                className="w-11 rounded-full border-slate-600 "
+                className="w-full h-full object-cover rounded-full border-slate-600 "
               />
             </div>
 
             <div className="ml-2 flex flex-col">
-              <div className="text-sm sm:text-lg truncate">
+              <div className="text-sm sm:text-lg truncate font-bold">
                 {post.author.name}
               </div>
 
@@ -105,6 +105,8 @@ const Post = ({ pst }) => {
             <AiOutlineMenu className="text-xl" />
           </div>
         </div>
+
+        <div className="w-full h-1 bg-slate-300"></div>
 
         {/*  Caption  */}
         <div className="w-full  ">

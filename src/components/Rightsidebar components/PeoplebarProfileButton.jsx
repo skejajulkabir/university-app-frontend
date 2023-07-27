@@ -6,9 +6,9 @@ const PeoplebarProfileButton = ({ user }) => {
   return (
     <>
         <Link to={`/profile/${user?._id}`} className="flex flex-row bg-slate-300 w-full mx-2 p-3 items-center rounded-md mt-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-          <div className="w-12">
+          <div className="w-12 h-12">
             <img
-              className="w-full mr-3 rounded-full justify-center border-gray-400 border-2 p-1"
+              className="w-full h-full object-cover mr-3 rounded-full  border-gray-400 border-2 p-1"
               src={user?.avatar}
               alt="DP"
             />
