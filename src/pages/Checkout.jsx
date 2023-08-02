@@ -40,7 +40,7 @@ const Checkout = () => {
     cart: globalCart,
   });
 
-  console.log(formData);
+  console.log(globalUser);
 
   useEffect(() => {
     if (globalUser.userName) {
@@ -48,6 +48,7 @@ const Checkout = () => {
         ...prev,
         customer: {
           ...prev.customer,
+          id: globalUser._id,
           fullName: globalUser.name,
           admSession: globalUser.info.admissionSession,
           department: globalUser.info.department,
@@ -89,7 +90,14 @@ const Checkout = () => {
     axios
       .post(
         `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/addorder`,
-        formData
+        {
+          ...formData,
+          totalOrderValue : globalCart.reduce(
+            (total, item) => total + item.price * item.qty,
+            0
+          ),
+          status: "PENDING"
+        }
       )
       .then((res) => {
         console.log(res);
