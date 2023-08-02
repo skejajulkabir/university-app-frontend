@@ -11,6 +11,15 @@ const LeftSideBar = () => {
             </div>
         </Link>
 
+        
+        <Link to="/admin/orders">
+            <div className="p-2 flex bg-slate-300 rounded-md py-3 px-4 hover:bg-slate-200 cursor-pointer mb-2 font-bold">
+                ORDERS
+            </div>
+        </Link>
+
+
+
         <Link to="#">
             <div className="p-2 flex bg-slate-300 rounded-md py-3 px-4 hover:bg-slate-200 cursor-pointer mb-2 font-bold">
                 PRODUCTS
@@ -30,6 +39,10 @@ const LeftSideBar = () => {
         <div className="p-2 flex bg-slate-300 rounded-md py-3 px-4 hover:bg-slate-200 cursor-pointer mb-2 font-bold">
           SITE SETTINGS
         </div>
+
+
+
+
       </div>
     </>
   );

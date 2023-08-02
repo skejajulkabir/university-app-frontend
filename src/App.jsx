@@ -9,7 +9,7 @@ import NavbarFooterBody from './Utils/NavbarFooterBody'
 import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage} from './pages';
 
 //admin page imports
-import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage} from './pages/AdminSide/pages';
+import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage , Orders} from './pages/AdminSide/pages';
 import UpdateDP from './pages/utilPages/UpdateDP';
 
 
@@ -47,6 +47,7 @@ function App() {
             <Route path="/admin/login" element={<AdminLoginPageProxy />}/>
             <Route path="/mainadmin/login" element={<ActualAdminLoginPage />}/>
             <Route path="/admin/postproducts" element={<PostProductPage />}/>
+            <Route path="/admin/orders" element={<Orders />}/>
           </Routes>
 
       </NavbarFooterBody>

@@ -3,6 +3,8 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { FaLocationArrow } from "react-icons/fa";
 import { BiCommentDetail, BiSolidLike } from "react-icons/bi";
 import axios from "axios";
+import Comment from "./Comment";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -83,19 +85,22 @@ const VideoPost = ({ pst }) => {
 
         <div className="flex flex-row justify-between mb-1">
           <div className="flex flex-row">
-            <div className="w-14 h-14 m-1    border-slate-400 border-2 rounded-full p-1">
-              <img
-                src={post.author.image}
-                alt="DP"
-                className="w-full h-full object-cover rounded-full border-slate-600 "
-              />
-            </div>
+            <Link to={`/profile/${post.author?.id}`}>
+              <div className="w-14 h-14 m-1    border-slate-400 border-2 rounded-full p-1">
+                <img
+                  src={post.author.image}
+                  alt="DP"
+                  className="w-full h-full object-cover rounded-full border-slate-600 "
+                />
+              </div>
+            </Link>
 
             <div className="ml-2 flex flex-col">
-              <div className="text-sm sm:text-lg truncate font-bold">
-                {post.author.name}
-              </div>
-
+              <Link to={`/profile/${post.author?.id}`}>
+                <div className="text-sm sm:text-lg truncate font-bold">
+                  {post.author.name}
+                </div>
+              </Link>
               {post.author.role.map((rol) => {
                 return (
                   <div
@@ -234,25 +239,7 @@ const VideoPost = ({ pst }) => {
 
               {post.comments.map((com, index) => {
                 return (
-                  <div key={index} className="comment flex flex-row mb-3">
-                    <div className="border-slate-400 w-fit h-fit border-2 rounded-full p-1">
-                      <img
-                        src={com.img}
-                        alt="DP"
-                        className="w-10 rounded-full border-slate-600 "
-                      />
-                    </div>
-
-                    <div className="bg-slate-300 w-full p-3 pt-1 rounded-lg mx-2 ">
-                      <div className="font-bold text-lg text-slate-800">
-                        {com.name}
-                      </div>
-                      <div className="font-bold text-xs text-slate-800">
-                        {com.userName}
-                      </div>
-                      <div className="">{com.comment}</div>
-                    </div>
-                  </div>
+                  <Comment key={index} com={com}/>
                 );
               })}
             </div>

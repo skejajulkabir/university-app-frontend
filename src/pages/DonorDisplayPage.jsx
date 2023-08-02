@@ -19,63 +19,6 @@ const DonorDisplayPage = () => {
 
 
 
-                {/* donorCards */}
-                
-
-                {/* <div className="flex flex-row items-center justify-between h-fit">
-
-                    <div className="h-fit">
-                        <div className="w-80 m-3">
-                            <img src="/public/profile-photos/donor pic.jpg" alt="" />
-                        </div>
-                    </div>
-
-                    <div className="bg-sky-100 w-full h-80 m-2 overflow-y-scroll overflow-x-hidden">
-                        <div className="">
-                            <div className="flex flex-row text-3xl font-bold font-serif p-2">
-                                <span className=''>
-                                    Name :
-                                </span>
-
-                                <div className="pl-2">
-                                    Ekhtiyar Uddin
-                                </div>
-                            </div>
-
-
-
-
-
-                            <div className="flex flex-row text-lg font-bold font-serif p-2">
-                                <span className=''>
-                                    Identity:
-                                </span>
-
-                                <div className="pl-2 ">
-                                    Hello I'm a student of physics department of 12-13 session.
-                                </div>
-                            </div>
-
-
-
-                            <div className="flex flex-row text-lg font-bold font-serif p-2">
-                                <span className=''>
-                                    Description:
-                                </span>
-
-                                <div className="pl-2">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut ea numquam neque facere veritatis. Quo optio voluptatem, eaque adipisci praesentium eos, mollitia laborum fuga quas similique, qui iusto doloribus? Illum unde minima delectus eos quod culpa. Non sequi aspernatur voluptates?
-                                    
-                                </div>
-                            </div>
-
-
-
-                        </div>
-                    </div>
-
-                </div> */}
-
                 <DonorCard/>
                 <DonorCard/>
                 <DonorCard/>

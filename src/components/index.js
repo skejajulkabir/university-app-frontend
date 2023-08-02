@@ -8,3 +8,4 @@ export {default as VideoPost} from './VideoPost';
 export {default as LeftSidebar} from './LeftSidebar';
 export {default as RightSidebar} from './RightSidebar';
 export {default as OnlyTextPost} from './OnlyTextPost';
+export {default as Comment} from './Comment';

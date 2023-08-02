@@ -38,6 +38,7 @@ const CreatePostPage = () => {
       image: globalUser.avatar,
       userName: globalUser.userName ,
       role: globalUser.role ,
+      id: globalUser._id
     },
     caption: "",
     typeOfThePost: typeOfThePostState,

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import {
   AiFillCloseCircle,
   AiFillMinusCircle,
@@ -12,40 +12,35 @@ import {
 } from "../Redux/features/cartslice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const Checkout = () => {
-  
   const globalUser = useSelector((state) => state.globalUser.user);
   const globalCart = useSelector((state) => state.globalCart.cart);
 
   const navigate = useNavigate();
 
-
-  if(globalCart.length === 0){
-    navigate("/")
+  if (globalCart.length === 0) {
+    navigate("/");
   }
-  
-
 
   const [autofillInputDisabled, setAutofillInputDisabled] = useState(false);
 
   const [formData, setFormData] = useState({
-    customer : {
-      fullName : "",
-      admSession :"",
-      department :"",
-      email :"",
-      address :"",
-      phone :"",
-      voucher :"",
+    customer: {
+      fullName: "",
+      admSession: "",
+      department: "",
+      email: "",
+      address: "",
+      phone: "",
+      voucher: "",
     },
-    cart : globalCart
-  })
+    cart: globalCart,
+  });
 
-  console.log(formData)
-
+  console.log(formData);
 
   useEffect(() => {
     if (globalUser.userName) {
@@ -54,28 +49,22 @@ const Checkout = () => {
         customer: {
           ...prev.customer,
           fullName: globalUser.name,
-          admSession : globalUser.info.admissionSession,
-          department :globalUser.info.department,
-          email : globalUser.regularEmail,
-          phone : globalUser.contact.phoneNumber.Number
+          admSession: globalUser.info.admissionSession,
+          department: globalUser.info.department,
+          email: globalUser.regularEmail,
+          phone: globalUser.contact.phoneNumber.Number,
         },
       }));
-      setAutofillInputDisabled(true)
+      setAutofillInputDisabled(true);
     }
   }, [globalUser]);
-
 
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      cart : globalCart
+      cart: globalCart,
     }));
-  }, [globalCart])
-  
-  
-
-
-
+  }, [globalCart]);
 
   const dispatch = useDispatch();
 
@@ -84,25 +73,33 @@ const Checkout = () => {
   };
 
   const handlePlaceOrder = () => {
-    if ( formData.customer.fullName === "" ||  formData.customer.admSession === "" || formData.customer.department === "" || formData.customer.email === "" || formData.customer.address === "" || formData.customer.phone === "") {
-
+    if (
+      formData.customer.fullName === "" ||
+      formData.customer.admSession === "" ||
+      formData.customer.department === "" ||
+      formData.customer.email === "" ||
+      formData.customer.address === "" ||
+      formData.customer.phone === ""
+    ) {
       toast.error("Every Field has to be filled.");
 
-      return
-
+      return;
     }
 
-
-    axios.post("http://localhost:5000/client1/addorder",
-      formData
-    ).then((res)=>{
-      console.log(res);
-      if(res.status === 200){
-        toast.success("Your order has been placed successfully!")
-      }
-    }).catch((err) => {
-      toast.error("Some error occured.")
-    })
+    axios
+      .post(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/addorder`,
+        formData
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          toast.success("Your order has been placed successfully!");
+        }
+      })
+      .catch((err) => {
+        toast.error("Some error occured.");
+      });
   };
 
   const handleRemoveOneQtyFromCart = (id) => {
@@ -115,7 +112,6 @@ const Checkout = () => {
     dispatch(addOneQtyFromCart(id));
     // console.log('this is a log from addOneQtyFromCart')
   };
-
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -131,16 +127,16 @@ const Checkout = () => {
   return (
     <>
       <ToastContainer
-          position="top-center"
-          autoClose={8000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
+        position="top-center"
+        autoClose={8000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
       />
       <div className="mb-28 w-full">
         <div className="flex justify-center font-bold text-3xl pt-32 ">
@@ -197,9 +193,6 @@ const Checkout = () => {
             </div>
           </div> */}
 
-
-
-
           <div className="relative mb-4">
             <label
               htmlFor="department"
@@ -218,8 +211,6 @@ const Checkout = () => {
               placeholder="Example : 2021-2022"
             />
           </div>
-
-
 
           <div className="relative mb-4">
             <label
@@ -320,14 +311,43 @@ const Checkout = () => {
             )}
 
             {globalCart.map((item) => {
+              // console.log(item)
               if (Object.keys(item).length > 0) {
                 return (
-                  <li className="py-3 bg-indigo-300 my-1 rounded-md" key={item.varUID}>
+                  <li
+                    className="py-3 bg-indigo-300 my-1 rounded-md"
+                    key={Math.floor(Math.random() * 10000)}
+                  >
                     <div className="item flex  ">
-                      <div className="w-2/3 flex justify-center items-center p-2 overflow-hidden ml-4">
-                        {item.name}
+                      <div className="w-2/3 flex text-sm justify-center items-center p-2 overflow-hidden ml-4">
+                        <div className="flex flex-col">
+                          <div className="">
+                            <span className="pr-1 -ml-2">NAME: </span>{" "}
+                            <span>{item.name}</span>
+                          </div>
+                          <div className="font-bold">
+                            <span className="pr-1 -ml-2">Variant: </span>{" "}
+                            <span>{item.color}</span>
+                          </div>
+                          <div className="font-bold">
+                            <span className="pr-1 -ml-2">size: </span>{" "}
+                            <span>{item.size}</span>
+                          </div>
+                          <div className="font-semibold">
+                            <span className="pr-1 -ml-2">Price: </span>{" "}
+                            <span>{item.price * item.qty} TAKA</span>
+                          </div>
+                          <div className="">
+                            <img
+                              className="w-12 border-2 border-indigo-600  p-1"
+                              src={item.image}
+                              alt="prf img"
+                            />
+                          </div>
+                        </div>
                       </div>
-                      <div className="w-1/3 flex justify-center items-center text-xl bg-indigo-200 mx-3 ">
+
+                      <div className="w-1/3 h-fit my-auto flex justify-center items-center text-xl bg-indigo-200 mx-3 rounded-md ">
                         <span
                           onClick={() =>
                             handleRemoveOneQtyFromCart(item.varUID)
@@ -348,6 +368,19 @@ const Checkout = () => {
             })}
           </ol>
 
+          <div className="bg-slate-300 rounded-lg w-full flex justify-center items-center py-4">
+            <div className="p-4 text-2xl font-bold">
+              TOTAL :{" "}
+              <span className="font-bold text-2xl">
+                {globalCart.reduce(
+                  (total, item) => total + item.price * item.qty,
+                  0
+                )}{" "}
+                TAKA
+              </span>
+            </div>
+          </div>
+
           {globalCart.length > 0 && (
             <div className="mt-6">
               <button
@@ -358,22 +391,18 @@ const Checkout = () => {
               </button>
             </div>
           )}
-
-          
         </div>
-
-
 
         <div className="w-full flex flex-col items-center p-12">
           <button
-              className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-              onClick={handlePlaceOrder}
-            >
-              Place order
-            </button>
-            <p className="text-md text-gray-500 mt-3 font-bold">
-              Our team may call you to confirm the order after you order.
-            </p>
+            className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+            onClick={handlePlaceOrder}
+          >
+            Place order
+          </button>
+          <p className="text-md text-gray-500 mt-3 font-bold">
+            Our team may call you to confirm the order after you order.
+          </p>
         </div>
       </div>
     </>

@@ -38,7 +38,7 @@ const LeftSidebar = () => {
       </Link>
 
 
-      <Link to='/underdevelopment'>
+      <Link to='/platformdonors'>
         <PlatformDonors/>
       </Link>
 
