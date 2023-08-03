@@ -33,9 +33,25 @@ const LeftSideBar = () => {
             </div>
         </Link>
 
+
+        
+
         <div className="p-2 flex bg-slate-300 rounded-md py-3 px-4 hover:bg-slate-200 cursor-pointer mb-2 font-bold">
           SIZE QUANTITIY
         </div>
+
+
+        <Link to="/admin/postproducts">
+            <div className="p-2 flex bg-slate-300 rounded-md py-3 px-4 hover:bg-slate-200 cursor-pointer mb-2 font-bold">
+                USER HANDLINGS
+            </div>
+        </Link>
+
+
+
+
+
+
         <div className="p-2 flex bg-slate-300 rounded-md py-3 px-4 hover:bg-slate-200 cursor-pointer mb-2 font-bold">
           SITE SETTINGS
         </div>
