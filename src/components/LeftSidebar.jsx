@@ -13,8 +13,10 @@ const LeftSidebar = () => {
     <>
     <div className="hidden  lg:block   bg-slate-400 w-2/5 h-screen overflow-y-scroll scrollbar-hide sticky top-0 left-0 ">
 
-    
-      <SearchBar/>
+
+      <Link to='/search'>
+        <SearchBar/>
+      </Link>
 
         <ProfileButton />
       

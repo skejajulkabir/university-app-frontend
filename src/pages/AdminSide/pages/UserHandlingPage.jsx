@@ -23,13 +23,13 @@ const UserHandlingPage = () => {
             <div className="">
               <div className="w-full min-h-screen bg-slate-400 p-5 my-3 rounded-md box-border">
                 <div className="">
-                  <Link to="/admin/userhandlingpage">
+                  <Link to="/admin/addauthoriseduser">
                     <div className="p-4 m-5  w-4/5 text-center mx-auto  bg-slate-300 rounded-md  hover:bg-slate-200 cursor-pointer mb-2 font-bold">
                       ADD AUTHORISED USERS
                     </div>
                   </Link>
 
-                  <Link to="/admin/userhandlingpage">
+                  <Link to="/admin/restrictuser">
                     <div className="p-4 m-5  w-4/5 text-center mx-auto  bg-slate-300 rounded-md  hover:bg-slate-200 cursor-pointer mb-2 font-bold">
                       RESTRICT USERS
                     </div>

@@ -14,3 +14,4 @@ export {default as CommunityPage} from './CommunityPage';
 export {default as MenuPage} from './MenuPage';
 export {default as SettingsPage} from './SettingsPage';
 export {default as UpdateProfilePage} from './UpdateProfilePage';
+export {default as SearchPage} from './SearchPage';

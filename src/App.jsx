@@ -6,10 +6,10 @@ import { store } from './Redux/store';
 
 // page imports
 import NavbarFooterBody from './Utils/NavbarFooterBody'
-import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage} from './pages';
+import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage, SearchPage} from './pages';
 
 //admin page imports
-import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage , Orders, OrderDetailsPage, ShowProductPage, UserHandlingPage} from './pages/AdminSide/pages';
+import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage , Orders, OrderDetailsPage, ShowProductPage, UserHandlingPage, AddAuthorisedUserPage, RestrictUserPage} from './pages/AdminSide/pages';
 import UpdateDP from './pages/utilPages/UpdateDP';
 
 
@@ -33,6 +33,7 @@ function App() {
             <Route path="/createpost" element={<CreatePostPage />}/>
             <Route path="/profile/:id" element={<ProfilePage />}/>
             <Route path="/underdevelopment" element={<UnderDevelopmentPage />}/>
+            <Route path="/search" element={<SearchPage />}/>
             <Route path="/community" element={<CommunityPage />}/>
             <Route path="/platformdonors" element={<DonorDisplayPage />}/>
             <Route path="/menupage" element={<MenuPage />}/>
@@ -51,6 +52,8 @@ function App() {
             <Route path="/admin/ordrdetailspage/:id" element={<OrderDetailsPage />}/>
             <Route path="/admin/showproducts" element={<ShowProductPage />}/>
             <Route path="/admin/userhandlingpage" element={<UserHandlingPage />}/>
+            <Route path="/admin/addauthoriseduser" element={<AddAuthorisedUserPage />}/>
+            <Route path="/admin/restrictuser" element={<RestrictUserPage />}/>
           </Routes>
 
       </NavbarFooterBody>
