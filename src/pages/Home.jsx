@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux/es/hooks/useSelector'
 
 const Home = () => {
 
-  const isUserVarified = useSelector((state)=> state.utils.isVarified);
+  // const isUserVarified = useSelector((state)=> state.utils.isVarified);
   const globalUser = useSelector((state)=> state.globalUser);
   // console.log(globalUser);
 
 
-  if (localStorage.getItem("TOKEN") && isUserVarified && globalUser) {
+  if (localStorage.getItem("TOKEN")  && globalUser) {
     return (
       <>
   

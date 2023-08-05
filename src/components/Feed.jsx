@@ -52,17 +52,15 @@ const Feed = () => {
         .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getposts?page=${page}&limit=4`)
         .then((res) => {
           setPostsData((prev)=> [...prev , ...res.data.paginatedPosts]);
-          // console.log("fetched")
         })
         .catch((err) => {
-          console.log("there was an error fetching the data.");
+          console.log("there was an error fetching the data." , err);
         });
     };
     fetchPosts();
   }, [page]);
 
   
-  console.log(postsData);
 
 
   return (

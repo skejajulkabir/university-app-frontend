@@ -4,7 +4,11 @@ import { createSlice } from "@reduxjs/toolkit";
 //     cart : [{ 'name': 'hello redux', 'qty':100 , "id": 142353534242455},{'name': 'hello2redux', 'qty':70 , "id": 142353534242478},{'name': 'hello3 redux', 'qty':10 , "id": 142353674242455}],
 // }
 const initialState = {
-    utils : {},
+    isMainIdVarified : false,
+    isLoggedIn : false,
+    isAuthority : false,
+    isAdmin : false,
+    role : "UNAUTHORISED",
 }
 
 export const utilSlice = createSlice({
@@ -12,7 +16,7 @@ export const utilSlice = createSlice({
     initialState,
     reducers:{
         isVarified : (state,action)=>{
-            state.isVarified = action.payload;
+            state.isMainIdVarified = action.payload;
         },
     }
 })
