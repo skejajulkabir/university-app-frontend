@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
+    bloodGroup: "",
     Discord: "",
     Facebook: "",
     Gender: "",
@@ -33,8 +34,8 @@ const SignupPage = () => {
     setFormData((prev)=>{
       return {...prev , [e.target.name]: e.target.value}
     });
-    // console.log(formData)
   };
+  console.log(formData)
 
 
   const handleSubmit = async (e) => {
@@ -51,6 +52,7 @@ const SignupPage = () => {
           "userType": formData.userType ,
           "regularEmail" : formData.regularEmail ,
           "info": {
+            "bloodGroup" : formData.bloodGroup,
             "department": formData.department,
             "roll": formData.roll,
             "admissionSession": formData.admissionSession,
@@ -208,11 +210,15 @@ const SignupPage = () => {
               </div>
 
 
+              <InputComponent handleChange={handleChange} NAME={"From(desher bari koi?) :"} ID={"from"} />
+
+
               <InputComponent handleChange={handleChange}
                 NAME={"CurrentLocation :"}
                 ID={"currentLocation"}
                 placeholder={"Example : \"Palbari.\""}
               />
+
 
 
               <div>
@@ -240,7 +246,7 @@ const SignupPage = () => {
               </div>
 
 
-              <InputComponent handleChange={handleChange} NAME={"From(desher bari koi?) :"} ID={"from"} />
+              
 
               <div className="bg-slate-200 rounded-md p-2">
                 <div className="">Contact :</div>
@@ -274,6 +280,7 @@ const SignupPage = () => {
 
 
 
+                  <InputComponent handleChange={handleChange} NAME={"Blood Group :"} ID={"bloodGroup"} />
                   <InputComponent handleChange={handleChange} NAME={"Facebook id link :"} ID={"Facebook"} />
                   <InputComponent handleChange={handleChange} NAME={"LinkedIn id link :"} ID={"LinkedIn"} />
                   <InputComponent handleChange={handleChange} NAME={"Instagram id link :"} ID={"insta"} />

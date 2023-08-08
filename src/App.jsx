@@ -6,7 +6,7 @@ import { store } from './Redux/store';
 
 // page imports
 import NavbarFooterBody from './Utils/NavbarFooterBody'
-import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage, SearchPage} from './pages';
+import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage, SearchPage, VarifyAccountPage, EnterOTPpage} from './pages';
 
 //admin page imports
 import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage , Orders, OrderDetailsPage, ShowProductPage, UserHandlingPage, AddAuthorisedUserPage, RestrictUserPage} from './pages/AdminSide/pages';
@@ -27,6 +27,8 @@ function App() {
             <Route path="/shop" element={<ProductShowcasePage/>} />
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/forgotpassword" element={<ForgotPassword />}/>
+            <Route path="/varifyaccountpage" element={<VarifyAccountPage />}/>
+            <Route path="/enterotp" element={<EnterOTPpage />}/>
             <Route path="/SignupPage" element={<SignupPage />}/>
             <Route path="/Checkout" element={<Checkout />}/>
             <Route path="/product/:id" element={<SingleProductPage />}/>

@@ -22,7 +22,6 @@ const SearchPage = () => {
         }/search/searchuser`,
         {
           name: searchQuery,
-          userName: searchQuery,
           bloodGroup: bloodGroup,
           department: department,
           roll: roll,
@@ -170,7 +169,9 @@ const SearchPage = () => {
                           />
                         </div>
 
-                        <div className="ml-4 text-xl font-semibold truncate">
+                        <div className="">
+                          <div className="flex flex-col">
+                          <div className="ml-4 text-xl font-semibold truncate ">
                           {user?.matchedParts && user?.name ? (
                             <HighlightText
                               text={user.name}
@@ -179,6 +180,18 @@ const SearchPage = () => {
                           ) : (
                             user?.name
                           )}
+                        </div>
+                        <div className="ml-4 text-sm font-semibold truncate">
+                          {user?.matchedParts && user?.userName ? (
+                            <HighlightText
+                              text={user.userName}
+                              matchedParts={user.matchedParts.userName}
+                            />
+                          ) : (
+                            user?.userName
+                          )}
+                        </div>
+                          </div>
                         </div>
                       </Link>
                     ))

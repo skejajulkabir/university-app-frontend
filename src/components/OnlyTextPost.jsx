@@ -110,7 +110,7 @@ const OnlyTextPost = ({ pst }) => {
             </div>
           </div>
 
-          <div className="my-auto mx-5 bg-slate-300 p-3 rounded-full">
+          <div className="my-auto mx-5 bg-slate-300 p-3 rounded-full cursor-pointer">
             <AiOutlineMenu className="text-xl" />
           </div>
         </div>

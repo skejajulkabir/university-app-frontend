@@ -45,7 +45,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const globalCart = useSelector((state) => state.globalCart.cart);
   const globalUser = useSelector((state) => state.globalUser.user);
-  // console.log(globalUser);
+  console.log(globalUser);
 
 
   useEffect(() => {
@@ -174,11 +174,42 @@ const Navbar = () => {
               </div>
             </label>
 
-            <Link className="h-full  hover:scale-125 transition-transform duration-300 ease-in-out" to={"/login"}>
-              <div className="h-full flex items-center justify-center my-auto cursor-pointer">
-                <MdAccountCircle className="text-4xl lg:text-5xl mx-1 my-auto" />
-              </div>
-            </Link>
+
+
+
+
+
+
+
+
+
+            {
+              globalUser.name === '' && globalUser.userName === '' && globalUser.regularEmail === '' ? (
+                <Link className="h-full  hover:scale-125 transition-transform duration-300 ease-in-out" to={"/login"}>
+                  <div className="h-full flex items-center justify-center my-auto cursor-pointer">
+                    <MdAccountCircle className="text-4xl lg:text-5xl mx-1 my-auto" />
+                  </div>
+                </Link>
+              ) :
+              (
+                <Link className="h-full  hover:scale-125 transition-transform duration-300 ease-in-out" to={`/profile/${globalUser._id}`}>
+                    <div className="h-full flex items-center justify-center my-auto cursor-pointer ">
+                      <img 
+                        className="w-1h-12 h-12  rounded-full object-cover p-1 border border-slate-400 "
+                        src={globalUser.avatar} alt="" />
+                    </div>
+                </Link>
+              )
+            }
+
+
+
+
+
+
+
+
+
             <div
               className="cart mx-2 lg:mx-8 font-bold flex justify-center items-center  text-sm my-3 bg-indigo-300 rounded-full p-1 lg:p-3 cursor-pointer hover:scale-125 transition-transform duration-300 ease-in-out"
               ref={ref}

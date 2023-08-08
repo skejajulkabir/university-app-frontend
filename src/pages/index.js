@@ -15,3 +15,5 @@ export {default as MenuPage} from './MenuPage';
 export {default as SettingsPage} from './SettingsPage';
 export {default as UpdateProfilePage} from './UpdateProfilePage';
 export {default as SearchPage} from './SearchPage';
+export {default as VarifyAccountPage} from './VarifyAccountPage';
+export {default as EnterOTPpage} from './EnterOTPpage';
