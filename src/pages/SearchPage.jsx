@@ -15,6 +15,7 @@ const SearchPage = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = async () => {
+    setShowModifySearchToggler(false);
     try {
       const response = await axios.post(
         `${

@@ -152,7 +152,7 @@ const Checkout = () => {
         </div>
 
         {/* <div className="m-10 ml-2 lg:w-3/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0"> */}
-        <div className="bg-gray-100 rounded w-2/3 p-8 mt-10 mx-auto">
+        <div className="bg-gray-100 rounded-md   lg:w-2/3 p-8 mt-10 mx-auto">
           <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
             Enter your personal info.
           </h2>
@@ -304,7 +304,17 @@ const Checkout = () => {
           </div>
         </div>
 
-        <div className="w-2/3 mt-10 mx-auto  right-0 bg-gray-100 p-10 flex items-center flex-col rounded-lg ">
+
+
+
+
+
+
+
+
+
+
+        <div className="lg:w-2/3 mt-10 mx-auto  right-0 bg-gray-100 p-10 flex items-center flex-col rounded-lg ">
           <div className="absolute top-8 right-8 text-2xl text-cyan-50 cursor-pointer ">
             <AiFillCloseCircle className="text-indigo-500 text-3xl" />
           </div>
@@ -389,7 +399,7 @@ const Checkout = () => {
             </div>
           </div>
 
-          {globalCart.length > 0 && (
+          {/* {globalCart.length > 0 && (
             <div className="mt-6">
               <button
                 onClick={cartClear}
@@ -398,7 +408,7 @@ const Checkout = () => {
                 CLEAR CART
               </button>
             </div>
-          )}
+          )} */}
         </div>
 
         <div className="w-full flex flex-col items-center p-12">

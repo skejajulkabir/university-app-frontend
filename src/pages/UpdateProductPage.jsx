@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LeftSideBar from "./AdminSide/components/LeftSideBar";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-const PostProductPage = () => {
+const UpdateProductPage = () => {
   const globalUser = useSelector((state) => state.globalUser.user);
+
+
+  const params = useParams();
 
   const initialVariant = {
     id: Math.floor(Math.random() * 10000) + 1,
@@ -32,7 +36,26 @@ const PostProductPage = () => {
 
   const [formData, setFormData] = useState(initialState);
 
-  console.log(formData)
+
+
+
+  useEffect(() => {
+    fetchProductData();
+  }, []);
+
+  const fetchProductData = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/product/${
+          params.prdId
+        }`
+      );
+      setFormData(response.data.product);
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to fetch product data.");
+    }
+  };
 
 
 
@@ -42,16 +65,16 @@ const PostProductPage = () => {
     })    
   },[globalUser.name])
 
-  const addVariant = () => {
+  const addVarient = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       variants: [...prevFormData.variants, { ...initialVariant }],
     }));
   };
 
-  const handleSubmit = async (e) => {
+  
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    setFormData((prevFormData) => ({ ...prevFormData, done: "done" }));
 
     if (formData.variants.length === 0) {
       toast.error("The product must have at least one variant.");
@@ -59,29 +82,22 @@ const PostProductPage = () => {
     }
 
     try {
-      await axios.post(
-        `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/admin/addproducts`,
-        [
-          {
-            ...formData,
-            author: {
-              name: globalUser.name,
-              userName: globalUser.userName,
-            },
-          },
-        ],
+      await axios.put(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/admin/updateproducts`,
+        [formData],
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("TOKEN"),
           },
         }
       );
-      toast.success("Product added successfully.");
+      toast.success("Product updated successfully.");
     } catch (error) {
       console.log(error);
-      toast.error("Failed to add product. Try changing the slug.");
+      toast.error("Failed to update product.");
     }
   };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -106,6 +122,8 @@ const PostProductPage = () => {
       variants: prevFormData.variants.filter((variant) => variant.id !== id),
     }));
   };
+  console.log(formData);
+
   return (
     <>
       <ToastContainer
@@ -126,15 +144,13 @@ const PostProductPage = () => {
         <div className="min-h-screen w-screen">
           <div className="">
             <div className="text-5xl font-bold w-fit mx-auto">
-              Post a new product.
+              Update product.
             </div>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleUpdate}>
             <div className="flex flex-col p-4">
-
-
-              <InputComponent
+            <InputComponent
                 Title="Title :"
                 type={"text"}
                 name="title"
@@ -217,24 +233,29 @@ const PostProductPage = () => {
                 <div className="text-xl font-bold">Add variens:</div>
               </div>
 
-              <div className="w-full my-3" onClick={addVariant}>
-              <div className="w-full bg-slate-600 rounded-md cursor-pointer">
+              <div className="w-full my-3" onClick={addVarient}>
+                <div className="w-full bg-slate-600 rounded-md cursor-pointer">
                   <div className="w-fit mx-auto text-xl my-2 text-white p-3 rounded-md">
                     Add variant.
                   </div>
                 </div>
               </div>
 
-                {/* Display variants */}
-                {formData.variants.map((variant, index) => (
-                  <VariantInput
-                    key={variant.id}
-                    variant={variant}
-                    index={index}
-                    updateVariant={updateVariant}
-                    deleteVariant={deleteVariant}
-                  />
-                ))}
+              {/* {
+              formData.variants.map((elm , index)=>{
+                return <VariantInput key={index} elm={elm}  />;
+              })
+            } */}
+
+              {formData.variants.map((elm, index) => (
+                <VariantInput
+                  key={index}
+                  index={index}
+                  variant={elm}
+                  updateVariant={updateVariant}
+                  deleteVariant={deleteVariant}
+                />
+              ))}
 
               {/* <div className="w-full">
                 <div className="w-full">
@@ -246,7 +267,7 @@ const PostProductPage = () => {
                       className="bg-slate-200 w-4/6 p-2 mx-2 "
                       type="text"
                       name="done"
-                      value={formData.done}
+                      value={formData.name}
                       onChange={handleChange}
                     />
                   </label>
@@ -267,7 +288,7 @@ const PostProductPage = () => {
                     className="w-11/12 p-4 mx-auto bg-slate-700 text-slate-50"
                     type="submit"
                   >
-                    Submit
+                    UPDATE
                   </button>
                 </div>
               </div>
@@ -279,7 +300,15 @@ const PostProductPage = () => {
   );
 };
 
-export default PostProductPage;
+export default UpdateProductPage;
+
+
+
+
+
+
+
+
 
 
 
@@ -311,6 +340,10 @@ const InputComponent = ({ Title , name , value , handleChange , type , isDisable
     </div>
   )
 }
+
+
+
+
 
 
 

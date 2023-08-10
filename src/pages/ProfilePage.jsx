@@ -44,15 +44,15 @@ const ProfilePage = () => {
 
   return (
     <>
-        <div className="w-full">
-            <div className="w-4/6 mx-auto">
+        <div className="w-full pt-28 lg:pt-24">
+            <div className="lg:w-4/6 mx-auto">
 
                 <ProfileHeader userData={userData} />
 
 
-                <ButtonBar />
+                {/* <ButtonBar /> */}
 
-                <div className="flex flex-row w-full justify-evenly pt-4">
+                <div className="flex flex-col lg:flex-row w-full justify-evenly pt-4">
 
                     
                     <InformationBox  user={userData} />

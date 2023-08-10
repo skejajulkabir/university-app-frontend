@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import LeftSideBar from "../components/LeftSideBar";
+import { Link } from "react-router-dom";
 
 const ShowProductPage = () => {
   const [products, setProducts] = useState([]);
@@ -66,9 +67,11 @@ const ShowProductPage = () => {
                     </td>
                     <td className="border text-center ">{product.status}</td>
                     <td className="border text-center">
-                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Update
-                      </button>
+                      <Link to={`/admin/updateproduct/${product._id}`}>
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                          Update
+                        </button>
+                      </Link>
                     </td>
                   </tr>
                 ))}

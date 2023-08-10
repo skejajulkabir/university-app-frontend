@@ -166,13 +166,16 @@ const Navbar = () => {
           {/* <div className='flex justify-end flex-row absolute right-0 top-3'> */}
           <div className="flex justify-center flex-row h-full absolute top-1 right-2">
 
-            <label htmlFor="searchbar">
-              <div className="h-full  hover:scale-125 transition-transform duration-300 ease-in-out" >
-                <div className="md:hidden h-full flex items-center justify-center my-auto cursor-pointer">
-                  <BiSearch className="text-4xl lg:text-5xl mx-2 my-auto" />
+
+            <Link to={"/search"}>
+              <label htmlFor="searchbar">
+                <div className="h-full pr-3 hover:scale-125 transition-transform duration-300 ease-in-out" >
+                  <div className="lg:hidden h-full flex items-center justify-center my-auto cursor-pointer ">
+                    <BiSearch className="text-4xl lg:text-5xl mx-2 my-auto" />
+                  </div>
                 </div>
-              </div>
-            </label>
+              </label>
+            </Link>
 
 
 

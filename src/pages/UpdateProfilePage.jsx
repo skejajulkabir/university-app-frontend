@@ -25,6 +25,16 @@ const UpdateProfilePage = () => {
                 </div>
             </Link>
 
+            <Link to="/updateinformation">
+                <div className="flex flex-row bg-slate-300 m-4 p-3 items-center rounded-md mt-2 hover:scale-105 transition-transform duration-300 ease-in-out ">
+                <div className="w-11  pl-3">
+                    <CgProfile className="text-2xl " />
+                </div>
+
+                <div className="ml-4 text-xl  truncate font-bold">Update Information</div>
+                </div>
+            </Link>
+
 
           </div>
         </div>

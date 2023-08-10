@@ -11,23 +11,23 @@ const SignupPage = () => {
     Facebook: "",
     Gender: "",
     LinkedIn: "",
-    YouTube:"",
-    admissionSession:"",
+    YouTube: "",
+    admissionSession: "",
     currentLocation: "",
     department: "",
     regularEmail: "",
-    from:"",
+    from: "",
     district: "",
     insta: "",
     name: "",
     password: "",
-    phnPrivacy:"",
-    phoneNumber:"",
-    roll:"",
+    phnPrivacy: "",
+    phoneNumber: "",
+    roll: "",
     userType: "",
-    username:"",
-    });
-
+    username: "",
+  });
+  
 
 
   const handleChange = (e) => {
@@ -114,39 +114,20 @@ const SignupPage = () => {
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-4xl">
             <form className="space-y-6" onSubmit={handleSubmit}>
-              <InputComponent handleChange={handleChange} NAME={"NAME :"} ID={"name"} />
+              <InputComponent handleChange={handleChange} NAME={"NAME :)"} ID={"name"} />
               <InputComponent handleChange={handleChange}
-                NAME={"Username(Has to be unique):"}
+                NAME={"Username(Has to be unique):(Username can't be changed after creating the account...)"}
                 ID={"username"}
               />
-{/* 
-              <div>
-                <label
-                  htmlFor="displayPic"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Upload a profile picture.
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="displayPic"
-                    name="displayPic"
-                    type="file"
-                    autoComplete="displayPic"
-                    required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div> */}
 
-              <InputComponent handleChange={handleChange} NAME={"Email address :"} ID={"regularEmail"} />
+              <InputComponent handleChange={handleChange} NAME={"Email address :(your regular email on which youll get all the updates...)"} ID={"regularEmail"} />
 
               <div>
                 <label
                   htmlFor="userType"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Select your type
+                  Select your type(can't be changed after opening the account.)
                 </label>
                 <div className="mt-2">
                   <select
@@ -167,7 +148,43 @@ const SignupPage = () => {
 
               <div className="">personal Info.(required)</div>
 
-              <InputComponent handleChange={handleChange} NAME={"Department :"} ID={"department"} />
+              
+
+
+              <div>
+                <label
+                  htmlFor="department"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  DEPARTMENT :: (can't be changed after opening the account.)
+                </label>
+                <div className="mt-2">
+                  <select
+                    name="department"
+                    id="department" 
+                    // onChange={(handleUserTypeChange)}
+                    onChange={(handleChange)}
+                    // onChange={(e)=>{setUserType(e.target.value);}}
+                    className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10 w-full"
+                  >
+                    <option value="SELECT">SELECT YOUR DEPARTMENT!</option>
+                    <option value="EEE">EEE</option>
+                    <option value="EST">EST</option>
+                    <option value="CHEM">CHEM</option>
+                    <option value="PHY">PHY</option>
+                    <option value="MGT">MGT</option>
+                    <option value="AIS">AIS</option>
+                    <option value="PME">PME</option>
+                    <option value="ENG">ENG</option>
+                  </select>
+                </div>
+              </div>
+              
+
+
+
+
+
               <InputComponent handleChange={handleChange} NAME={"Roll :"} ID={"roll"} type={"number"} />
               <InputComponent handleChange={handleChange} NAME={"district :"} ID={"district"} />
               
@@ -177,7 +194,7 @@ const SignupPage = () => {
                   htmlFor="admissionSession"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Select your admission session.
+                  Select your admission session. (can't be changed after opening the account.)
                 </label>
                 <div className="mt-2">
                   <select
@@ -226,7 +243,7 @@ const SignupPage = () => {
                   htmlFor="Gender"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Gender ::
+                  Gender :: (can't be changed after opening the account.)
                 </label>
                 <div className="mt-2">
                   <select
@@ -241,6 +258,38 @@ const SignupPage = () => {
                     <option value="MALE">MALE</option>
                     <option value="FEMALE">FEMALE</option>
                     <option value="OTHERS">OTHERS</option>
+                  </select>
+                </div>
+              </div>
+
+
+
+
+              <div>
+                <label
+                  htmlFor="bloodGroup"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Blood Group ::
+                </label>
+                <div className="mt-2">
+                  <select
+                    name="bloodGroup"
+                    id="bloodGroup" 
+                    // onChange={(handleUserTypeChange)}
+                    onChange={(handleChange)}
+                    // onChange={(e)=>{setUserType(e.target.value);}}
+                    className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10 w-full"
+                  >
+                    <option value="SELECT">SELECT YOUR Blood Group!</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
                   </select>
                 </div>
               </div>
@@ -280,7 +329,6 @@ const SignupPage = () => {
 
 
 
-                  <InputComponent handleChange={handleChange} NAME={"Blood Group :"} ID={"bloodGroup"} />
                   <InputComponent handleChange={handleChange} NAME={"Facebook id link :"} ID={"Facebook"} />
                   <InputComponent handleChange={handleChange} NAME={"LinkedIn id link :"} ID={"LinkedIn"} />
                   <InputComponent handleChange={handleChange} NAME={"Instagram id link :"} ID={"insta"} />

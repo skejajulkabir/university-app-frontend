@@ -6,11 +6,12 @@ import { store } from './Redux/store';
 
 // page imports
 import NavbarFooterBody from './Utils/NavbarFooterBody'
-import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage, SearchPage, VarifyAccountPage, EnterOTPpage} from './pages';
+import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage, SearchPage, VarifyAccountPage, EnterOTPpage, UpdateProductPage} from './pages';
 
 //admin page imports
 import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage , Orders, OrderDetailsPage, ShowProductPage, UserHandlingPage, AddAuthorisedUserPage, RestrictUserPage} from './pages/AdminSide/pages';
 import UpdateDP from './pages/utilPages/UpdateDP';
+import UpdateIformationPage from './pages/utilPages/UpdateIformationPage';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
             <Route path="/settings" element={<SettingsPage />}/>
             <Route path="/updateprofilepage" element={<UpdateProfilePage />}/>
             <Route path="/updatedp" element={<UpdateDP />}/>
+            <Route path="/updateinformation" element={<UpdateIformationPage />}/>
 
 
 
@@ -53,6 +55,7 @@ function App() {
             <Route path="/admin/orders" element={<Orders />}/>
             <Route path="/admin/ordrdetailspage/:id" element={<OrderDetailsPage />}/>
             <Route path="/admin/showproducts" element={<ShowProductPage />}/>
+            <Route path="/admin/updateproduct/:prdId" element={<UpdateProductPage />}/>
             <Route path="/admin/userhandlingpage" element={<UserHandlingPage />}/>
             <Route path="/admin/addauthoriseduser" element={<AddAuthorisedUserPage />}/>
             <Route path="/admin/restrictuser" element={<RestrictUserPage />}/>
