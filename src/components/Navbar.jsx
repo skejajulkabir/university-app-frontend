@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import LoadingComponent from "../Utils/LoadingComponent.jsx";
 
 
 import {
@@ -45,6 +46,8 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const globalCart = useSelector((state) => state.globalCart.cart);
   const globalUser = useSelector((state) => state.globalUser.user);
+  const globalUtils = useSelector((state) => state.globalUtils)
+
   console.log(globalUser);
 
 
@@ -138,6 +141,11 @@ const Navbar = () => {
 
 
     <div className="" >
+
+      {
+        globalUtils.isLoading &&
+            <LoadingComponent/>
+      }
       <div className="w-full py-3 bg-indigo-100 z-20 shadow-xl fixed flex flex-row ">
         <Link to="/" className="my-auto">
           <div className="logo my-auto">
@@ -347,7 +355,7 @@ const Navbar = () => {
             </li>
           </Link>
 
-          <Link to="/underdevelopment">
+          <Link to="/notice">
             <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
               <CgNotes className="text-2xl mx-2 font-bold"/>
             </li>

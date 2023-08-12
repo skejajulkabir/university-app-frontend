@@ -49,6 +49,25 @@ const SettingsPage = () => {
             </Link>
           </div>
 
+
+
+
+
+
+          <div className="px-4 w-full pb-3">
+            <Link to={"/updatepass"}>
+              <div className="flex flex-row bg-slate-300 m-4 p-3 items-center rounded-md mt-2 hover:scale-105 transition-transform duration-300 ease-in-out ">
+                <div className="w-11  pl-3">
+                  <CgProfile className="text-2xl " />
+                </div>
+
+                <div className="ml-4 text-xl truncate font-bold">
+                Update Password
+                </div>
+              </div>
+            </Link>
+          </div>
+
           <div className="px-4 w-full pb-3">
                 <div className="flex flex-row bg-slate-300 m-4 p-3 items-center rounded-md mt-2 hover:scale-105 transition-transform duration-300 ease-in-out " onClick={handleLogOut}>
                   <div className="w-11  pl-3">

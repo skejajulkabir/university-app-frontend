@@ -18,3 +18,5 @@ export {default as SearchPage} from './SearchPage';
 export {default as VarifyAccountPage} from './VarifyAccountPage';
 export {default as EnterOTPpage} from './EnterOTPpage';
 export {default as UpdateProductPage} from './UpdateProductPage';
+export {default as UpdatePasswordPage} from './UpdatePasswordPage';
+export {default as NoticePage} from './NoticePage';

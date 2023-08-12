@@ -141,7 +141,7 @@ const UpdateInformationPage = () => {
 
             <InputComponent
               type="text"
-              label="Email:"
+              label="Regular Email:( Be careful while changing this field... If any error takes place, you won't be able to log into your account later... The email must be valid. )"
               name="regularEmail"
               value={updatedData.regularEmail}
               handleChange={handleChange}

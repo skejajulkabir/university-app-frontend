@@ -35,7 +35,7 @@ const LeftSidebar = () => {
         <GoToSettings/>
       </Link>
 
-      <Link to='/underdevelopment' >
+      <Link to='/community' >
         <GroupTab/>
       </Link>
 

@@ -7,6 +7,6 @@ export const store = configureStore({
   reducer: {
     globalCart : cartReducer,
     globalUser : userReducer,
-    utils : utilReducer
+    globalUtils : utilReducer
   },
 });

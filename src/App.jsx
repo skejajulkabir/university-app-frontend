@@ -6,7 +6,7 @@ import { store } from './Redux/store';
 
 // page imports
 import NavbarFooterBody from './Utils/NavbarFooterBody'
-import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage, SearchPage, VarifyAccountPage, EnterOTPpage, UpdateProductPage} from './pages';
+import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage, SearchPage, VarifyAccountPage, EnterOTPpage, UpdateProductPage, UpdatePasswordPage, NoticePage} from './pages';
 
 //admin page imports
 import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage , Orders, OrderDetailsPage, ShowProductPage, UserHandlingPage, AddAuthorisedUserPage, RestrictUserPage} from './pages/AdminSide/pages';
@@ -44,6 +44,8 @@ function App() {
             <Route path="/updateprofilepage" element={<UpdateProfilePage />}/>
             <Route path="/updatedp" element={<UpdateDP />}/>
             <Route path="/updateinformation" element={<UpdateIformationPage />}/>
+            <Route path="/updatepass" element={<UpdatePasswordPage />}/>
+            <Route path="/notice" element={<NoticePage />}/>
 
 
 

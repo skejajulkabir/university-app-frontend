@@ -48,6 +48,13 @@ const LeftSideBar = () => {
         </Link>
 
 
+        <Link to="/admin/userhandlingpage">
+            <div className="p-2 flex bg-slate-300 rounded-md py-3 px-4 hover:bg-slate-200 cursor-pointer mb-2 font-bold">
+                ADD DONORS
+            </div>
+        </Link>
+
+
 
 
 

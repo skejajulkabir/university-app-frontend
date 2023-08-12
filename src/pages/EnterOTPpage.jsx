@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch } from "react-redux";
+import { setLoading } from "../Redux/features/utilSlice";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 
 const EnterOTPpage = () => {
   const [OTP, setOTP] = useState(0);
-  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ const EnterOTPpage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    dispatch(setLoading(true))
 
     if (OTP === 0) {
       toast.error("Please enter your OTP!");
@@ -33,15 +35,15 @@ const EnterOTPpage = () => {
       .then((res) => {
         if(res.status === 200){
             alert("Congratulations! Your account is varified now...");
-            setLoading(false)
+            dispatch(setLoading(false))
             navigate('/')
         }else if(res.status === 400){
             toast.error("Invalid OTP!")
-            setLoading(false)
+            dispatch(setLoading(false))
         }else{
             alert("Some error accured... please try again later.")
             navigate('/varifyaccountpage')
-            setLoading(false)
+            dispatch(setLoading(false))
         }
 
         console.log(res);
@@ -50,7 +52,7 @@ const EnterOTPpage = () => {
         console.log(err);
         alert("Some error accured... please try again later.")
         navigate('/varifyaccountpage')
-        setLoading(false)
+        dispatch(setLoading(false))
       });
   };
 
@@ -68,11 +70,6 @@ const EnterOTPpage = () => {
         pauseOnHover
         theme="light"
       />
-      {loading && (
-        <div className="min-h-screen w-full flex justify-center items-center bg-slate-500 bg-opacity-50 fixed top-0 left-0">
-          <div className="text-4xl font-bold text-white ">Loading...</div>
-        </div>
-      )}
       <div className="min-h-screen w-full bg-slate-950 flex justify-center items-center">
         <div className="">
           <form onSubmit={handleSubmit}>
