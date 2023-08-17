@@ -48,7 +48,6 @@ const Navbar = () => {
   const globalUser = useSelector((state) => state.globalUser.user);
   const globalUtils = useSelector((state) => state.globalUtils)
 
-  console.log(globalUser);
 
 
   useEffect(() => {
@@ -92,10 +91,8 @@ const Navbar = () => {
               window.location.reload();
               dispatch(isVarified(false))
             }
-            // console.log(res)
                 await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getuserbyid/${res.data.tokenResponse.uid}`)
                 .then((r)=>{
-                  // console.log(r);
                   dispatch(setGlobalUser(r.data.user));
                   if(r.data.user){
                     dispatch(isVarified(true));
@@ -103,7 +100,7 @@ const Navbar = () => {
                 })
           })
           .catch((err) => {
-            console.log("there was an error fetching the data." + err);
+            console.error("there was an error fetching the data." + err);
           });
       };
       initialvarify();
@@ -260,7 +257,6 @@ const Navbar = () => {
             )}
 
             {globalCart.map((item) => {
-              // console.log(item)
               if (Object.keys(item).length > 0) {
                 return (
                   <li className="py-3 bg-indigo-300 my-1 rounded-md" key={Math.floor(Math.random()*10000)}>

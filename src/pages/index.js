@@ -20,3 +20,6 @@ export {default as EnterOTPpage} from './EnterOTPpage';
 export {default as UpdateProductPage} from './UpdateProductPage';
 export {default as UpdatePasswordPage} from './UpdatePasswordPage';
 export {default as NoticePage} from './NoticePage';
+export {default as CreateNoticePage} from './CreateNoticePage';
+export {default as BloodDonationPage} from './BloodDonationPage';
+export {default as CreateBloodDonationNoticePage} from './CreateBloodDonationNoticePage';

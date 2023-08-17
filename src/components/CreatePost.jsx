@@ -8,7 +8,7 @@ const CreatePost = () => {
   return (
     <>
       <Link to={"/createpost"}>
-        <div className="flex flex-col  rounded-lg bg-slate-200 shadow-2xl  lg:mt-20  md:max-w-3xl mx-auto mb-2 mt-2">
+        <div className="flex flex-col  rounded-lg bg-slate-200 shadow-2xl mt-2  lg:mt-20  md:max-w-3xl mx-auto mb-2 ">
           <div className="text-xl py-1 px-2 text-slate-600 ml-2">
             Create new post.
           </div>

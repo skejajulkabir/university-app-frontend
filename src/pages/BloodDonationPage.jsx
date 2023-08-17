@@ -8,7 +8,7 @@ import Post from '../components/Post'
 import LoadingComponent from '../Utils/LoadingComponent';
 
 
-const NoticePage = () => {
+const BloodDonationPage = () => {
 
   const [noticeData, setNoticeData] = useState([])
   const [page, setPage] = useState(1)
@@ -62,7 +62,7 @@ const NoticePage = () => {
       dispatch(setLoading(true))
       await axios
         // .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getnotice?page=${page}&limit=4`)
-        .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getnotice?page=${page}&limit=10`)
+        .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getbloodnotice?page=${page}&limit=10`)
         .then((res) => {
           dispatch(setLoading(false))
           setNoticeData((prev)=> [...prev , ...res.data.notices]);
@@ -90,10 +90,10 @@ const NoticePage = () => {
 
 
 
-      <Link to={"/createnotice"}>
+      <Link to={"/createblooddonationnotice"}>
         <div className="flex flex-col  rounded-lg bg-slate-200 shadow-2xl  lg:mt-20  md:max-w-3xl mx-auto mb-2 ">
           <div className="text-xl py-1 px-2 text-slate-600 ml-2">
-            Create new notice.
+            Create new Blood Donation POST.
           </div>
           <div className="bg-slate-300 p-4 flex flex-row rounded-lg h-full justify-center items-center mx-2 ">
             <div className="w-10 h-10">
@@ -140,4 +140,4 @@ const NoticePage = () => {
   )
 }
 
-export default NoticePage
+export default BloodDonationPage

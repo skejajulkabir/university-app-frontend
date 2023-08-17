@@ -8,3 +8,4 @@ export {default as ShowProductPage} from './ShowProductPage';
 export {default as UserHandlingPage} from './UserHandlingPage';
 export {default as AddAuthorisedUserPage} from './AddAuthorisedUserPage';
 export {default as RestrictUserPage} from './RestrictUserPage';
+export {default as SizeHandlingPage} from './SizeHandlingPage';

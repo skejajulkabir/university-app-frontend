@@ -21,12 +21,12 @@ const LeftSidebar = () => {
         <ProfileButton />
       
 
-      <Link to='/underdevelopment'>
+      <Link to='/notice'>
         <NoticeBar/>
       </Link>
 
 
-      <Link to='/underdevelopment'>
+      <Link to='/blooddonation'>
         <BloodDonation/>
       </Link>
 

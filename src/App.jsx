@@ -6,10 +6,10 @@ import { store } from './Redux/store';
 
 // page imports
 import NavbarFooterBody from './Utils/NavbarFooterBody'
-import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage, SearchPage, VarifyAccountPage, EnterOTPpage, UpdateProductPage, UpdatePasswordPage, NoticePage} from './pages';
+import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage, SearchPage, VarifyAccountPage, EnterOTPpage, UpdateProductPage, UpdatePasswordPage, NoticePage, CreateNoticePage, BloodDonationPage, CreateBloodDonationNoticePage} from './pages';
 
 //admin page imports
-import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage , Orders, OrderDetailsPage, ShowProductPage, UserHandlingPage, AddAuthorisedUserPage, RestrictUserPage} from './pages/AdminSide/pages';
+import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage , Orders, OrderDetailsPage, ShowProductPage, UserHandlingPage, AddAuthorisedUserPage, RestrictUserPage, SizeHandlingPage} from './pages/AdminSide/pages';
 import UpdateDP from './pages/utilPages/UpdateDP';
 import UpdateIformationPage from './pages/utilPages/UpdateIformationPage';
 
@@ -46,6 +46,9 @@ function App() {
             <Route path="/updateinformation" element={<UpdateIformationPage />}/>
             <Route path="/updatepass" element={<UpdatePasswordPage />}/>
             <Route path="/notice" element={<NoticePage />}/>
+            <Route path="/blooddonation" element={<BloodDonationPage />}/>
+            <Route path="/createnotice" element={<CreateNoticePage />}/>
+            <Route path="/createblooddonationnotice" element={<CreateBloodDonationNoticePage />}/>
 
 
 
@@ -61,6 +64,7 @@ function App() {
             <Route path="/admin/userhandlingpage" element={<UserHandlingPage />}/>
             <Route path="/admin/addauthoriseduser" element={<AddAuthorisedUserPage />}/>
             <Route path="/admin/restrictuser" element={<RestrictUserPage />}/>
+            <Route path="/admin/sizehandling" element={<SizeHandlingPage />}/>
           </Routes>
 
       </NavbarFooterBody>
