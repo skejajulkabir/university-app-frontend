@@ -66,6 +66,11 @@ const VideoPost = ({ pst }) => {
       });
   };
 
+
+  
+  const timestamp = post.createdAt;
+  const formattedDate = new Date(timestamp).toLocaleString();
+
   return (
     <>
       <ToastContainer
@@ -80,7 +85,24 @@ const VideoPost = ({ pst }) => {
         pauseOnHover
         theme="light"
       />
-      <div className="flex flex-col rounded-lg bg-slate-200 shadow-2xl py-2 p-3 md:max-w-3xl mx-auto mb-2 w-full m-2">
+      <div className="flex flex-col rounded-lg bg-slate-200 shadow-2xl py-2 p-3 md:max-w-3xl mx-auto mb-2 w-full m-2 relative">
+
+
+
+
+
+
+
+      <div className="">
+          <div className="bg-slate-800 w-fit absolute top-0 right-0 text-white text-xs p-1 rounded-md m-1 -mt-1">
+            {post.postType}
+          </div>
+        </div>
+
+
+
+
+
         {/* Header of the post  */}
 
         <div className="flex flex-row justify-between mb-1">
@@ -101,6 +123,14 @@ const VideoPost = ({ pst }) => {
                   {post.author.name}
                 </div>
               </Link>
+
+
+              <div className="text-xs ">
+                {formattedDate}
+              </div>
+
+
+
               {post.author.role.map((rol) => {
                 return (
                   <div

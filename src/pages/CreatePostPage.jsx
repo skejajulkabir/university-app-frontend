@@ -46,6 +46,7 @@ const CreatePostPage = () => {
     videoURL: "",
     Likes: 0,
     comments: [],
+    postType : "FEED_POST"
   });
 
 

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LeftSideBar from "../components/LeftSideBar";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const OrderDetailsPage = () => {
+
+  const [orderStatus, setOrderStatus] = useState('')
+
   const { state } = useLocation();
-  console.log(state);
 
   if (
     !state ||
@@ -20,6 +23,42 @@ const OrderDetailsPage = () => {
 
   const { customer, cart, status, totalOrderValue, _id } = state;
 
+
+
+
+  useEffect(()=>{
+    setOrderStatus(status);
+  },[])
+
+
+  const handleStatusChange = (e)=>{
+    setOrderStatus(e.target.value)
+  }
+
+
+
+  const handleUpdate = async () => {
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/admin/updateOrder`,
+        {
+          oID : _id,
+          updatedStatus : orderStatus
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('TOKEN')
+          }
+        }
+      )
+      .then((res)=> console.log(res))
+      console.log("Order updated successfully!");
+    } catch (error) {
+      console.error("Error updating order:", error);
+    }
+  };
+  
+
   return (
     <>
       <div className="pt-20"></div>
@@ -31,7 +70,7 @@ const OrderDetailsPage = () => {
             <div className=" bg-slate-200  flex justify-center flex-col items-center  p-4 rounded-lg">
               <h1 className="text-2xl font-bold mb-4">Order Details</h1>
               <h3 className="text-lg font-semibold">Order ID: {_id}</h3>
-              <h3 className="text-xl font-bold bg-red-400 px-3 rounded-lg py-4">
+              <h3 className={`text-xl font-bold bg-red-400 px-3 rounded-lg py-4`}>
                 Status: {status}
               </h3>
             </div>
@@ -80,12 +119,12 @@ const OrderDetailsPage = () => {
                       className="w-2h-28 h-28 absolute top-3 right-3 object-cover"
                     />
 
-                    <select name="status" id="" className="p-3 rounded-md">
+                    {/* <select name="status" id="" className="p-3 rounded-md">
                       <option value="change status">change status</option>
                       <option value="PENDING">PENDING</option>
                       <option value="SHIPPED">SHIPPED</option>
                       <option value="DELIVERED">DELIVERED</option>
-                    </select>
+                    </select> */}
                   </li>
                 ))}
               </ul>
@@ -100,14 +139,19 @@ const OrderDetailsPage = () => {
                 name="status"
                 id=""
                 className="p-5 rounded-md m-4 text-lg font-bold"
+                onChange={handleStatusChange}
+                value={orderStatus}
               >
                 <option value="PENDING">PENDING</option>
-                <option value="SHIPPED">SHIPPED</option>
+                <option value="ON_TRANSIT">ON_TRANSIT</option>
                 <option value="DELIVERED">DELIVERED</option>
+                <option value="CANCELLED">CANCEL</option>
               </select>
             </div>
             <div className="flex justify-center py-3 items-center bg-slate-400 my-3 rounded-lg">
-              <button className="p-5 rounded-md bg-blue-600 text-white hover:bg-blue-500">
+              <button
+                onClick={handleUpdate}
+              className="p-5 rounded-md bg-blue-600 text-white hover:bg-blue-500">
                 UPDATE
               </button>
             </div>
