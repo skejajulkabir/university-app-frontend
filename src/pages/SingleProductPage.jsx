@@ -32,21 +32,6 @@ const SingleProductPage = () => {
     fetchProductData();
 
 
-    // const fetchSizeData = async () => {
-    //   try {
-    //     await axios.get(
-    //       `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getavailablesizes`
-    //     ).then((res)=>{
-    //       setSizeData(res.data.sizes);
-    //       console.log(res)
-    //     })
-    //   } catch (error) {
-    //     console.log("There was an error fetching the size data: " + error);
-    //   }
-    // };
-
-    // fetchSizeData();
-
   }, [params.id]);
 
 
@@ -263,11 +248,6 @@ const SingleProductPage = () => {
                             <select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10" defaultValue={""} onClick={(e)=>handleSelectSize(e)}>
                               <option value={""}>select a size</option>
                               {
-                                // sizeData.data.map((sz , index)=>{
-                                //   if (sizeData.name == selectedVariantData.selectedVrntName) {
-                                //     return <option key={index} value={sz.size}>{sz.size}</option>
-                                //   }
-                                // })
                                 sizeData?.map((elm)=>{
                                   if(elm.name == selectedVariantData.selectedVrntName){
                                     return elm.data.map((sz , index)=>{

@@ -131,16 +131,22 @@ const VideoPost = ({ pst }) => {
 
 
 
-              {post.author.role.map((rol) => {
-                return (
-                  <div
-                    key={Math.random()}
-                    className="bg-slate-400 w-fit p-1 text-xs rounded px-2"
-                  >
-                    {rol}
-                  </div>
-                );
-              })}
+              <div className="flex flex-row w-96 overflow-x-scroll scrollbar-hide">
+                {post.author.role.map((rol) => {
+                  return (
+                    <div
+                      key={Math.random()}
+                      className="bg-slate-400 w-fit p-1 text-xs rounded px-2 mx-1 text-slate-800 my-1"
+                    >
+                      {rol}
+                    </div>
+                  );
+                })}
+              </div>
+
+
+
+
             </div>
           </div>
 

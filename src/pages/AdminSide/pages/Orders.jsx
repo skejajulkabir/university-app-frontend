@@ -25,6 +25,7 @@ const Orders = () => {
   const navigateToOrderDetailsPage = (ordrID , orderData)=>{
     navigate(`/admin/ordrdetailspage/${ordrID}` , { state : orderData})
   }
+  
 
   return (
     <>
@@ -55,7 +56,17 @@ const Orders = () => {
               <tbody>
                 {ordersData.map((order , index) => (
                   <tr key={index}>
-                    <td className="border px-4 py-2 bg-red-400 ">{order.status}</td>
+                    <td className={`border px-4 py-2 ${
+                order.status === "PENDING"
+                  ? "bg-yellow-400"
+                  : order.status === "ON_TRANSIT"
+                  ? "bg-blue-500"
+                  : order.status === "DELIVERED"
+                  ? "bg-green-400"
+                  : order.status === "CANCELLED"
+                  ? "bg-red-500"
+                  : "bg-gray-300" // Default background color for other cases
+              } `}>{order.status}</td>
                     <td className="border px-4 py-2 text-sky-500 cursor-pointer" onClick={()=>{
                       navigateToOrderDetailsPage(order._id , order)
                     }}>{order._id}</td>

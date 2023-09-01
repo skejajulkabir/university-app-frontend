@@ -30,7 +30,7 @@ const UpdateDP = () => {
     formData.append('avatar', avatar);
 
     axios
-      .post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/updateavatar`, formData, {
+      .post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/updateavatar/${globalUser._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -41,7 +41,7 @@ const UpdateDP = () => {
         if (res.status === 200) {
           navigate('/');
           dispatch(setGlobalAvatar(res.data.avatarURL))
-          // alert('Avatar updated successfully!');
+          alert('Avatar updated successfully!');
           // window.location.reload();
         }
         // Do something if needed after successful upload

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import LeftSideBar from "../components/LeftSideBar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const OrderDetailsPage = () => {
 
   const [orderStatus, setOrderStatus] = useState('')
+
+  const navigate = useNavigate();
 
   const { state } = useLocation();
 
@@ -51,9 +55,11 @@ const OrderDetailsPage = () => {
           }
         }
       )
-      .then((res)=> console.log(res))
-      console.log("Order updated successfully!");
+      .then((res)=> {
+        navigate("/admin/orders")
+      })
     } catch (error) {
+      toast.error("Failed to update the order. Please try again later.")
       console.error("Error updating order:", error);
     }
   };
@@ -61,6 +67,20 @@ const OrderDetailsPage = () => {
 
   return (
     <>
+
+
+      <ToastContainer
+        position="top-center"
+        autoClose={8000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="pt-20"></div>
       <div className="flex flex-row ">
         <LeftSideBar />
@@ -70,7 +90,17 @@ const OrderDetailsPage = () => {
             <div className=" bg-slate-200  flex justify-center flex-col items-center  p-4 rounded-lg">
               <h1 className="text-2xl font-bold mb-4">Order Details</h1>
               <h3 className="text-lg font-semibold">Order ID: {_id}</h3>
-              <h3 className={`text-xl font-bold bg-red-400 px-3 rounded-lg py-4`}>
+              <h3 className={`text-xl font-bold ${
+                status === "PENDING"
+                  ? "bg-yellow-400"
+                  : status === "ON_TRANSIT"
+                  ? "bg-blue-500"
+                  : status === "DELIVERED"
+                  ? "bg-green-400"
+                  : status === "CANCELLED"
+                  ? "bg-red-700"
+                  : "bg-gray-300" // Default background color for other cases
+              } px-3 rounded-lg py-4`}>
                 Status: {status}
               </h3>
             </div>

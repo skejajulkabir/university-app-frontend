@@ -49,6 +49,11 @@ const Navbar = () => {
   const globalUtils = useSelector((state) => state.globalUtils)
 
 
+  // useEffect(()=>{
+  //   navigate("/")
+  // },[])
+
+
 
   useEffect(() => {
     try {

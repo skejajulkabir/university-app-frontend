@@ -9,7 +9,7 @@ const InformationBox = ({user}) => {
 
   return (
     <>
-        <div className="lg:w-2/5 mx-2 h-full sticky top-24">
+        <div className="lg:w-2/5 mx-2 h-full sticky lg:top-24">
 
 
 
@@ -56,8 +56,8 @@ const InformationBox = ({user}) => {
 
                             {
                             user.role &&  
-                                user.role.map((rol)=>{
-                                    return <div className=" p-2 bg-slate-50 w-fit m-2 rounded-md ">
+                                user.role.map((rol , index)=>{
+                                    return <div key={index} className=" p-2 bg-slate-50 w-fit m-2 rounded-md ">
                                     {rol}
                                 </div>
                                 })
