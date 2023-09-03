@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LeftSideBar from "../components/LeftSideBar";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SizeHandlingPage = () => {
   const [sizeData, setSizeData] = useState([]);
@@ -77,9 +78,11 @@ const SizeHandlingPage = () => {
 
 
           <div className="w-full text-center p-3 bg-slate-400 mt-10 rounded-md">
-            <div className="">
-                Add size variant.
-            </div>
+            <Link to={"/admin/addsizevariant"}>
+              <div className="">
+                  Add size variant.
+              </div>
+            </Link>
           </div>
         </div>
       </div>

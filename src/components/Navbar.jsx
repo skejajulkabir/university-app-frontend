@@ -333,13 +333,13 @@ const Navbar = () => {
         <ul className="flex items-center justify-evenly ">
           
           <Link to="/">
-            <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
+            <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
               <AiOutlineHome className="text-3xl mx-2"/>
             </li>
           </Link>
 
           <Link to="/shop">
-            <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
+            <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
               <BsShop className="text-2xl mx-2 font-bold"/>
             </li>
           </Link>
@@ -351,19 +351,19 @@ const Navbar = () => {
           {/* // ? community  */}
 
           <Link to="/community">
-            <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
+            <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
               <HiUserGroup className="text-2xl mx-2 font-bold"/>
             </li>
           </Link>
 
           <Link to="/notice">
-            <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
+            <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
               <CgNotes className="text-2xl mx-2 font-bold"/>
             </li>
           </Link>
 
           <Link to="/menupage">
-            <li className="px-4 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
+            <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
               <AiOutlineMenu className="text-2xl mx-2 font-bold"/>
             </li>
           </Link>

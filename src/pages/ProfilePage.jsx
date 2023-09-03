@@ -112,7 +112,7 @@ const ProfilePage = () => {
   return (
     <>
       <div className="w-full pt-28 lg:pt-24">
-        <div className="lg:w-4/6 mx-auto">
+        <div className="lg:w-5/6 mx-auto">
           <ProfileHeader userData={userData} />
 
           {/* <ButtonBar /> */}

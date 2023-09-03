@@ -92,7 +92,7 @@ const OnlyTextPost = ({ pst }) => {
 
         {/* Header of the post  */}
 
-        <div className="flex flex-row justify-between mb-1">
+        <div className="flex flex-row justify-between mb-1 relative">
           <div className="flex flex-row">
             <Link to={`/profile/${post.author?.id}`}>
               <div className="w-14 h-14 m-1    border-slate-400 border-2 rounded-full p-1">
@@ -133,7 +133,7 @@ const OnlyTextPost = ({ pst }) => {
             </div>
           </div>
 
-          <div className="my-auto mx-5 bg-slate-300 p-3 rounded-full cursor-pointer">
+          <div className="absolute top-4 right-2 bg-slate-300 p-3 rounded-full cursor-pointer">
             <AiOutlineMenu className="text-xl" />
           </div>
         </div>
