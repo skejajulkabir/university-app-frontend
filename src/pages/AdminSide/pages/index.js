@@ -1,5 +1,4 @@
 export {default as AdminLoginPageProxy} from './AdminLoginPageProxy';
-export {default as CreateProductPage} from './CreateProductPage';
 export {default as ActualAdminLoginPage} from './ActualAdminLoginPage';
 export {default as AdminHomePage} from './AdminHomePage';
 export {default as Orders} from './Orders';
@@ -10,3 +9,4 @@ export {default as AddAuthorisedUserPage} from './AddAuthorisedUserPage';
 export {default as RestrictUserPage} from './RestrictUserPage';
 export {default as SizeHandlingPage} from './SizeHandlingPage';
 export {default as AddSizePage} from './AddSizePage';
+export {default as UpdateSizePage} from './UpdateSizePage';

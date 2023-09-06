@@ -413,23 +413,6 @@ const VariantInput = ({ variant, index, updateVariant, deleteVariant }) => {
             />
           </label>
         </div>
-        {/* <div className="w-full">
-          Type Input
-          <label className="flex flex-row w-full justify-between rounded-md my-3">
-            <div className="text-2xl font-bold bg-slate-400 w-2/6 rounded-md p-2 mx-2">
-              Type(a) : (Edit this at the end!)
-            </div>
-            <textarea
-              className="bg-slate-200 w-4/6 p-2 mx-2"
-              type="text"
-              name="mislns"
-              value={variant.mislns}
-              onChange={handleChange}
-              placeholder="This must be typed at last!"
-            />
-          </label>
-        </div> */}
-
         {/* Delete Variant Button */}
         <div
           className="my-3 bg-red-500 p-3 text-xl text-black font-bold rounded-md text-center cursor-pointer"
