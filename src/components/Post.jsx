@@ -98,7 +98,7 @@ const Post = ({ pst }) => {
             <Link to={`/profile/${post.author?.id}`}>
               <div className="w-14 h-14 m-1    border-slate-400 border-2 rounded-full p-1">
                 <img
-                  src={post.author.image}
+                  src={post.author.avatar}
                   alt="DP"
                   className="w-full h-full object-cover rounded-full border-slate-600 "
                 />

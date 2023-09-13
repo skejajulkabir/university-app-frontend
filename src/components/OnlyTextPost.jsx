@@ -18,7 +18,6 @@ const OnlyTextPost = ({ pst }) => {
   const globalUser = useSelector((state) => state.globalUser.user);
 
   const handleLikeClick = () => {
-    // console.log(post);
     axios
       .post(
         `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/like`,
@@ -29,7 +28,6 @@ const OnlyTextPost = ({ pst }) => {
         }
       )
       .then((res) => {
-        // console.log(res)
         setPost(res.data.response);
       });
   };
@@ -97,7 +95,7 @@ const OnlyTextPost = ({ pst }) => {
             <Link to={`/profile/${post.author?.id}`}>
               <div className="w-14 h-14 m-1    border-slate-400 border-2 rounded-full p-1">
                 <img
-                  src={post.author.image}
+                  src={post.author.avatar}
                   alt="DP"
                   className="w-full h-full object-cover rounded-full border-slate-600 "
                 />

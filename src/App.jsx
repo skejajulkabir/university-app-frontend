@@ -9,7 +9,7 @@ import NavbarFooterBody from './Utils/NavbarFooterBody'
 import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage, SearchPage, VarifyAccountPage, EnterOTPpage, UpdateProductPage, UpdatePasswordPage, NoticePage, CreateNoticePage, BloodDonationPage, CreateBloodDonationNoticePage} from './pages';
 
 //admin page imports
-import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage , Orders, OrderDetailsPage, ShowProductPage, UserHandlingPage, AddAuthorisedUserPage, RestrictUserPage, SizeHandlingPage, AddSizePage} from './pages/AdminSide/pages';
+import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage , Orders, OrderDetailsPage, ShowProductPage, UserHandlingPage, AddAuthorisedUserPage, RestrictUserPage, SizeHandlingPage, AddSizePage, AddROleToUserPage} from './pages/AdminSide/pages';
 import UpdateDP from './pages/utilPages/UpdateDP';
 import UpdateIformationPage from './pages/utilPages/UpdateIformationPage';
 
@@ -66,6 +66,7 @@ function App() {
             <Route path="/admin/restrictuser" element={<RestrictUserPage />}/>
             <Route path="/admin/sizehandling" element={<SizeHandlingPage />}/>
             <Route path="/admin/addsizevariant" element={<AddSizePage />}/>
+            <Route path="/admin/addroletouser" element={<AddROleToUserPage />}/>
           </Routes>
 
       </NavbarFooterBody>

@@ -10,3 +10,4 @@ export {default as RestrictUserPage} from './RestrictUserPage';
 export {default as SizeHandlingPage} from './SizeHandlingPage';
 export {default as AddSizePage} from './AddSizePage';
 export {default as UpdateSizePage} from './UpdateSizePage';
+export {default as AddROleToUserPage} from './AddROleToUserPage';
