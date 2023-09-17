@@ -170,6 +170,15 @@ const Navbar = () => {
                 </li>
               </Link>
 
+
+              { globalUser.role.includes("MODERATOR") &&
+                <Link to="/admin">
+                  <li className="px-4 ml-3 font-bold  rounded-lg py-3 flex flex-row hover:scale-125 transition-transform duration-300 ease-in-out bg-red-600 text-white">
+                    GO TO ADMIN SIDE
+                  </li>
+                </Link>
+              }
+
             </ul>
           </div>
 

@@ -72,7 +72,7 @@ const SearchPage = () => {
             </div>
           </div>
           <div className="">
-            <div className="w-3/5 mx-auto pt-2 mt-2 p-2 bg-slate-400 rounded-md">
+            <div className="w-full  lg:w-3/5 mx-auto pt-2 mt-2 p-2 bg-slate-400 rounded-md">
               <div
                 className="p-3 text-white font-bold text-2xl cursor-pointer bg-slate-500 rounded-md "
                 onClick={() =>

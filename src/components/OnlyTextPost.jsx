@@ -23,12 +23,16 @@ const OnlyTextPost = ({ pst }) => {
         `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/like`,
         {
           postId: post._id,
-          name: post.author.name,
-          userName: post.author.userName,
+          name: globalUser.name,
+          userName: globalUser.userName,
         }
       )
       .then((res) => {
-        setPost(res.data.response);
+        // console.log(res.data.response); // Check the response
+        setPost(res.data.response); // Make sure this updates the state correctly
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 
@@ -92,8 +96,8 @@ const OnlyTextPost = ({ pst }) => {
 
         <div className="flex flex-row justify-between mb-1 relative">
           <div className="flex flex-row">
-            <Link to={`/profile/${post.author?.id}`}>
-              <div className="w-14 h-14 m-1    border-slate-400 border-2 rounded-full p-1">
+            <Link to={`/profile/${post.author._id}`}>
+              <div className="w-14 h-14    border-slate-400 border-2 rounded-full p-1">
                 <img
                   src={post.author.avatar}
                   alt="DP"
@@ -102,8 +106,8 @@ const OnlyTextPost = ({ pst }) => {
               </div>
             </Link>
 
-            <div className="ml-2 flex flex-col">
-              <Link to={`/profile/${post.author?.id}`}>
+            <div className=" flex flex-col pl-1">
+              <Link to={`/profile/${post.author?._id}`}>
                 <div className="text-sm sm:text-lg truncate font-bold">
                   {post.author.name}
                 </div>
@@ -113,11 +117,11 @@ const OnlyTextPost = ({ pst }) => {
                 {formattedDate}
               </div>
 
-              <div className="flex flex-row w-96 overflow-x-scroll scrollbar-hide">
-                {post.author.role.map((rol) => {
+              <div className="flex flex-row w-5/6 overflow-x-scroll scrollbar-hide">
+                {post.author.role && post.author.role.map((rol, index) => {
                   return (
                     <div
-                      key={Math.random()}
+                      key={index}
                       className="bg-slate-400 w-fit p-1 text-xs rounded px-2 mx-1 text-slate-800 my-1"
                     >
                       {rol}

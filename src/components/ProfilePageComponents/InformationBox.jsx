@@ -15,31 +15,41 @@ const InformationBox = ({user}) => {
 
 
 
-            <div className="w-full h-fit bg-slate-200   p-3 rounded-md">
-                <div className="flex flex-col h-fit">
-                    <h1 className="xl:text-2xl border-b-2 border-slate-400">Info :</h1>
-                    <div className="flex  flex-row xl:text-2xl font-bold my-2 text-slate-700   ">
-                        <div className=" border-l-2 border-slate-600 pl-3 mr-3 ">Department :</div>
-                        <div className="">{info?.department}</div>
-                    </div>
-                    <div className="flex  flex-row xl:text-2xl font-bold my-2 text-slate-700   ">
-                        <div className=" border-l-2 border-slate-600 pl-3 mr-3 ">Roll No :</div>
-                        <div className="">{info?.roll}</div>
-                    </div>
-                    <div className="flex  flex-row xl:text-2xl font-bold my-2 text-slate-700   ">
-                        <div className=" border-l-2 border-slate-600 pl-3 mr-3 ">Admission session :</div>
-                        <div className="">{info?.admissionSession}</div>
-                    </div>
-                    <div className="flex  flex-row xl:text-2xl font-bold my-2 text-slate-700   ">
-                        <div className=" border-l-2 border-slate-600 pl-3 mr-3 ">Current Location :</div>
-                        <div className="">{info?.currentLocation}</div>
-                    </div>
-                    <div className="flex  flex-row xl:text-2xl font-bold my-2 text-slate-700   ">
-                        <div className=" border-l-2 border-slate-600 pl-3 mr-3 ">From :</div>
-                        <div className="">{info?.from}</div>
-                    </div>
-                </div>
+
+            <div className="w-full h-fit bg-slate-200 p-3 rounded-md">
+                <h1 className="xl:text-2xl border-b-2 border-slate-400">Info :</h1>
+                <table className="w-full mt-4">
+                    <tbody>
+                    <tr className="xl:text-2xl font-bold text-slate-700">
+                        <td className="border-l-2 border-slate-600 pl-3 pr-3">Department :</td>
+                        <td>{info?.department}</td>
+                    </tr>
+                    <tr className="xl:text-2xl font-bold text-slate-700">
+                        <td className="border-l-2 border-slate-600 pl-3 pr-3">Roll No :</td>
+                        <td>{info?.roll}</td>
+                    </tr>
+                    <tr className="xl:text-2xl font-bold text-slate-700">
+                        <td className="border-l-2 border-slate-600 pl-3 pr-3">Admission session :</td>
+                        <td>{info?.admissionSession}</td>
+                    </tr>
+                    <tr className="xl:text-2xl font-bold text-slate-700">
+                        <td className="border-l-2 border-slate-600 pl-3 pr-3">Current Location :</td>
+                        <td>{info?.currentLocation}</td>
+                    </tr>
+                    {info?.bloodGroup && (
+                        <tr className="xl:text-2xl font-bold text-slate-700">
+                        <td className="border-l-2 border-slate-600 pl-3 pr-3">Blood group :</td>
+                        <td>{info?.bloodGroup}</td>
+                        </tr>
+                    )}
+                    <tr className="xl:text-2xl font-bold text-slate-700">
+                        <td className="border-l-2 border-slate-600 pl-3 pr-3">From :</td>
+                        <td>{info?.from}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
+
 
 
             {

@@ -34,17 +34,10 @@ const CreateNoticePage = () => {
   
 
 
-  const [willingToUploadMedia, setWillingToUploadMedia] =
-    useState("notselected");
+  const [willingToUploadMedia, setWillingToUploadMedia] = useState("notselected");
   const [typeOfThePostState, setTypeOfThePostState] = useState("onlyText");
   const [formData, setFormData] = useState({
-    author: {
-      name: globalUser.name,
-      image: globalUser.avatar,
-      userName: globalUser.userName ,
-      role: globalUser.role ,
-      id: globalUser._id
-    },
+    author: globalUser._id,
     caption: "",
     typeOfThePost: typeOfThePostState,
     imgURL: "",
@@ -53,7 +46,7 @@ const CreateNoticePage = () => {
     comments: [],
     postType : "NOTICE_POST"
   });
-
+  
 
 
   const handleYesClick = (e) => {

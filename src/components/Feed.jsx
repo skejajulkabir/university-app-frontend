@@ -66,7 +66,7 @@ const Feed = () => {
 
   return (
     <>
-    <div className="w-full bg-slate-500 px-4 ">
+    <div className="w-full bg-slate-500 px-1 lg:px-4 ">
 
       <div className="w-full py-16 lg:hidden "></div>
 
@@ -77,11 +77,14 @@ const Feed = () => {
         postsData?.map((post , index)=>{
           if (post.typeOfThePost === "Video") {
             return <VideoPost  key={index} pst={post} />
-          } else if(post.typeOfThePost === "Photo") {
+          } 
+          else if(post.typeOfThePost === "Photo") {
             return <Post key={index} pst={post} />
-          } else if(post.typeOfThePost === "onlyText") {
+          } 
+          else if(post.typeOfThePost === "onlyText") {
             return <OnlyTextPost key={index} pst={post} />
-          }else{
+          }
+          else{
             return
           }
         })

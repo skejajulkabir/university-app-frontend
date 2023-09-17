@@ -23,15 +23,19 @@ const Post = ({ pst }) => {
         `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/like`,
         {
           postId: post._id,
-          name: post.author.name,
-          userName: post.author.userName,
+          name: globalUser.name,
+          userName: globalUser.userName,
         }
       )
       .then((res) => {
-        setPost(res.data.response);
+        // console.log(res.data.response); // Check the response
+        setPost(res.data.response); // Make sure this updates the state correctly
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
-
+  
   const handleAddComment = () => {
     if (newComment === "") {
       toast.error("Comments cannot be empty.");
@@ -77,7 +81,7 @@ const Post = ({ pst }) => {
         pauseOnHover
         theme="light"
       />
-      <div className="flex flex-col rounded-lg bg-slate-200 shadow-2xl py-2 p-3 md:max-w-3xl mx-auto mb-2 w-full m-2 relative">
+      <div className="flex flex-col rounded-lg bg-slate-200 shadow-2xl py-2 p-3 md:max-w-3xl mx-auto mb-2 w-full  relative">
         
 
 
@@ -85,7 +89,7 @@ const Post = ({ pst }) => {
 
 
       <div className="">
-          <div className="bg-slate-800 w-fit absolute top-0 right-0 text-white text-xs p-1 rounded-md m-1 -mt-1">
+          <div className="bg-slate-800 w-fit absolute top-0 right-0 text-white text-xs p-1 rounded-md  -mt-1">
             {post.postType}
           </div>
         </div>
@@ -95,8 +99,8 @@ const Post = ({ pst }) => {
 
         <div className="flex flex-row justify-between mb-1 relative">
           <div className="flex flex-row">
-            <Link to={`/profile/${post.author?.id}`}>
-              <div className="w-14 h-14 m-1    border-slate-400 border-2 rounded-full p-1">
+            <Link to={`/profile/${post.author._id}`}>
+              <div className="w-14 h-14    border-slate-400 border-2 rounded-full p-1">
                 <img
                   src={post.author.avatar}
                   alt="DP"
@@ -105,8 +109,8 @@ const Post = ({ pst }) => {
               </div>
             </Link>
 
-            <div className="ml-2 flex flex-col">
-              <Link to={`/profile/${post.author?.id}`}>
+            <div className=" flex flex-col pl-1">
+              <Link to={`/profile/${post.author?._id}`}>
                 <div className="text-sm sm:text-lg truncate font-bold">
                   {post.author.name}
                 </div>
@@ -116,11 +120,12 @@ const Post = ({ pst }) => {
                 {formattedDate}
               </div>
 
-              <div className="flex flex-row w-96 overflow-x-scroll scrollbar-hide">
-                {post.author.role.map((rol) => {
+
+              <div className="flex flex-row w-5/6 overflow-x-scroll scrollbar-hide">
+                {post.author.role && post.author.role.map((rol, index) => {
                   return (
                     <div
-                      key={Math.random()}
+                      key={index}
                       className="bg-slate-400 w-fit p-1 text-xs rounded px-2 mx-1 text-slate-800 my-1"
                     >
                       {rol}
@@ -172,7 +177,7 @@ const Post = ({ pst }) => {
 
         {/* photo  */}
 
-        <div className="m-2">
+        <div className="">
           <img
             src={post.imgURL}
             alt="post image"
@@ -244,7 +249,7 @@ const Post = ({ pst }) => {
                   />
                 </div>
                 <div
-                  className="w-1/12  bg-slate-300 hover:bg-slate-400 flex justify-center items-center rounded-full ml-2"
+                  className="w-1/12  bg-slate-300 hover:bg-slate-400 flex justify-center items-center rounded-full "
                   onClick={handleAddComment}
                 >
                   <div className="flex justify-center items-center text-xl text-slate-800">
