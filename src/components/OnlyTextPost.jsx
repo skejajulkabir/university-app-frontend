@@ -246,7 +246,7 @@ const OnlyTextPost = ({ pst }) => {
 
               {post.comments.map((com, index) => {
                 return (
-                  <Comment key={index} com={com}/>
+                  <Comment setPost={setPost} postId={post._id} key={index} com={com}/>
                 );
               })}
             </div>

@@ -100,7 +100,7 @@ const ProfilePage = () => {
           }/client1/getusersposts/${params.id}`
         )
         .then((res) => {
-          setPostsData((prev) => [...prev, ...res.data.posts]);
+          setPostsData((prev) => [...prev, ...res.data.paginatedPosts]);
         })
         .catch((err) => {
           console.log("there was an error fetching the data.", err);
@@ -118,6 +118,8 @@ const ProfilePage = () => {
           {/* <ButtonBar /> */}
 
           <div className="flex flex-col lg:flex-row w-full justify-evenly pt-4">
+
+
             <InformationBox user={userData} />
 
             <div className=" bg-slate-400 my-4 rounded-md w-full">
@@ -127,6 +129,7 @@ const ProfilePage = () => {
                 
                 {
                     postsData?.map((post , index)=>{
+                      console.log(post)
                     if (post.typeOfThePost === "Video") {
                         return <VideoPost  key={index} pst={post} />
                     } else if(post.typeOfThePost === "Photo") {

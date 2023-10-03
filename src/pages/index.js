@@ -23,3 +23,4 @@ export {default as NoticePage} from './NoticePage';
 export {default as CreateNoticePage} from './CreateNoticePage';
 export {default as BloodDonationPage} from './BloodDonationPage';
 export {default as CreateBloodDonationNoticePage} from './CreateBloodDonationNoticePage';
+export {default as DonatePage} from './DonatePage';

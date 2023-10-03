@@ -7,8 +7,9 @@ import OnlyTextPost from './OnlyTextPost'
 
 const Feed = () => {
 
-  const [postsData, setPostsData] = useState([])
-  const [page, setPage] = useState(1)
+  const [postsData, setPostsData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasmorePosts, setHasmorePosts] = useState(true)
 
 
   const handleInfiniteScroll = ()=>{
@@ -20,12 +21,6 @@ const Feed = () => {
       console.log(error);
     }
   }
-
-
-
-  // useEffect(()=>{
-  //   window.addEventListener('scroll', handleInfiniteScroll)
-  // },[])
 
 
 
@@ -51,15 +46,23 @@ const Feed = () => {
       await axios
         .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getposts?page=${page}&limit=4`)
         .then((res) => {
-          setPostsData((prev)=> [...prev , ...res.data.paginatedPosts]);
           console.log(res)
+          setPostsData((prev)=> [...prev , ...res.data.paginatedPosts]);
+          setHasmorePosts(res.data.hasMore);
         })
         .catch((err) => {
           console.log("there was an error fetching the data." , err);
         });
     };
-    fetchPosts();
+
+    if(hasmorePosts){
+      fetchPosts();
+    }
+
   }, [page]);
+
+  console.log(hasmorePosts)
+
 
   
 

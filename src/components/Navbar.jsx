@@ -164,7 +164,7 @@ const Navbar = () => {
                 </li>
               </Link>
 
-              <Link to="/underdevelopment">
+              <Link to="/donate">
                 <li className="px-4 font-bold  rounded-lg py-3 flex flex-row hover:scale-125 transition-transform duration-300 ease-in-out bg-black text-white">
                   DONATE -  <FaMoneyBillAlt className="text-2xl mx-2 text-white"/>
                 </li>

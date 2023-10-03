@@ -3,7 +3,6 @@ import React from 'react'
 const InformationBox = ({user}) => {
     
     const info = user?.info;
-    console.log(user)
 
 
 

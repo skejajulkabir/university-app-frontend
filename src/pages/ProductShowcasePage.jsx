@@ -4,7 +4,9 @@ import axios from "axios";
 
 const ProductShowcasePage = () => {
   const [productData, setProductData] = useState([]);
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(1);
+  const [hasmoreProducts, setHasmoreProducts] = useState(true);
+
  
 
   
@@ -35,28 +37,19 @@ const ProductShowcasePage = () => {
         .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getproducts?page=${page}&limit=8`)
         .then((res) => {
           setProductData((prev)=> [...prev , ...res.data.paginatedProducts]);
-          // console.log("fetched")
+          setHasmoreProducts(res.data.hasMore);
+          console.log(res)
         })
         .catch((err) => {
           console.log("there was an error fetching the data.");
         });
     };
-    fetchPosts();
+    if(hasmoreProducts){
+      fetchPosts();
+    }
   }, [page]);
 
-  // useEffect(() => {
-  //   const fetchTshirtData = async () => {
-  //     await axios
-  //       .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getproducts`)
-  //       .then((res) => {
-  //         setProductData(res.data.products);
-  //       })
-  //       .catch((err) => {
-  //         console.log("there was an error fetching the data.");
-  //       });
-  //   };
-  //   fetchTshirtData();
-  // }, []);
+
 
   return (
     <div>
