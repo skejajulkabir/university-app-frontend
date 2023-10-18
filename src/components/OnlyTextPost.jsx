@@ -28,7 +28,6 @@ const OnlyTextPost = ({ pst }) => {
         }
       )
       .then((res) => {
-        // console.log(res.data.response); // Check the response
         setPost(res.data.response); // Make sure this updates the state correctly
       })
       .catch((error) => {

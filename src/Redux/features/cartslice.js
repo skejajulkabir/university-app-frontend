@@ -41,8 +41,6 @@ export const cartSlice = createSlice({
       }
 
       localStorage.setItem("Cart", JSON.stringify(state.cart));
-
-      console.log(state.cart);
     },
     clearCart: (state) => {
       state.cart = [];

@@ -122,7 +122,6 @@ const UpdateProductPage = () => {
       variants: prevFormData.variants.filter((variant) => variant.id !== id),
     }));
   };
-  console.log(formData);
 
   return (
     <>

@@ -79,7 +79,6 @@ const ProfilePage = () => {
           }/client1/getuserbyid/${params.id}`
         )
         .then((res) => {
-          // console.log(res)
           setUserData(res.data.user);
           dispatch(setLoading(false));
         })
@@ -129,16 +128,15 @@ const ProfilePage = () => {
                 
                 {
                     postsData?.map((post , index)=>{
-                      console.log(post)
-                    if (post.typeOfThePost === "Video") {
-                        return <VideoPost  key={index} pst={post} />
-                    } else if(post.typeOfThePost === "Photo") {
-                        return <Post key={index} pst={post} />
-                    } else if(post.typeOfThePost === "onlyText") {
-                        return <OnlyTextPost key={index} pst={post} />
-                    }else{
-                        return
-                    }
+                      if (post.typeOfThePost === "Video") {
+                          return <VideoPost  key={index} pst={post} />
+                      } else if(post.typeOfThePost === "Photo") {
+                          return <Post key={index} pst={post} />
+                      } else if(post.typeOfThePost === "onlyText") {
+                          return <OnlyTextPost key={index} pst={post} />
+                      }else{
+                          return
+                      }
                     })
                 }
               </div>

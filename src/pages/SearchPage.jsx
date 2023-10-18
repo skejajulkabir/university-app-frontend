@@ -31,7 +31,6 @@ const SearchPage = () => {
           currentLocation: currentLocation,
         }
       );
-      console.log(response)
 
       if (response.status === 200) {
         const users = response.data.users;

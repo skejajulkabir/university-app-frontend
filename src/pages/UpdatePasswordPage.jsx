@@ -45,15 +45,12 @@ const UpdatePasswordPage = () => {
         formData
       )
       .then((res) => {
-        console.log(res);
         toast.success("Updated Password successfully!")
       })
       .catch((err) => {
         console.log(err);
         toast.error(err.response.data.message)
       });
-
-    // console.log(res)
   };
 
   return (

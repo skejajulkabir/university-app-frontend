@@ -35,12 +35,10 @@ const SignupPage = () => {
       return {...prev , [e.target.name]: e.target.value}
     });
   };
-  console.log(formData)
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(formData);
   
     try {
       const response = await axios.post(
@@ -73,12 +71,10 @@ const SignupPage = () => {
           },
         }
       );
-      // console.log(response.data);
       if(response.status == 200){
         toast.success("Congratulations! You just became a member!")
       }
     } catch (err) {
-      // console.log(err.response.data.message);
       toast.error(err.response.data.message)
     }
   };

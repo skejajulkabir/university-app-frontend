@@ -19,7 +19,6 @@ const CreatePostPage = () => {
       navigate('/');
     }
   },[globalUser , navigate])
-  // console.log(globalUser);
 
 
 
@@ -85,7 +84,6 @@ const CreatePostPage = () => {
         formData
       )
       .then((response)=>{
-        console.log(response);
         toast.success("Your post has been posted to the feed successfully...");
         setTimeout(() => {
           navigate("/")
@@ -99,14 +97,12 @@ const CreatePostPage = () => {
       }, 3000)
     }
 
-    console.log(formData);
   };
 
   const handleChange = (e) => {
     setFormData((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
-    console.log(formData);
   };
 
   return (

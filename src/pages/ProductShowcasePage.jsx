@@ -38,7 +38,6 @@ const ProductShowcasePage = () => {
         .then((res) => {
           setProductData((prev)=> [...prev , ...res.data.paginatedProducts]);
           setHasmoreProducts(res.data.hasMore);
-          console.log(res)
         })
         .catch((err) => {
           console.log("there was an error fetching the data.");

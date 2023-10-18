@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const PeoplebarProfileButton = ({ user }) => {
-  // console.log(user)
   return (
     <>
         <Link to={`/profile/${user?._id}`} className="flex flex-row bg-slate-300 w-full mx-2 p-3 items-center rounded-md mt-2 hover:scale-105 transition-transform duration-300 ease-in-out">

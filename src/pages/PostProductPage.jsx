@@ -32,7 +32,6 @@ const PostProductPage = () => {
 
   const [formData, setFormData] = useState(initialState);
 
-  console.log(formData)
 
 
 
@@ -199,6 +198,15 @@ const PostProductPage = () => {
                 type="text"
                 name="category"
                 value={formData.category}
+                isDisabled={false}
+                handleChange={handleChange}
+              />
+
+              <InputComponent
+                Title="Description :"
+                type="text"
+                name="category"
+                value={formData.description}
                 isDisabled={false}
                 handleChange={handleChange}
               />

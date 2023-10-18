@@ -15,7 +15,6 @@ const SingleProductPage = () => {
   const [sizeData, setSizeData ] = useState([])
   const [selectedSize, setSelectedSize] = useState("")
 
-  // console.log(Object.keys(selectedVariantData).length);
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -42,7 +41,6 @@ const SingleProductPage = () => {
           `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getavailablesizes`
         ).then((res)=>{
           setSizeData(res.data.sizes);
-          console.log(res)
         })
       } catch (error) {
         console.log("There was an error fetching the size data: " + error);
@@ -67,7 +65,6 @@ const SingleProductPage = () => {
     
   };
 
-  // console.log(productData.product);
   const product = productData.product;
 
 
@@ -77,7 +74,6 @@ const SingleProductPage = () => {
   },[product])
 
 
-  // console.log(selectedVariantData)
 
 
 
@@ -261,7 +257,6 @@ const SingleProductPage = () => {
                                     return
                                   }
                                 })
-                                // console.log(sizeData)
                               }
                             </select>
                             <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
@@ -324,7 +319,6 @@ const SingleProductPage = () => {
                                 image: productImage,
                                 size: selectedSize
                               });
-                              console.log(selectedVariantData)
                             }}
                           >
                             Add to cart

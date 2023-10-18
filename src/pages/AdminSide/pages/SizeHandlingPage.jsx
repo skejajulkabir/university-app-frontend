@@ -36,7 +36,6 @@ const SizeHandlingPage = () => {
   };
 
   const handleUpdate = (clr) => {
-    // console.log(clr)
     try {
       axios
         .put(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/admin/updatesize`,

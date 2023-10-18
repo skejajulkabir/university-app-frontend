@@ -101,7 +101,6 @@ const UpdateInformationPage = () => {
     }
   };
 
-  console.log(updatedData);
 
   return (
     <div className="py-32 lg:py-24 bg-slate-300 min-h-screen w-full px-3">

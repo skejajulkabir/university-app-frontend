@@ -16,16 +16,13 @@ const LoginPage = () => {
     setFormData((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
-    // console.log(formData)
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(formData)
     axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/user/login` ,
       formData
     ).then((res)=>{
       alert(res.data.message);
-      console.log(res);
       localStorage.setItem("TOKEN" , res.data.token);
       
       navigate('/')
@@ -38,7 +35,6 @@ const LoginPage = () => {
       toast.error(err.response.data.message);
     })
 
-    // console.log(res)
     
   };
 

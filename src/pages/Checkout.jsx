@@ -40,7 +40,6 @@ const Checkout = () => {
     cart: globalCart,
   });
 
-  console.log(globalUser);
 
   useEffect(() => {
     if (globalUser.userName) {
@@ -100,7 +99,6 @@ const Checkout = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           toast.success("Your order has been placed successfully!");
         }
@@ -111,14 +109,11 @@ const Checkout = () => {
   };
 
   const handleRemoveOneQtyFromCart = (id) => {
-    // globalCart.findIndex(item);
-    // console.log('this is a log from removeOneQtyFromCart');
     dispatch(RemoveOneQtyFromCart(id));
   };
 
   const handleAddOneQtyFromCart = (id) => {
     dispatch(addOneQtyFromCart(id));
-    // console.log('this is a log from addOneQtyFromCart')
   };
 
   const handleChange = (e) => {
@@ -130,7 +125,6 @@ const Checkout = () => {
       },
     }));
   };
-  // console.log(formData)
 
   return (
     <>
@@ -329,7 +323,6 @@ const Checkout = () => {
             )}
 
             {globalCart.map((item) => {
-              // console.log(item)
               if (Object.keys(item).length > 0) {
                 return (
                   <li

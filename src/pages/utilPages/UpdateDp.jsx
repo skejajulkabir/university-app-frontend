@@ -23,7 +23,6 @@ const UpdateDP = () => {
     setAvatar(file);
   };
 
-  console.log(avatar)
 
   const handleUpload = () => {
     const formData = new FormData();

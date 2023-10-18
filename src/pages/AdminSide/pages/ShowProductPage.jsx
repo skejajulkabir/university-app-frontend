@@ -17,7 +17,6 @@ const ShowProductPage = () => {
         "http://localhost:5000/client1/getproducts"
       );
       setProducts(response.data.products);
-      //   console.log(response.data)
     } catch (error) {
       console.error("Error fetching products:", error);
     }

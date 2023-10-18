@@ -8,22 +8,27 @@ import { useNavigate } from "react-router-dom";
 const AddSizePage = () => {
 
   const navigate = useNavigate();
+  
+  
 
 
   const [formData, setFormData] = useState({
     name: "",
     data: [
       {
-        id: Math.floor(Math.random() * 10000) + 1,
+        uid: Math.floor(Math.random() * 10000) + 1,
         size: "",
         quantity: 0,
       },
     ],
   });
 
+
+
+
   const addSize = () => {
     const newSize = {
-      id: Math.floor(Math.random() * 10000) + 1,
+      uid: Math.floor(Math.random() * 10000) + 1,
       size: "",
       quantity: 0,
     };
@@ -37,11 +42,11 @@ const AddSizePage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const updateQuantity = (id, updatedObject) => {
+  const updateQuantity = (uid, updatedObject) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       data: prevFormData.data.map((variant) =>
-        variant.id === id ? { ...variant, ...updatedObject } : variant
+        variant.uid === uid ? { ...variant, ...updatedObject } : variant
       ),
     }));
   };
@@ -106,7 +111,7 @@ const AddSizePage = () => {
             <div className="px-4">
               {formData.data.map((variant, index) => (
                 <SizeVariantInput
-                  key={variant.id}
+                  key={variant.uid}
                   variant={variant}
                   index={index}
                   updateQuantity={updateQuantity}
@@ -143,7 +148,7 @@ export default AddSizePage;
 const SizeVariantInput = ({ variant, index, updateQuantity }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
-    updateQuantity(variant.id, { [name]: value });
+    updateQuantity(variant.uid, { [name]: value });
   };
 
   return (

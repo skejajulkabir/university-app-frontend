@@ -6,7 +6,6 @@ const ProfileButton = () => {
 
   
   const globalUser = useSelector((state) => state.globalUser.user);
-  // console.log("globalUser", globalUser);
 
 
   return (

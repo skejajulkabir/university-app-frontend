@@ -8,7 +8,6 @@ const Home = () => {
 
   // const isUserVarified = useSelector((state)=> state.utils.isVarified);
   const globalUser = useSelector((state)=> state.globalUser.user);
-  console.log(globalUser);
 
 
   if (localStorage.getItem("TOKEN")  && globalUser.name !== "" && globalUser.userName !== "" && globalUser.isVarified === true ) {

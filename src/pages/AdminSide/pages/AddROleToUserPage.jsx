@@ -32,7 +32,6 @@ const AddROleToUserPage = () => {
     });
   };
 
-  console.log(formData);
 
   const handleSubmit = () => {
     // Handle form submission here

@@ -102,14 +102,12 @@ const CreateNoticePage = () => {
       }, 3000)
     }
 
-    console.log(formData);
   };
 
   const handleChange = (e) => {
     setFormData((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
-    console.log(formData);
   };
 
   return (

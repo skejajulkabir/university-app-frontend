@@ -82,9 +82,11 @@ const OptionsModal = ({ setPost , setShowModal , com , postId })=>{
             commentId: com._id,
             userId: globalUser._id,
           },
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("TOKEN"), 
+          },
         })
         .then((res) => {
-          console.log(res);
           if(res.status === 200){
             setPost(res.data.newPost);
             setShowModal(false);
@@ -144,7 +146,32 @@ const OptionsModal = ({ setPost , setShowModal , com , postId })=>{
 
 
       {
-        globalUser._id !== com.commenter._id &&
+        globalUser.role.includes("MODERATOR") &&
+
+        <div className="min-h-screen w-full bg-slate-600 bg-opacity-70 z-20 fixed top-0 left-0 flex items-center justify-center" >
+          <div className="p-6 pt-20 bg-slate-300 rounded-md flex flex-col relative">
+
+
+            <div className="bg-slate-200 p-3 rounded-md cursor-pointer text-2xl absolute top-4 right-4"
+              onClick={()=> setShowModal(false)}
+            >
+              <AiFillCloseCircle/>
+            </div>
+            <div className="bg-slate-200 p-3 rounded-md cursor-pointer text-2xl " 
+              onClick={handleDeleteComment}
+            >
+              DELETE COMMENT.
+            </div>
+            
+
+          </div>
+        </div>
+
+      }
+
+
+      {
+        globalUser._id !== com.commenter._id && !globalUser.role.includes("MODERATOR") &&
 
         <div className="min-h-screen w-full bg-slate-600 bg-opacity-70 z-20 fixed top-0 left-0 flex items-center justify-center" >
           <div className="p-6 pt-20 bg-slate-300 rounded-md flex flex-col relative">
