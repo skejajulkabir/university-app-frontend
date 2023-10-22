@@ -6,7 +6,7 @@ import { store } from './Redux/store';
 
 // page imports
 import NavbarFooterBody from './Utils/NavbarFooterBody'
-import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage, SearchPage, VarifyAccountPage, EnterOTPpage, UpdateProductPage, UpdatePasswordPage, NoticePage, CreateNoticePage, BloodDonationPage, CreateBloodDonationNoticePage, DonatePage} from './pages';
+import {ProductShowcasePage , Home, LoginPage , ForgotPassword , SignupPage , Checkout , SingleProductPage , CreatePostPage, ProfilePage, UnderDevelopmentPage, PostProductPage , DonorDisplayPage , CommunityPage, MenuPage, SettingsPage, UpdateProfilePage, SearchPage, VarifyAccountPage, EnterOTPpage, UpdateProductPage, UpdatePasswordPage, NoticePage, CreateNoticePage, BloodDonationPage, CreateBloodDonationNoticePage, DonatePage, PaymentSuccessPage, PaymentFailedPage, PaymentCancelledPage} from './pages';
 
 //admin page imports
 import { ActualAdminLoginPage, AdminLoginPageProxy , AdminHomePage , Orders, OrderDetailsPage, ShowProductPage, UserHandlingPage, AddAuthorisedUserPage, RestrictUserPage, SizeHandlingPage, AddSizePage, AddROleToUserPage} from './pages/AdminSide/pages';
@@ -50,6 +50,15 @@ function App() {
             <Route path="/createnotice" element={<CreateNoticePage />}/>
             <Route path="/createblooddonationnotice" element={<CreateBloodDonationNoticePage />}/>
             <Route path="/donate" element={<DonatePage />}/>
+
+
+            {/* //? Payment related showing pages... */}
+
+            <Route path="/payment/success" element={<PaymentSuccessPage />}/>
+            <Route path="/payment/failed" element={<PaymentFailedPage />}/>
+            <Route path="/payment/cancelled" element={<PaymentCancelledPage />}/>
+
+
 
 
 

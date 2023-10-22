@@ -87,7 +87,7 @@ const Checkout = () => {
     }
 
 
-    
+
     axios
       .post(
         `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/order/addorder`,
@@ -101,33 +101,17 @@ const Checkout = () => {
         }
       )
       .then((res) => {
+        console.log(res)
         if (res.status === 200) {
-          toast.success("Your order has been placed successfully!");
-        }
+          alert("Your order has been placed successfully!");
+        };
+        window.location.href = res.data.paymentData.GatewayPageURL;
       })
       .catch((err) => {
         toast.error("Some error occured.");
       });
 
 
-    // axios
-    // .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/payment/init`, {
-    //   params: {
-    //     total_amount: globalCart.reduce(
-    //       (total, item) => total + item.price * item.qty,
-    //       0
-    //     ),
-    //     // Include other payment details here
-    //   },
-    // })
-    // .then((response) => {
-    //   // Redirect the user to the payment gateway's page
-    //   window.location.href = response.data.GatewayPageURL;
-    //   console.log(response)
-    // })
-    // .catch((error) => {
-    //   toast.error("Failed to initiate payment. Please try again.");
-    // });
 
   };
 
