@@ -97,7 +97,7 @@ const Navbar = () => {
               });
           })
           .catch((err) => {
-            console.error("there was an error fetching the data." + err);
+            alert("there was an error fetching the data...");
           });
       };
       initialvarify();
@@ -200,7 +200,7 @@ const Navbar = () => {
               >
                 <div className="h-full flex items-center justify-center my-auto cursor-pointer ">
                   <img
-                    className="w-1h-12 h-12  rounded-full object-cover p-1 border border-slate-400 "
+                    className="w-12 h-12  rounded-full object-cover p-1 border border-slate-400 "
                     src={globalUser.avatar}
                     alt=""
                   />

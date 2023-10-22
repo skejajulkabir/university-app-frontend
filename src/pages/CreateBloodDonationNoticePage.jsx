@@ -129,7 +129,7 @@ const CreateBloodDonationNoticePage = () => {
         pauseOnHover
         theme="light"
       />
-      <h2 className="text-2xl font-bold mb-4">Create a NOTICE as a JUSTIAN!</h2>
+      <h2 className="text-2xl font-bold mb-4">Create a BLOOD-DONATION-NOTICE as a JUSTIAN!</h2>
       <form onSubmit={()=>{e.preventDefault()}}>
         <div className="mb-4 pt-24 lg:pt-0">
           <label htmlFor="caption" className="mt-24 text-lg font-medium">

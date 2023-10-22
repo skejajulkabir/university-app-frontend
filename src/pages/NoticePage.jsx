@@ -71,7 +71,7 @@ const NoticePage = () => {
         })
         .catch((err) => {
           dispatch(setLoading(false))
-          console.log("there was an error fetching the data." , err);
+          alert("there was an error while connection to the backend server...");
         });
     };
     if(hasmorePosts){

@@ -12,6 +12,7 @@ const BloodDonationPage = () => {
 
   const [noticeData, setNoticeData] = useState([])
   const [page, setPage] = useState(1)
+  const [hasmorePosts, setHasmorePosts] = useState(true)
 
   const dispatch = useDispatch();
 
@@ -66,14 +67,19 @@ const BloodDonationPage = () => {
         .then((res) => {
           dispatch(setLoading(false))
           setNoticeData((prev)=> [...prev , ...res.data.notices]);
+          setHasmorePosts(res.data.hasMore);
         })
         .catch((err) => {
           dispatch(setLoading(false))
-          console.log("there was an error fetching the data." , err);
+          alert("there was an error while connection to the backend server...");
         });
     };
-    fetchPosts();
+    if(hasmorePosts){
+      fetchPosts();
+    }
   }, [page]);
+
+  console.log(hasmorePosts)
 
   
 

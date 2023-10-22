@@ -50,7 +50,7 @@ const Feed = () => {
           setHasmorePosts(res.data.hasMore);
         })
         .catch((err) => {
-          console.log("there was an error fetching the data." , err);
+          alert("there was an error while connection to the backend server...");
         });
     };
 

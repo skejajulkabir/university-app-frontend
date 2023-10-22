@@ -37,6 +37,7 @@ const EnterOTPpage = () => {
             alert("Congratulations! Your account is varified now...");
             dispatch(setLoading(false))
             navigate('/')
+            window.location.reload();
         }else if(res.status === 400){
             toast.error("Invalid OTP!")
             dispatch(setLoading(false))
@@ -47,7 +48,6 @@ const EnterOTPpage = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
         alert("Some error accured... please try again later.")
         navigate('/varifyaccountpage')
         dispatch(setLoading(false))

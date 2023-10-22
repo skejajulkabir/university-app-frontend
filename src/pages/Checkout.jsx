@@ -86,16 +86,18 @@ const Checkout = () => {
       return;
     }
 
+
+    
     axios
       .post(
-        `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/addorder`,
+        `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/order/addorder`,
         {
           ...formData,
           totalOrderValue : globalCart.reduce(
             (total, item) => total + item.price * item.qty,
             0
           ),
-          status: "PENDING"
+          status: "NEW_ORDER"
         }
       )
       .then((res) => {
@@ -106,7 +108,30 @@ const Checkout = () => {
       .catch((err) => {
         toast.error("Some error occured.");
       });
+
+
+    // axios
+    // .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/payment/init`, {
+    //   params: {
+    //     total_amount: globalCart.reduce(
+    //       (total, item) => total + item.price * item.qty,
+    //       0
+    //     ),
+    //     // Include other payment details here
+    //   },
+    // })
+    // .then((response) => {
+    //   // Redirect the user to the payment gateway's page
+    //   window.location.href = response.data.GatewayPageURL;
+    //   console.log(response)
+    // })
+    // .catch((error) => {
+    //   toast.error("Failed to initiate payment. Please try again.");
+    // });
+
   };
+
+  console.log(formData)
 
   const handleRemoveOneQtyFromCart = (id) => {
     dispatch(RemoveOneQtyFromCart(id));

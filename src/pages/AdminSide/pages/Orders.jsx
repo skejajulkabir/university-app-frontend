@@ -15,7 +15,7 @@ const Orders = () => {
         const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/admin/getorders`);
         setOrdersData(response.data.orders);
       } catch (error) {
-        console.log("There was an error fetching the data.", error);
+        alert("there was an error fetching the data...");
       }
     };
     fetchOrders();

@@ -40,7 +40,7 @@ const ProductShowcasePage = () => {
           setHasmoreProducts(res.data.hasMore);
         })
         .catch((err) => {
-          console.log("there was an error fetching the data.");
+          alert("there was an error fetching the data...");
         });
     };
     if(hasmoreProducts){

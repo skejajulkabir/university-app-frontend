@@ -24,6 +24,12 @@ const VerifyAccountPage = () => {
       return;
     }
 
+    if (!studEmail.includes("@student.just.edu.bd")) {
+      alert("Please enter a proper student email address... Like \"192021@student.just.edu.bd\"... Else you wont be able to request...");
+      setLoading(false)
+      return;
+    }
+
     await axios
       .post(
         `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/mail/sendotp`,
@@ -44,8 +50,9 @@ const VerifyAccountPage = () => {
         }
         
     }).catch((err) => {
-          toast.error("Some error occured... please try again later.")
-            setLoading(false)
+          toast.error("Some error occured... please try again later." )
+          toast.error(err.response.data.message);
+          setLoading(false)
       })
 
   };

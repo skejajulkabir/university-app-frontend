@@ -83,7 +83,7 @@ const ProfilePage = () => {
           dispatch(setLoading(false));
         })
         .catch((err) => {
-          console.log("there was an error fetching the data.");
+          alert("there was an error fetching the data...");
           dispatch(setLoading(false));
         });
     };
@@ -102,7 +102,7 @@ const ProfilePage = () => {
           setPostsData((prev) => [...prev, ...res.data.paginatedPosts]);
         })
         .catch((err) => {
-          console.log("there was an error fetching the data.", err);
+          alert("there was an error fetching the data...");
         });
     };
     fetchPosts();

@@ -35,7 +35,6 @@ const UpdateDP = () => {
         },
       })
       .then((res) => {
-        console.log('Avatar updated successfully:', res);
 
         if (res.status === 200) {
           navigate('/');

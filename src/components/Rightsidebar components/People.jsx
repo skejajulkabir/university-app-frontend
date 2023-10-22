@@ -14,7 +14,7 @@ const People = () => {
           setUserData(res.data.users);
         })
         .catch((err) => {
-          console.log("there was an error fetching the data.");
+          alert("there was an error fetching the data...");
         });
     };
     fetchPosts();
