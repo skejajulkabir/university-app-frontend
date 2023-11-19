@@ -84,7 +84,20 @@ const CreateBloodDonationNoticePage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(setLoading(true))
+    
+    if (formData.typeOfThePost === "Photo" || formData.typeOfThePost === "Video") {
+      if (formData.imgURL === "" && formData.videoURL === "") {
+        toast.error("please enter an URL.");
+        return
+      }
+    }
+
+    if (formData.typeOfThePost === "onlyText" && formData.caption === "") {
+      toast.error("please enter a caption...");
+      return
+    }
+    
+    dispatch(setLoading(true));
 
     try {
       await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/createpost` ,

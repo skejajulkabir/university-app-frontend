@@ -101,7 +101,6 @@ const Checkout = () => {
         }
       )
       .then((res) => {
-        console.log(res)
         if (res.status === 200) {
           alert("Your order has been placed successfully!");
         };
@@ -114,8 +113,6 @@ const Checkout = () => {
 
 
   };
-
-  console.log(formData)
 
   const handleRemoveOneQtyFromCart = (id) => {
     dispatch(RemoveOneQtyFromCart(id));

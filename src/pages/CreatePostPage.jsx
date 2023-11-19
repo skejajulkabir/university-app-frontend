@@ -1,9 +1,11 @@
 import React, { useEffect, useState  } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoading } from "../Redux/features/utilSlice";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
+import LoadingComponent from "../Utils/LoadingComponent";
 
 const CreatePostPage = () => {
   
@@ -11,9 +13,14 @@ const CreatePostPage = () => {
 
   
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
 
   //importing global user
+  const globalUtil = useSelector((state) => state.globalUtils);
   const globalUser = useSelector((state) => state.globalUser.user);
+
   useEffect(()=>{
     if (!globalUser.userName || !globalUser.info || !globalUser.contact) {
       navigate('/');
@@ -78,18 +85,32 @@ const CreatePostPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (formData.typeOfThePost === "Photo" || formData.typeOfThePost === "Video") {
+      if (formData.imgURL === "" && formData.videoURL === "") {
+        toast.error("please enter an URL.");
+        return
+      }
+    }
+    
+    if (formData.typeOfThePost === "onlyText" && formData.caption === "") {
+      toast.error("please enter a caption...");
+      return
+    }
+    
+    dispatch(setLoading(true))
 
     try {
       await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/createpost` ,
         formData
       )
       .then((response)=>{
-        toast.success("Your post has been posted to the feed successfully...");
-        setTimeout(() => {
-          navigate("/")
-        }, 3000);
+        dispatch(setLoading(false))
+        alert("Your post has been posted to the feed successfully...");
+          navigate("/");
       });
     } catch (err) {
+      dispatch(setLoading(false))
       console.log(err)
       toast.error("Could not add the post to the feed. Please try again.");
       setTimeout(() => {
@@ -107,6 +128,10 @@ const CreatePostPage = () => {
 
   return (
     <div className="container mx-auto md:p-24">
+      {
+            globalUtil.isLoading && 
+                <LoadingComponent/>
+      }
       <ToastContainer
         position="top-center"
         autoClose={8000}
@@ -146,13 +171,13 @@ const CreatePostPage = () => {
 
           <div className="flex flex-row justify-evenly">
             <button
-              className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out  hover:scale-110 transition-transform duration-300 ease-in-out"
+              className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out"
               onClick={handleYesClick}
             >
               Yes
             </button>
             <button
-              className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out  hover:scale-110 transition-transform duration-300 ease-in-out"
+              className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out"
               onClick={handleNoClick}
             >
               No
@@ -168,14 +193,14 @@ const CreatePostPage = () => {
 
             <div className="flex flex-row justify-evenly">
               <button
-                className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out  hover:scale-110 transition-transform duration-300 ease-in-out"
+                className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out"
                 onClick={handlePhotoClick}
               >
                 <div className="w-fit mx-auto">Photo</div>
               </button>
 
               <button
-                className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out  hover:scale-110 transition-transform duration-300 ease-in-out"
+                className="bg-slate-400 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded m-4 w-1/3 hover:scale-110 transition-transform duration-300 ease-in-out"
                 onClick={handleVideoClick}
               >
                 <div className="w-fit mx-auto">Video</div>
@@ -186,7 +211,7 @@ const CreatePostPage = () => {
 
         {typeOfThePostState === "Photo" && willingToUploadMedia === "Yes" ? (
           <div className=" my-4 bg-blue-300 rounded items-center">
-            <div className="text-2xl  my-4 p-4 w-fit mx-auto font-bold text-3xl">
+            <div className="  my-4 p-4 w-fit mx-auto font-bold text-3xl">
               Enter photo URL.(Any public URL will WORK!)
             </div>
 
