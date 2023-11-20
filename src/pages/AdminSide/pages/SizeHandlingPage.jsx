@@ -100,6 +100,10 @@ const SizeHandlingPage = () => {
             <div className="text-5xl font-bold w-fit mx-auto">SIZES.</div>
           </div>
 
+          <div className="">
+            <div className="text-xl font-bold w-fit mx-auto bg-red-200 mt-3 rounded-md p-5">Sizes will not show if any of the size is available about less than or equal to 2 pieces...</div>
+          </div>
+
           <div className="mt-10">
             <table className="table-auto w-full border-2 border-slate-700">
               <thead className="border-2 border-slate-700">

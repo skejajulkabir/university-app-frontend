@@ -224,9 +224,25 @@ const VideoPost = ({ pst }) => {
             onClick={handleLikeClick}
           >
             <div>
-              <BiSolidLike />
+              <BiSolidLike
+                className={post.likes.map((item) => {
+                  if (item.name === globalUser.name && item.userName === globalUser.userName ) {
+                    return "text-indigo-400";
+                  } else {
+                    return;
+                  }
+                })}
+              />
             </div>
-            <span className="px-2">Like</span>
+            <span 
+              className={post.likes.map((item) => {
+                if (item.name === globalUser.name && item.userName === globalUser.userName ) {
+                  return "px-2 font-bold text-indigo-400";
+                } else {
+                  return "px-2";
+                }
+              })}
+            >Like</span>
           </div>
           {/* comment  */}
           <div

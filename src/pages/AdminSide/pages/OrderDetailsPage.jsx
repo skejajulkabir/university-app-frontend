@@ -164,14 +164,17 @@ const OrderDetailsPage = () => {
               Total Order Value: {totalOrderValue}
             </h2>
 
-            <div className="flex justify-center items-center bg-slate-400 my-3 rounded-lg">
+            <div className="flex flex-col justify-center items-center bg-slate-400 my-3 rounded-lg">
+              <div className="text-2xl font-bold bg-red-300 px-12 mt-4 rounded-md py-3">Status can't be changed after updating the status to "DELIVERED"</div>
               <select
+                disabled={status === "DELIVERED" || status === "CANCELLED" ? true : false }
                 name="status"
                 id=""
                 className="p-5 rounded-md m-4 text-lg font-bold"
                 onChange={handleStatusChange}
                 value={orderStatus}
               >
+                <option value="">SELECT STATUS</option>
                 <option value="PENDING">PENDING</option>
                 <option value="ON_TRANSIT">ON_TRANSIT</option>
                 <option value="DELIVERED">DELIVERED</option>

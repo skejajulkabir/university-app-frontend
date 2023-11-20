@@ -62,7 +62,6 @@ const OnlyTextPost = ({ pst }) => {
       });
   };
 
-
   const timestamp = post.createdAt;
   const formattedDate = new Date(timestamp).toLocaleString();
 
@@ -81,15 +80,11 @@ const OnlyTextPost = ({ pst }) => {
         theme="light"
       />
       <div className="flex flex-col rounded-lg bg-slate-200 shadow-2xl py-2 p-3 md:max-w-3xl mx-auto mb-2 w-full m-2 relative">
-
-
         <div className="">
           <div className="bg-slate-800 w-fit absolute top-0 right-0 text-white text-xs p-1 rounded-md m-1 -mt-1">
             {post.postType}
           </div>
         </div>
-
-
 
         {/* Header of the post  */}
 
@@ -112,25 +107,21 @@ const OnlyTextPost = ({ pst }) => {
                 </div>
               </Link>
 
-              <div className="text-xs">
-                {formattedDate}
-              </div>
+              <div className="text-xs">{formattedDate}</div>
 
               <div className="flex flex-row w-5/6 overflow-x-scroll scrollbar-hide">
-                {post.author.role && post.author.role.map((rol, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="bg-slate-400 w-fit p-1 text-xs rounded px-2 mx-1 text-slate-800 my-1"
-                    >
-                      {rol}
-                    </div>
-                  );
-                })}
+                {post.author.role &&
+                  post.author.role.map((rol, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="bg-slate-400 w-fit p-1 text-xs rounded px-2 mx-1 text-slate-800 my-1"
+                      >
+                        {rol}
+                      </div>
+                    );
+                  })}
               </div>
-
-
-
             </div>
           </div>
 
@@ -190,9 +181,25 @@ const OnlyTextPost = ({ pst }) => {
             onClick={handleLikeClick}
           >
             <div>
-              <BiSolidLike />
+              <BiSolidLike
+                className={post.likes.map((item) => {
+                  if (item.name === globalUser.name && item.userName === globalUser.userName ) {
+                    return "text-indigo-400";
+                  } else {
+                    return;
+                  }
+                })}
+              />
             </div>
-            <span className="px-2">Like</span>
+            <span 
+              className={post.likes.map((item) => {
+                if (item.name === globalUser.name && item.userName === globalUser.userName ) {
+                  return "px-2 font-bold text-indigo-400";
+                } else {
+                  return "px-2";
+                }
+              })}
+            >Like</span>
           </div>
           {/* comment  */}
           <div
@@ -245,7 +252,12 @@ const OnlyTextPost = ({ pst }) => {
 
               {post.comments.map((com, index) => {
                 return (
-                  <Comment setPost={setPost} postId={post._id} key={index} com={com}/>
+                  <Comment
+                    setPost={setPost}
+                    postId={post._id}
+                    key={index}
+                    com={com}
+                  />
                 );
               })}
             </div>

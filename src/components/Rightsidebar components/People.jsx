@@ -26,9 +26,10 @@ const People = () => {
     <>
       <div className="flex flex-col bg-slate-500  overflow-y-scroll overflow-x-hidden scrollbar-hide m-4 p-3 items-center rounded-md  cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out h-2/6 ">
 
+
         {
-          userData.map((usr)=>{
-            return <PeoplebarProfileButton key={usr._id} user={usr}/>
+          userData.map((usr , index)=>{
+            return <PeoplebarProfileButton key={index} user={usr}/>
           })
         }
       </div>

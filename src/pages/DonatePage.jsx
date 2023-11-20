@@ -1,62 +1,76 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { FaRegImage } from "react-icons/fa6";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const DonatePage = () => {
-
+  const [avatar, setAvatar] = useState({});
 
   const [formData, setFormData] = useState({
-    donorName : "",
-    donorIdentity : "",
-    donorPhoneNumber : "",
-    donorAddress : "",
-    donorDescriptions : "",
-    DonationAmount : 0,
-  })
+    donorName: "",
+    donorIdentity: "",
+    donorPhoneNumber: "",
+    donorAddress: "",
+    donorDescriptions: "",
+    DonationAmount: 0,
+  });
 
+  useEffect(()=>{
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      avatar : avatar
+    }));
+  },[avatar])
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setAvatar(file);
+  };
 
   const handleChange = (e) => {
-
     setFormData((prevFormData) => ({
-      ...prevFormData ,
-      [e.target.name] : e.target.value
-    }))
-
+      ...prevFormData,
+      [e.target.name]: e.target.value,
+    }));
   };
-  console.log(formData)
+  console.log(formData);
 
-
-
-
-  const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
 
     axios
       .post(
-        `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/order/addorder`,
+        `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/donate/adddonation`,
         {
-          ...formData,
-          totalOrderValue : globalCart.reduce(
-            (total, item) => total + item.price * item.qty,
-            0
-          ),
-          status: "NEW_ORDER"
+          ...formData
         }
       )
       .then((res) => {
         if (res.status === 200) {
           alert("Your order has been placed successfully!");
-        };
+        }
         window.location.href = res.data.paymentData.GatewayPageURL;
       })
       .catch((err) => {
         toast.error("Some error occured.");
       });
-
-  }
+  };
   return (
     <>
+    <ToastContainer
+        position="top-center"
+        autoClose={8000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="min-h-screen bg-slate-300 flex items-center flex-col justify-center">
         <div className="lg:block lg:py-11"></div>
         <div className="p-10 bg-slate-500 w-full text-slate-100 text-center text-5xl">
@@ -68,8 +82,7 @@ const DonatePage = () => {
             <div className="text-4xl">Add your information as a donor.</div>
 
             <form onSubmit={handleSubmit}>
-
-              <label htmlFor="NAME"  className="w-full">
+              <label htmlFor="NAME" className="w-full">
                 <div className="flex flex-row bg-slate-300 p-3 items-center rounded-md mt-3  cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out w-full">
                   <div className="w-11 flex flex-row ml-2">
                     <span className="font-semibold">NAME:</span>
@@ -89,7 +102,7 @@ const DonatePage = () => {
                 </div>
               </label>
 
-              <label htmlFor="identity"  className="">
+              <label htmlFor="identity" className="">
                 <div className="flex flex-row bg-slate-300 p-3 items-center rounded-md mt-3  cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out w-full">
                   <div className="w-11 flex flex-row ml-2">
                     <span className="font-semibold">IDENTITY:</span>
@@ -109,7 +122,45 @@ const DonatePage = () => {
                 </div>
               </label>
 
-              <label htmlFor="phoneNum"  className="">
+              {avatar.name === undefined  && (
+                <div className="flex justify-center mt-4 w-full">
+                  <label htmlFor="DPfile" className="w-full">
+                    <div className="text-xl font-bold bg-sky-300 w-full flex items-center justify-center rounded-md  p-3 cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <FaRegImage /> <span className="pl-4">CHOSE A PICTURE</span>
+                    </div>
+                  </label>
+                  <input
+                    className="hidden"
+                    id="DPfile"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+                </div>
+              )}
+              {console.log((avatar.name))}
+              {
+                avatar.name !== undefined &&
+                <div className="flex justify-center mt-4 w-full">
+                  <label htmlFor="DPfile" className="w-full">
+                    <div className="text-xl font-bold bg-yellow-300 w-full flex items-center justify-center rounded-md  p-3 cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <FaRegImage /> <span className="pl-4">CHOSE A NEW PICTURE</span>
+                    </div>
+                  </label>
+                  <input
+                    className="hidden"
+                    id="DPfile"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+                </div>
+              }
+
+
+
+
+              <label htmlFor="phoneNum" className="">
                 <div className="flex flex-row bg-slate-300 p-3 items-center rounded-md mt-3  cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out w-full">
                   <div className="w-11 flex flex-row ml-2">
                     <span className="font-semibold">PHONE:</span>
@@ -129,7 +180,7 @@ const DonatePage = () => {
                 </div>
               </label>
 
-              <label htmlFor="address"  className="">
+              <label htmlFor="address" className="">
                 <div className="flex flex-row bg-slate-300 p-3 items-center rounded-md mt-3  cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out w-full">
                   <div className="w-11 flex flex-row ml-2">
                     <span className="font-semibold">ADDRESS:</span>
@@ -149,7 +200,7 @@ const DonatePage = () => {
                 </div>
               </label>
 
-              <label htmlFor="desc"  className="">
+              <label htmlFor="desc" className="">
                 <div className="flex flex-row bg-slate-300 p-3 items-center rounded-md mt-3  cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out w-full">
                   <div className="w-11 flex flex-row ml-2">
                     <span className="font-semibold">DESCRIPTION:</span>
@@ -169,7 +220,7 @@ const DonatePage = () => {
                 </div>
               </label>
 
-              <label htmlFor="donationAmount"  className="">
+              <label htmlFor="donationAmount" className="">
                 <div className="flex flex-row bg-slate-300 p-3 items-center rounded-md mt-3  cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out w-full">
                   <div className="w-11 flex flex-row ml-2">
                     <span className="font-semibold">DONATION AMOUNT:</span>
@@ -189,10 +240,13 @@ const DonatePage = () => {
                 </div>
               </label>
 
-              <button type="submit" className="w-full bg-blue-700 my-4 p-6 text-white text-xl rounded-md">DONATE</button>
+              <button
+                type="submit"
+                className="w-full bg-blue-700 my-4 p-6 text-white text-xl rounded-md"
+              >
+                DONATE
+              </button>
             </form>
-
-
           </div>
         </div>
       </div>
