@@ -18,6 +18,15 @@ const OnlyTextPost = ({ pst }) => {
   const globalUser = useSelector((state) => state.globalUser.user);
 
   const handleLikeClick = () => {
+
+
+
+
+
+
+
+
+
     axios
       .post(
         `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/like`,
@@ -177,7 +186,7 @@ const OnlyTextPost = ({ pst }) => {
         <div className="flex flex-row justify-evenly">
           {/* like  */}
           <div
-            className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg"
+            className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg cursor-pointer "
             onClick={handleLikeClick}
           >
             <div>
@@ -203,7 +212,7 @@ const OnlyTextPost = ({ pst }) => {
           </div>
           {/* comment  */}
           <div
-            className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg"
+            className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg cursor-pointer"
             onClick={() =>
               setShowComment((prev) => {
                 return !prev;

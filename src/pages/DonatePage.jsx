@@ -16,12 +16,6 @@ const DonatePage = () => {
     DonationAmount: 0,
   });
 
-  useEffect(()=>{
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      avatar : avatar
-    }));
-  },[avatar])
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -34,29 +28,118 @@ const DonatePage = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  console.log(formData);
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (
+  //     formData.donorName === "" ||
+  //     formData.donorIdentity === "" ||
+  //     formData.donorPhoneNumber === "" ||
+  //     formData.donorAddress === "" ||
+  //     formData.donorDescriptions === "" ||
+  //     formData.DonationAmount === 0
+  //   ) {
+  //     toast.error("Every field has to be filled properly...");
+  //     return;
+  //   }
+
+  //   if (!avatar.name) {
+  //     toast.error("Please select a picture...");
+  //     return;
+  //   }
+  
+
+  //     // ? uploading donor image....
+  //     // ? uploading donor image....
+  //     // ? uploading donor image....
+  //     try {
+  //       const avatarData = new FormData();
+    
+  //       avatarData.append("avatar", avatar);
+    
+  //       const response = await axios.post(
+  //         `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/donate/adddonation`,
+  //         {
+  //           data : {
+  //             avatarData,
+  //             formData
+  //           },
+  //           Headers : {
+  //             "Content-Type": "multipart/form-data",
+  //           }
+  //         }
+  //       );
+    
+  //       if (response.status === 200) {
+  //         alert("Your information has been received successfully! Please clear the payment now...");
+  //       }
+  //       // Additional handling based on your backend response
+    
+  //     } catch (error) {
+  //       console.error("Error submitting donation:", error);
+  //       toast.error("Some error occurred.");
+  //     }
+    
+  // };
+  
+  
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+  
+    if (
+      formData.donorName === "" ||
+      formData.donorIdentity === "" ||
+      formData.donorPhoneNumber === "" ||
+      formData.donorAddress === "" ||
+      formData.donorDescriptions === "" ||
+      formData.DonationAmount === 0
+    ) {
+      toast.error("Every field has to be filled properly...");
+      return;
+    }
+  
+    if (!avatar.name) {
+      toast.error("Please select a picture...");
+      return;
+    }
+  
+    try {
+      const formDataToSend = new FormData();
+  
+      formDataToSend.append("avatar", avatar);
+      formDataToSend.append("donorName", formData.donorName);
+      formDataToSend.append("donorIdentity", formData.donorIdentity);
+      formDataToSend.append("donorPhoneNumber", formData.donorPhoneNumber);
+      formDataToSend.append("donorAddress", formData.donorAddress);
+      formDataToSend.append("donorDescriptions", formData.donorDescriptions);
+      formDataToSend.append("DonationAmount", formData.DonationAmount);
 
-    axios
-      .post(
+  
+      const response = await axios.post(
         `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/donate/adddonation`,
+        formDataToSend,
         {
-          ...formData
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          alert("Your order has been placed successfully!");
-        }
-        window.location.href = res.data.paymentData.GatewayPageURL;
-      })
-      .catch((err) => {
-        toast.error("Some error occured.");
-      });
+      );
+  
+      if (response.status === 200) {
+        alert("Your information has been received successfully! Please clear the payment now...");
+      }
+      // Additional handling based on your backend response
+    } catch (error) {
+      console.error("Error submitting donation:", error);
+      toast.error("Some error occurred.");
+    }
   };
+  
+
+
   return (
     <>
     <ToastContainer
@@ -138,7 +221,6 @@ const DonatePage = () => {
                   />
                 </div>
               )}
-              {console.log((avatar.name))}
               {
                 avatar.name !== undefined &&
                 <div className="flex justify-center mt-4 w-full">

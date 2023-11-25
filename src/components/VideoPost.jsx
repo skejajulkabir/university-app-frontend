@@ -220,7 +220,7 @@ const VideoPost = ({ pst }) => {
         <div className="flex flex-row justify-evenly">
           {/* like  */}
           <div
-            className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg"
+            className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg cursor-pointer"
             onClick={handleLikeClick}
           >
             <div>
@@ -246,7 +246,7 @@ const VideoPost = ({ pst }) => {
           </div>
           {/* comment  */}
           <div
-            className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg"
+            className=" bg-slate-200 hover:bg-slate-300 hover:scale-110 transition-transform duration-200 ease-in-out px-2 mx-7 py-2 w-1/4 flex justify-center items-center text-lg cursor-pointer"
             onClick={() =>
               setShowComment((prev) => {
                 return !prev;
