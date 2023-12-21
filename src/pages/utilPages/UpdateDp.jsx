@@ -76,7 +76,7 @@ const UpdateDP = () => {
             </div>
           </div>
 
-          {!avatar && (
+          {/* {!avatar && (
             <div className="flex justify-center mt-4">
               <label htmlFor="DPfile">
                 <div className="text-xl font-bold text-white bg-blue-600 p-6 rounded-xl cursor-pointer  hover:scale-110 transition-transform duration-300 ease-in-out">
@@ -91,9 +91,9 @@ const UpdateDP = () => {
                 onChange={handleFileChange}
               />
             </div>
-          )}
+          )} */}
 
-          {avatar.name && (
+          {/* {avatar.name && (
             <div className="flex justify-center mt-4">
               <button
                 onClick={handleUpload}
@@ -102,7 +102,7 @@ const UpdateDP = () => {
                 Update Avatar
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </>

@@ -36,9 +36,9 @@ const Navbar = () => {
   const globalUser = useSelector((state) => state.globalUser.user);
   const globalUtils = useSelector((state) => state.globalUtils);
 
-  // useEffect(()=>{
-  //   navigate("/")
-  // },[])
+
+  console.log(globalUser)
+
 
   useEffect(() => {
     try {
@@ -172,6 +172,8 @@ const Navbar = () => {
 
           {/* <div className='flex justify-end flex-row absolute right-0 top-3'> */}
           <div className="flex justify-center flex-row h-full absolute top-1 right-2">
+          {
+            globalUser.isVarified && 
             <Link to={"/search"}>
               <label htmlFor="searchbar">
                 <div className="h-full pr-3 hover:scale-125 transition-transform duration-300 ease-in-out">
@@ -181,6 +183,7 @@ const Navbar = () => {
                 </div>
               </label>
             </Link>
+          }
 
             {globalUser.name === "" &&
             globalUser.userName === "" &&
@@ -331,23 +334,34 @@ const Navbar = () => {
 
           {/* // ? community  */}
 
-          <Link to="/community">
-            <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
-              <HiUserGroup className="text-2xl mx-2 font-bold" />
-            </li>
-          </Link>
+          {
+            globalUser.isVarified && 
+            <Link to="/community">
+              <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
+                <HiUserGroup className="text-2xl mx-2 font-bold" />
+              </li>
+            </Link>
+          }
+          {
+            globalUser.isVarified && 
+            <Link to="/notice">
+              <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
+                <CgNotes className="text-2xl mx-2 font-bold" />
+              </li>
+            </Link>
+          }
+          {
+            globalUser.isVarified && 
+            <Link to="/menupage">
+              <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
+                <AiOutlineMenu className="text-2xl mx-2 font-bold" />
+              </li>
+            </Link>
+          }
 
-          <Link to="/notice">
-            <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
-              <CgNotes className="text-2xl mx-2 font-bold" />
-            </li>
-          </Link>
+          
 
-          <Link to="/menupage">
-            <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
-              <AiOutlineMenu className="text-2xl mx-2 font-bold" />
-            </li>
-          </Link>
+          
         </ul>
       </div>
     </div>

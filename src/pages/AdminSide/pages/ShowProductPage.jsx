@@ -14,7 +14,7 @@ const ShowProductPage = () => {
   const getProducts = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/client1/getproducts"
+        `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getproducts`
       );
       setProducts(response.data.products);
     } catch (error) {

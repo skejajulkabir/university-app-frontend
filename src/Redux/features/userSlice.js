@@ -23,7 +23,7 @@ const initialState = {
         description: '',
       },
     ],
-    isVarified: '',
+    isVarified: false,
 
     userType: '',
     info: {

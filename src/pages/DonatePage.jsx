@@ -205,7 +205,7 @@ const DonatePage = () => {
                 </div>
               </label>
 
-              {avatar.name === undefined  && (
+              {/* {avatar.name === undefined  && (
                 <div className="flex justify-center mt-4 w-full">
                   <label htmlFor="DPfile" className="w-full">
                     <div className="text-xl font-bold bg-sky-300 w-full flex items-center justify-center rounded-md  p-3 cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out">
@@ -220,8 +220,8 @@ const DonatePage = () => {
                     onChange={handleFileChange}
                   />
                 </div>
-              )}
-              {
+              )} */}
+              {/* {
                 avatar.name !== undefined &&
                 <div className="flex justify-center mt-4 w-full">
                   <label htmlFor="DPfile" className="w-full">
@@ -237,7 +237,7 @@ const DonatePage = () => {
                     onChange={handleFileChange}
                   />
                 </div>
-              }
+              } */}
 
 
 
