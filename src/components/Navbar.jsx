@@ -36,10 +36,6 @@ const Navbar = () => {
   const globalUser = useSelector((state) => state.globalUser.user);
   const globalUtils = useSelector((state) => state.globalUtils);
 
-
-  console.log(globalUser)
-
-
   useEffect(() => {
     try {
       if (JSON.parse(localStorage.getItem("Cart"))) {
@@ -172,18 +168,17 @@ const Navbar = () => {
 
           {/* <div className='flex justify-end flex-row absolute right-0 top-3'> */}
           <div className="flex justify-center flex-row h-full absolute top-1 right-2">
-          {
-            globalUser.isVarified && 
-            <Link to={"/search"}>
-              <label htmlFor="searchbar">
-                <div className="h-full pr-3 hover:scale-125 transition-transform duration-300 ease-in-out">
-                  <div className="lg:hidden h-full flex items-center justify-center my-auto cursor-pointer ">
-                    <BiSearch className="text-4xl lg:text-5xl mx-2 my-auto" />
+            {globalUser.isVarified && (
+              <Link to={"/search"}>
+                <label htmlFor="searchbar">
+                  <div className="h-full pr-3 hover:scale-125 transition-transform duration-300 ease-in-out">
+                    <div className="lg:hidden h-full flex items-center justify-center my-auto cursor-pointer ">
+                      <BiSearch className="text-4xl lg:text-5xl mx-2 my-auto" />
+                    </div>
                   </div>
-                </div>
-              </label>
-            </Link>
-          }
+                </label>
+              </Link>
+            )}
 
             {globalUser.name === "" &&
             globalUser.userName === "" &&
@@ -334,34 +329,27 @@ const Navbar = () => {
 
           {/* // ? community  */}
 
-          {
-            globalUser.isVarified && 
+          {globalUser.isVarified && (
             <Link to="/community">
               <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
                 <HiUserGroup className="text-2xl mx-2 font-bold" />
               </li>
             </Link>
-          }
-          {
-            globalUser.isVarified && 
+          )}
+          {globalUser.isVarified && (
             <Link to="/notice">
               <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
                 <CgNotes className="text-2xl mx-2 font-bold" />
               </li>
             </Link>
-          }
-          {
-            globalUser.isVarified && 
+          )}
+          {globalUser.isVarified && (
             <Link to="/menupage">
               <li className="px-2 font-bold hover:border-b-indigo-600 border-2  py-1 border-transparent border-r-0">
                 <AiOutlineMenu className="text-2xl mx-2 font-bold" />
               </li>
             </Link>
-          }
-
-          
-
-          
+          )}
         </ul>
       </div>
     </div>

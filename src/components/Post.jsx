@@ -146,17 +146,19 @@ const Post = ({ pst }) => {
         <div className="w-full h-1 bg-slate-300"></div>
 
         {/*  Caption  */}
-        <div className="w-full  ">
-          <textarea
-            className="bg-slate-200 p-2 mx-2 w-full scrollbar-hide"
-            rows={isTruncate ? 2 : 12}
-            type="text"
-            name="caption"
-            disabled
-            value={post.caption}
-          />
-        </div>
-        {isTruncate && (
+        { post.caption.length > 0 &&
+          <div className="w-full  ">
+            <textarea
+              className="bg-slate-200 p-2 mx-2 w-full scrollbar-hide"
+              rows={isTruncate ? 2 : 12}
+              type="text"
+              name="caption"
+              disabled
+              value={post.caption}
+            />
+          </div>
+        }
+        {isTruncate  && post.caption.length > 0 && (
           <span
             className="text-blue-600 cursor-pointer"
             onClick={() => setIsTruncate(false)}
@@ -165,7 +167,7 @@ const Post = ({ pst }) => {
           </span>
         )}
 
-        {!isTruncate && (
+        {!isTruncate && post.caption.length > 0 && (
           <span
             className="text-blue-600 cursor-pointer"
             onClick={() => setIsTruncate(true)}
