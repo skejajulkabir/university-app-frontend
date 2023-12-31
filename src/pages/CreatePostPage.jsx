@@ -102,7 +102,12 @@ const CreatePostPage = () => {
 
     try {
       await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/createpost` ,
-        formData
+        formData ,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+          },
+        }
       )
       .then((response)=>{
         dispatch(setLoading(false))

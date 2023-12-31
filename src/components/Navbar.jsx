@@ -83,7 +83,12 @@ const Navbar = () => {
               .get(
                 `${
                   import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL
-                }/client1/getuserbyid/${res.data.tokenResponse.uid}`
+                }/client1/getuserbyid/${res.data.tokenResponse.uid}`,
+                {
+                  headers: {
+                    Authorization: "Bearer " + localStorage.getItem("TOKEN"), //the token is a variable which holds the token
+                  },
+                }
               )
               .then((r) => {
                 dispatch(setGlobalUser(r.data.user));
@@ -168,6 +173,16 @@ const Navbar = () => {
 
           {/* <div className='flex justify-end flex-row absolute right-0 top-3'> */}
           <div className="flex justify-center flex-row h-full absolute top-1 right-2">
+            <Link to={"/donate"}>
+              <label htmlFor="searchbar">
+                <div className="h-full pr-3 hover:scale-125 transition-transform duration-300 ease-in-out">
+                  <div className="lg:hidden h-full flex items-center justify-center my-auto cursor-pointer ">
+                    <FaMoneyBillAlt className="text-4xl lg:text-5xl  my-auto" />
+                  </div>
+                </div>
+              </label>
+            </Link>
+
             {globalUser.isVarified && (
               <Link to={"/search"}>
                 <label htmlFor="searchbar">

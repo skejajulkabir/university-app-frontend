@@ -18,13 +18,16 @@ export const cartSlice = createSlice({
       if (
         state.cart.find(
           (item) =>
-            item.id === action.payload.id && item.color === action.payload.color
+            item.id === action.payload.id &&
+            item.color === action.payload.color &&
+            item.size === action.payload.size
         )
       ) {
         state.cart = state.cart.map((item) => {
           if (
             item.id === action.payload.id &&
-            item.color === action.payload.color
+            item.color === action.payload.color &&
+            item.size === action.payload.size
           ) {
             return {
               ...item,

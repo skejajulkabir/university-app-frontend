@@ -83,23 +83,26 @@ const UpdateInformationPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios
-        .put(
-          `${
-            import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL
-          }/client1/updateuser/${globalUser._id}`,
-          { user: updatedData }
-        )
-        .then((res) => {
-          alert("Updated your information successfully.");
-          window.location.reload();
-        });
-      // Handle success, show a success message, etc.
+      await axios.put(
+        `${
+          import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL
+        }/client1/updateuser/${globalUser._id}`,
+        { user: updatedData },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+          },
+        }
+      );
+      alert("Updated your information successfully.");
+      window.location.reload();
     } catch (err) {
-      toast.error("Some error occured. Please try again later.");
-      // Handle error, show an error message, etc.
+      toast.error("Some error occurred. Please try again later.");
+      console.error(err);
     }
   };
+  
+  
 
 
   return (

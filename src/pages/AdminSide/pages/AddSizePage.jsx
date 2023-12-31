@@ -58,7 +58,12 @@ const AddSizePage = () => {
       axios
         .post(
           `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/admin/addsizes`,
-          formData
+          formData,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+            },
+          }
         )
         .then((res) => {
           toast.success("Sizee added successfully.");

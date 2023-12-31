@@ -76,7 +76,12 @@ const ProfilePage = () => {
         .get(
           `${
             import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL
-          }/client1/getuserbyid/${params.id}`
+          }/client1/getuserbyid/${params.id}`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("TOKEN"), //the token is a variable which holds the token
+            },
+          }
         )
         .then((res) => {
           setUserData(res.data.user);

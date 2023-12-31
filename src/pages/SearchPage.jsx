@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const SearchPage = () => {
   const [showModifySearchToggler, setShowModifySearchToggler] = useState(false);
@@ -13,6 +14,18 @@ const SearchPage = () => {
   const [from, setFrom] = useState("");
   const [currentLocation, setCurrentLocation] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+
+  const navigate = useNavigate()
+
+  
+  const globalUser = useSelector((state) => state.globalUser.user);
+
+
+  useEffect(() => {
+    if(!globalUser.isVarified){
+      navigate("/")
+    }
+  }, [])
 
   const handleSearch = async () => {
     setShowModifySearchToggler(false);
@@ -110,6 +123,7 @@ const SearchPage = () => {
                       <option value="2020-2021">2020-2021</option>
                       <option value="2021-2022">2021-2022</option>
                       <option value="2022-2023">2022-2023</option>
+                      <option value="2023-2024">2023-2024</option>
                     </select>
                     {/* Add more input fields for other parameters */}
                     <SearchPageInput

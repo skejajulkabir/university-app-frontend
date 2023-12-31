@@ -39,7 +39,12 @@ const SizeHandlingPage = () => {
     try {
       axios
         .put(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/admin/updatesize`,
-          clr
+          clr,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+            },
+          }
         )
         .then((res) => {
           toast.success(res.data.message);

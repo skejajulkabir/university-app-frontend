@@ -1,17 +1,13 @@
-import React, { useEffect, useState  } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoading } from '../Redux/features/utilSlice';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { setLoading } from "../Redux/features/utilSlice";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import LoadingComponent from "../Utils/LoadingComponent";
 
 const CreateBloodDonationNoticePage = () => {
-  
-
-
-  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -19,20 +15,11 @@ const CreateBloodDonationNoticePage = () => {
   const globalUser = useSelector((state) => state.globalUser.user);
   const globalUtil = useSelector((state) => state.globalUtils);
 
-
-  useEffect(()=>{
+  useEffect(() => {
     if (!globalUser.userName || !globalUser.info || !globalUser.contact) {
-      navigate('/');
+      navigate("/");
     }
-  },[globalUser , navigate])
-
-
-
-
-
-
-  
-
+  }, [globalUser, navigate]);
 
   const [willingToUploadMedia, setWillingToUploadMedia] =
     useState("notselected");
@@ -45,16 +32,13 @@ const CreateBloodDonationNoticePage = () => {
     videoURL: "",
     Likes: 0,
     comments: [],
-    postType : "BLOOD_DONATION_POST"
+    postType: "BLOOD_DONATION_POST",
   });
-  
-
 
   const handleYesClick = (e) => {
     e.preventDefault();
     setWillingToUploadMedia("Yes");
   };
-
 
   const handleNoClick = (e) => {
     e.preventDefault();
@@ -64,59 +48,64 @@ const CreateBloodDonationNoticePage = () => {
     });
   };
 
-
   const handleVideoClick = (e) => {
     e.preventDefault();
     setTypeOfThePostState("Video");
     setFormData((prev) => {
-      return { ...prev, typeOfThePost: "Video" , imgURL :"" };
+      return { ...prev, typeOfThePost: "Video", imgURL: "" };
     });
-  }
-
+  };
 
   const handlePhotoClick = (e) => {
     e.preventDefault();
     setTypeOfThePostState("Photo");
     setFormData((prev) => {
-      return { ...prev, typeOfThePost: "Photo" , videoURL :"" };
+      return { ...prev, typeOfThePost: "Photo", videoURL: "" };
     });
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (formData.typeOfThePost === "Photo" || formData.typeOfThePost === "Video") {
-      if (formData.imgURL === "" && formData.videoURL === "") {
-        toast.error("please enter an URL.");
-        return
-      }
+  
+    if (
+      (formData.typeOfThePost === "Photo" || formData.typeOfThePost === "Video") &&
+      formData.imgURL === "" &&
+      formData.videoURL === ""
+    ) {
+      toast.error("Please enter an URL.");
+      return;
     }
-
+  
     if (formData.typeOfThePost === "onlyText" && formData.caption === "") {
-      toast.error("please enter a caption...");
-      return
+      toast.error("Please enter a caption...");
+      return;
     }
-    
+  
     dispatch(setLoading(true));
-
+  
     try {
-      await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/createpost` ,
-        formData
-      )
-      .then(()=>{
-        dispatch(setLoading(false))
-        alert("Your BLOOD DONATION POST has been posted to the feed successfully...");
-          navigate("/")
-      });
+      await axios.post(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/createpost`,
+        formData,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+          },
+        }
+      );
+  
+      dispatch(setLoading(false));
+      alert("Your BLOOD DONATION POST has been posted to the feed successfully...");
+      navigate("/");
     } catch (err) {
-      dispatch(setLoading(false))
+      dispatch(setLoading(false));
       toast.error("Could not add the BLOOD DONATION POST to the feed. Please try again.");
       setTimeout(() => {
-        navigate("/")
-      }, 3000)
+        navigate("/");
+      }, 3000);
     }
-
   };
+  
 
   const handleChange = (e) => {
     setFormData((prev) => {
@@ -126,10 +115,7 @@ const CreateBloodDonationNoticePage = () => {
 
   return (
     <div className="container mx-auto md:p-24">
-        {
-            globalUtil.isLoading && 
-                <LoadingComponent/>
-        }
+      {globalUtil.isLoading && <LoadingComponent />}
       <ToastContainer
         position="top-center"
         autoClose={8000}
@@ -142,8 +128,14 @@ const CreateBloodDonationNoticePage = () => {
         pauseOnHover
         theme="light"
       />
-      <h2 className="text-2xl font-bold mb-4">Create a BLOOD-DONATION-NOTICE as a JUSTIAN!</h2>
-      <form onSubmit={()=>{e.preventDefault()}}>
+      <h2 className="text-2xl font-bold mb-4">
+        Create a BLOOD-DONATION-NOTICE as a JUSTIAN!
+      </h2>
+      <form
+        onSubmit={() => {
+          e.preventDefault();
+        }}
+      >
         <div className="mb-4 pt-24 lg:pt-0">
           <label htmlFor="caption" className="mt-24 text-lg font-medium">
             Caption:
@@ -243,14 +235,16 @@ const CreateBloodDonationNoticePage = () => {
           </div>
         ) : null}
 
-          <button
-            onClick={handleSubmit}
-            type="submit"
-            className={"bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded w-full hover:scale-110 transition-transform duration-300 ease-in-out disabled:bg-slate-400"}
-            // disabled={willingToUploadMedia === "Yes" && (formData.imgURL === "" && formData.videoURL === "") ? true : false}
-          >
-            Post
-          </button>
+        <button
+          onClick={handleSubmit}
+          type="submit"
+          className={
+            "bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded w-full hover:scale-110 transition-transform duration-300 ease-in-out disabled:bg-slate-400"
+          }
+          // disabled={willingToUploadMedia === "Yes" && (formData.imgURL === "" && formData.videoURL === "") ? true : false}
+        >
+          Post
+        </button>
       </form>
     </div>
   );

@@ -25,6 +25,11 @@ const Post = ({ pst }) => {
           postId: post._id,
           name: globalUser.name,
           userName: globalUser.userName,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+          },
         }
       )
       .then((res) => {
@@ -50,6 +55,11 @@ const Post = ({ pst }) => {
           name: globalUser.name,
           userName: globalUser.userName,
           comment: newComment,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+          },
         }
       )
       .then((res) => {

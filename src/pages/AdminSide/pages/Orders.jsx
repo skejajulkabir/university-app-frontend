@@ -12,7 +12,12 @@ const Orders = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/admin/getorders`
+          `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/admin/getorders`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+            },
+          }
         );
         setOrdersData(response.data.orders);
       } catch (error) {

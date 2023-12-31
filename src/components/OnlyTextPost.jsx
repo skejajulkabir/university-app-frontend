@@ -34,6 +34,11 @@ const OnlyTextPost = ({ pst }) => {
           postId: post._id,
           name: globalUser.name,
           userName: globalUser.userName,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+          },
         }
       )
       .then((res) => {
@@ -60,6 +65,11 @@ const OnlyTextPost = ({ pst }) => {
           name: globalUser.name,
           userName: globalUser.userName,
           comment: newComment,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+          },
         }
       )
       .then((res) => {

@@ -44,7 +44,13 @@ const Feed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       await axios
-        .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getposts?page=${page}&limit=10`)
+        .get(`${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/client1/getposts?page=${page}&limit=10`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+            },
+          }
+        )
         .then((res) => {
           setPostsData((prev)=> [...prev , ...res.data.paginatedPosts]);
           setHasmorePosts(res.data.hasMore);
