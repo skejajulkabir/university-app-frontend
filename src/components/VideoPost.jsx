@@ -18,12 +18,24 @@ const VideoPost = ({ pst }) => {
   const globalUser = useSelector((state) => state.globalUser.user);
 
   let vdoURL;
-  if (post.videoURL.includes("www.youtube.com/watch?v")) {
-    const URLextension = post.videoURL.split("=")[1];
 
-    // setExtractedURL(URLextension);
-    vdoURL = URLextension;
-  }
+
+  
+  // if (post.videoURL.includes("www.youtube.com/watch?v")) {
+  //   const URLextension = post.videoURL.split("=")[1];
+
+  //   // setExtractedURL(URLextension);
+  //   vdoURL = URLextension;
+  // }
+
+
+  const extractYouTubeVideoId = (url) => {
+    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(youtubeRegex);
+    return match ? match[1] : null;
+  };
+
+  vdoURL = extractYouTubeVideoId(post.videoURL);
 
   const handleLikeClick = () => {
     axios

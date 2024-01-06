@@ -40,7 +40,6 @@ const Checkout = () => {
     cart: globalCart,
   });
 
-
   useEffect(() => {
     if (globalUser.userName) {
       setFormData((prev) => ({
@@ -72,7 +71,7 @@ const Checkout = () => {
     dispatch(clearCart());
   };
 
-  const handlePlaceOrder = () => {
+  const handlePlaceOrder = async () => {
     if (
       formData.customer.fullName === "" ||
       formData.customer.admSession === "" ||
@@ -86,32 +85,27 @@ const Checkout = () => {
       return;
     }
 
-
-
-    axios
+    await axios
       .post(
         `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/order/addorder`,
         {
           ...formData,
-          totalOrderValue : globalCart.reduce(
+          totalOrderValue: globalCart.reduce(
             (total, item) => total + item.price * item.qty,
             0
           ),
-          status: "NEW_ORDER"
+          status: "NEW_ORDER",
         }
       )
       .then((res) => {
         if (res.status === 200) {
           alert("Your order has been placed successfully!");
-        };
+        }
         window.location.href = res.data.paymentData.GatewayPageURL;
       })
       .catch((err) => {
         toast.error("Some error occured.");
       });
-
-
-
   };
 
   const handleRemoveOneQtyFromCart = (id) => {
@@ -303,16 +297,6 @@ const Checkout = () => {
             />
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
 
         <div className="lg:w-2/3 mt-10 mx-auto  right-0 bg-gray-100 p-10 flex items-center flex-col rounded-lg ">
           <div className="absolute top-8 right-8 text-2xl text-cyan-50 cursor-pointer ">

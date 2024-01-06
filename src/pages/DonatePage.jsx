@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaRegImage } from "react-icons/fa6";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const DonatePage = () => {
   const [avatar, setAvatar] = useState({});
@@ -15,7 +15,6 @@ const DonatePage = () => {
     donorDescriptions: "",
     DonationAmount: 0,
   });
-
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -48,16 +47,15 @@ const DonatePage = () => {
   //     toast.error("Please select a picture...");
   //     return;
   //   }
-  
 
   //     // ? uploading donor image....
   //     // ? uploading donor image....
   //     // ? uploading donor image....
   //     try {
   //       const avatarData = new FormData();
-    
+
   //       avatarData.append("avatar", avatar);
-    
+
   //       const response = await axios.post(
   //         `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/donate/adddonation`,
   //         {
@@ -70,79 +68,83 @@ const DonatePage = () => {
   //           }
   //         }
   //       );
-    
+
   //       if (response.status === 200) {
   //         alert("Your information has been received successfully! Please clear the payment now...");
   //       }
   //       // Additional handling based on your backend response
-    
+
   //     } catch (error) {
   //       console.error("Error submitting donation:", error);
   //       toast.error("Some error occurred.");
   //     }
-    
-  // };
-  
-  
 
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (
       formData.donorName === "" ||
       formData.donorIdentity === "" ||
       formData.donorPhoneNumber === "" ||
       formData.donorAddress === "" ||
+      formData.donorEmail === "" ||
       formData.donorDescriptions === "" ||
-      formData.DonationAmount === 0
+      formData.DonationAmount <= 0
     ) {
       toast.error("Every field has to be filled properly...");
       return;
     }
-  
+
     if (!avatar.name) {
       toast.error("Please select a picture...");
       return;
     }
-  
+
     try {
       const formDataToSend = new FormData();
-  
+
       formDataToSend.append("avatar", avatar);
       formDataToSend.append("donorName", formData.donorName);
       formDataToSend.append("donorIdentity", formData.donorIdentity);
+      formDataToSend.append("donorEmail", formData.donorIdentity);
       formDataToSend.append("donorPhoneNumber", formData.donorPhoneNumber);
       formDataToSend.append("donorAddress", formData.donorAddress);
       formDataToSend.append("donorDescriptions", formData.donorDescriptions);
       formDataToSend.append("DonationAmount", formData.DonationAmount);
 
-  
-      const response = await axios.post(
-        `${import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL}/donate/adddonation`,
-        formDataToSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-  
-      if (response.status === 200) {
-        alert("Your information has been received successfully! Please clear the payment now...");
-      }
-      // Additional handling based on your backend response
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_REACT_APP_BACKEND_SERVER_URL
+          }/donate/adddonation`,
+          formDataToSend,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res)
+          if (res.status === 200) {
+            alert(res.data.message);
+          }
+          window.location.href = res.data.donationData.GatewayPageURL;
+        })
+        .catch((err) => {
+          toast.error("Some error occured.");
+        });
     } catch (error) {
-      console.error("Error submitting donation:", error);
+      console.error("Error submitting donation:");
       toast.error("Some error occurred.");
     }
   };
-  
-
 
   return (
     <>
-    <ToastContainer
+      <ToastContainer
         position="top-center"
         autoClose={8000}
         hideProgressBar={false}
@@ -205,11 +207,12 @@ const DonatePage = () => {
                 </div>
               </label>
 
-              {avatar.name === undefined  && (
+              {avatar.name === undefined && (
                 <div className="flex justify-center mt-4 w-full">
                   <label htmlFor="DPfile" className="w-full">
                     <div className="text-xl font-bold bg-sky-300 w-full flex items-center justify-center rounded-md  p-3 cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out">
-                    <FaRegImage /> <span className="pl-4">CHOSE A PICTURE</span>
+                      <FaRegImage />{" "}
+                      <span className="pl-4">CHOSE A PICTURE</span>
                     </div>
                   </label>
                   <input
@@ -221,12 +224,12 @@ const DonatePage = () => {
                   />
                 </div>
               )}
-              {
-                avatar.name !== undefined &&
+              {avatar.name !== undefined && (
                 <div className="flex justify-center mt-4 w-full">
                   <label htmlFor="DPfile" className="w-full">
                     <div className="text-xl font-bold bg-yellow-300 w-full flex items-center justify-center rounded-md  p-3 cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out">
-                    <FaRegImage /> <span className="pl-4">CHOSE A NEW PICTURE</span>
+                      <FaRegImage />{" "}
+                      <span className="pl-4">CHOSE A NEW PICTURE</span>
                     </div>
                   </label>
                   <input
@@ -237,10 +240,7 @@ const DonatePage = () => {
                     onChange={handleFileChange}
                   />
                 </div>
-              }
-
-
-
+              )}
 
               <label htmlFor="phoneNum" className="">
                 <div className="flex flex-row bg-slate-300 p-3 items-center rounded-md mt-3  cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out w-full">
@@ -256,6 +256,26 @@ const DonatePage = () => {
                       placeholder="Add your phone number."
                       className="w-full pl-3 placeholder:pl-2 placeholder:py-4 placeholder:italic placeholder:text-slate-700 placeholder:bg-slate-300  py-2 focus:outline-none focus:ring-sky-500   bg-slate-300 rounded-md  text-slate-600 "
                       id="phoneNum"
+                      autoComplete="off"
+                    />
+                  </div>
+                </div>
+              </label>
+
+              <label htmlFor="donorEmail" className="">
+                <div className="flex flex-row bg-slate-300 p-3 items-center rounded-md mt-3  cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out w-full">
+                  <div className="w-11 flex flex-row ml-2">
+                    <span className="font-semibold">E-MAIL:</span>
+                  </div>
+
+                  <div className="ml-4 w-5/6">
+                    <input
+                      onChange={handleChange}
+                      name="donorEmail"
+                      type="email"
+                      placeholder="Add your e-mail."
+                      className="w-full pl-3 placeholder:pl-2 placeholder:py-4 placeholder:italic placeholder:text-slate-700 placeholder:bg-slate-300  py-2 focus:outline-none focus:ring-sky-500   bg-slate-300 rounded-md  text-slate-600 "
+                      id="donorEmail"
                       autoComplete="off"
                     />
                   </div>
@@ -313,7 +333,7 @@ const DonatePage = () => {
                       onChange={handleChange}
                       name="DonationAmount"
                       type="number"
-                      placeholder="Say something..."
+                      placeholder="Enter donation amount"
                       className="w-full pl-3 placeholder:pl-2 placeholder:py-4 placeholder:italic placeholder:text-slate-700 placeholder:bg-slate-300  py-2 focus:outline-none focus:ring-sky-500   bg-slate-300 rounded-md  text-slate-600 "
                       id="donationAmount"
                       autoComplete="off"

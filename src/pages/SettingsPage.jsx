@@ -1,8 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { FiLogOut } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const SettingsPage = () => {
+
+
+  const globalUser = useSelector((state) => state.globalUser.user);
+
+
+
+  const Navigate = useNavigate();
+
+  useEffect(() => {
+    if (globalUser.name === "") {
+      Navigate("/");
+    }
+  }, []);
 
 
 
